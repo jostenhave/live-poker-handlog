@@ -1,7 +1,7 @@
 {
   "id": "/live-poker-handlog/",
-  "name": "Live Poker HandLog",
-  "short_name": "Live Poker HandLog",
+  "name": "Live Poker Handlog",
+  "short_name": "Live Poker Handlog",
   "description": "Live poker hands registreren en deelbare handhistorierapporten genereren.",
   "lang": "nl-NL",
   "start_url": "./",
