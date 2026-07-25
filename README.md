@@ -1,6 +1,6 @@
-# Live Poker HandLog
+# Live Poker Handlog
 
-Live Poker HandLog is a single-file HTML application for recording live poker hands and generating shareable hand history reports.
+Live Poker Handlog is a single-file HTML application for recording live poker hands and generating shareable hand history reports.
 
 ## Repository structure
 
