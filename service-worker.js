@@ -1,4 +1,4 @@
-const CACHE_NAME = 'live-poker-handlog-v2.4-pwa-1';
+const CACHE_NAME = 'live-poker-handlog-v2.4-pwa-2';
 
 const APP_SHELL = [
   './',
