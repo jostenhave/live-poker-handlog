@@ -2,23 +2,8 @@
 <html lang="nl">
 <head>
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-<title>Live Poker Handlog</title>
-
-<meta name="theme-color" content="#0f141b">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
-<link rel="manifest" href="manifest.webmanifest">
-
-<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
-
-<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png">
-
+<title>Live Poker Handlog v2.5 RC6</title>
 <style>
 :root{--bg:#11151b;--surface:#1b222c;--surface2:#242d39;--surface3:#101820;--line:#34404e;--text:#edf1f6;--muted:#909baa;--felt:#18875c;--felt2:#126746;--gold:#e7b54b;--red:#e75055;--green:#31b873;--blue:#5590f7;--purple:#9b6cf4;--r:14px}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:16px}body{max-width:560px;margin:0 auto;padding:12px 12px 94px}button,input,select,textarea{font:inherit}h1{font-size:1.08rem;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}h2{font-size:.75rem;margin:18px 0 8px;color:var(--muted);text-transform:uppercase;letter-spacing:.09em}.top{display:flex;gap:9px;align-items:center;margin-bottom:12px}.back{width:auto;background:var(--surface);border:1px solid var(--line);color:var(--text);border-radius:11px;padding:8px 12px}.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:13px;margin-bottom:11px}.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}label{display:block;font-size:.73rem;color:var(--muted);margin:9px 0 4px;letter-spacing:.025em}input,select,textarea{width:100%;background:var(--surface2);border:1px solid var(--line);color:var(--text);border-radius:10px;padding:11px 10px}textarea{min-height:74px;resize:vertical}input[type=date]{color-scheme:dark}input:focus,select:focus,textarea:focus,button:focus-visible{outline:2px solid var(--felt);outline-offset:1px}.btn{width:100%;border:0;background:var(--felt);color:#fff;border-radius:12px;padding:13px 14px;margin-top:9px;font-weight:700}.btn:active{background:var(--felt2)}.btn.sub{background:var(--surface2);border:1px solid var(--line);color:var(--text);font-weight:600}.btn.gold{background:var(--gold);color:#1b1405}.btn.danger{background:transparent;border:1px solid #663035;color:var(--red)}.btn.small{width:auto;padding:8px 11px;margin:0;font-size:.86rem}.seg{display:flex;background:var(--surface2);border:1px solid var(--line);border-radius:10px;overflow:hidden}.seg button{flex:1;border:0;background:transparent;color:var(--muted);padding:10px 6px}.seg .on{background:var(--felt);color:#fff;font-weight:700}.seg button:disabled{opacity:.35;cursor:not-allowed}.pill{display:inline-block;font-size:.69rem;padding:2px 8px;border-radius:20px;background:var(--surface2);border:1px solid var(--line);color:var(--muted);margin-left:6px}.pill.gold{color:var(--gold);border-color:#5d4820}.pill.green{color:var(--green);border-color:#22523d}.list{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px;margin-bottom:10px}.list.sel{border-color:var(--felt);box-shadow:0 0 0 1px rgba(49,184,115,.5)}.list .t{font-weight:700}.list .s{font-size:.82rem;color:var(--muted);margin-top:3px;line-height:1.35}.empty{color:var(--muted);text-align:center;padding:28px 8px}.note{font-size:.76rem;color:var(--muted);margin-top:6px;line-height:1.35}.pcard{display:inline-flex;flex-direction:column;justify-content:center;align-items:center;width:45px;height:61px;background:#f3efe4;border:1px solid #c9c3b4;border-radius:7px;box-shadow:0 1px 3px rgba(0,0,0,.45);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:800;font-size:1.04rem;color:#111}.pcard.empty{background:var(--surface2);border:1px dashed var(--line);color:var(--muted);font-weight:500;font-size:1.35rem;box-shadow:none}.cardrow{display:flex;gap:7px;align-items:center;flex-wrap:wrap}.suit-s{color:#171717}.suit-h{color:#c92e33}.suit-d{color:#2268d8}.suit-c{color:#177749}.suit-q{color:#7f7a6c}.board-strip{position:sticky;top:0;z-index:5;background:rgba(17,21,27,.96);backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:13px;padding:10px;margin-bottom:11px}.street-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.street-tabs button{border:1px solid var(--line);background:var(--surface2);color:var(--muted);border-radius:10px;padding:9px 3px;font-weight:800;font-size:.83rem}.street-tabs .on{background:var(--felt);color:#fff;border-color:var(--felt)}.quickbar{display:grid;grid-template-columns:1fr;gap:8px;margin-top:8px}.qgroup{border:1px solid var(--line);background:rgba(255,255,255,.025);border-radius:12px;padding:9px}.qgroup.hero{border-color:#285f49;background:#10251c}.qgroup.villain{border-color:#2c5594;background:#101c2e}.qgroup.other{border-color:#5d3f96;background:#1b122b}.qtitle{font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;font-weight:800;margin:0 0 8px;color:var(--muted);display:flex;justify-content:space-between;align-items:center}.qgroup.hero .qtitle{color:#79d4a8}.qgroup.villain .qtitle{color:#77a9ff}.qgroup.other .qtitle{color:#bd96ff}.qgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.qbtn{background:var(--surface2);border:1px solid var(--line);color:var(--text);border-radius:10px;padding:10px 4px;font-size:.84rem;font-weight:700;min-height:43px;transition:transform .12s ease,background .12s ease,box-shadow .12s ease}.qbtn.qflash,.btn.qflash{animation:quickPulse .48s ease-out}@keyframes quickPulse{0%{background:var(--green);color:#06140e;box-shadow:0 0 0 2px rgba(49,184,115,.85);transform:scale(1.04)}100%{background:var(--surface2);box-shadow:none;transform:scale(1)}}.qgroup.hero .qbtn{border-color:#2d6b52}.qgroup.villain .qbtn{border-color:#315d9f}.qgroup.other .qbtn{border-color:#674ca3}.street-head{display:flex;justify-content:space-between;align-items:center;margin:14px 0 7px}.street-head b{font-size:.78rem;color:var(--gold);text-transform:uppercase;letter-spacing:.08em}.street{background:#101a22;border:1px solid #263643;border-radius:11px;padding:9px;margin-bottom:9px}.action-item{margin-bottom:8px}.action-row{display:grid;grid-template-columns:minmax(54px,.88fr) minmax(62px,.92fr) minmax(92px,1.18fr) minmax(66px,.62fr) 30px;gap:5px;align-items:center}.action-row.selected{background:rgba(49,184,115,.08);box-shadow:0 0 0 1px var(--felt);border-radius:10px;padding:4px}.action-row.flash{animation:flashAction .85s ease-out}@keyframes flashAction{0%{background:rgba(49,184,115,.34);box-shadow:0 0 0 2px rgba(49,184,115,.65);border-radius:9px}100%{background:transparent;box-shadow:none}}.action-row select,.action-row input{padding:9px 6px;font-size:.86rem;min-width:0}.action-menu{width:30px;height:40px;padding:0;border:1px solid var(--line);border-radius:9px;background:var(--surface2);color:var(--muted);font-size:1.15rem;font-weight:800}.action-row.selected .action-menu{background:var(--felt);border-color:var(--felt);color:#fff}.action-editbar{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:6px;padding:6px;background:rgba(255,255,255,.025);border:1px solid var(--line);border-radius:10px}.action-editbar button{min-height:34px;margin:0;padding:5px 7px;font-size:.98rem}.action-editbar .danger{color:var(--red)}.action-editbar .confirm{background:transparent;border:1px solid #22523d;color:var(--green)}.preview{margin-top:8px;padding:8px 9px;background:#0e251b;border:1px solid #254634;border-radius:9px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem;color:#a8dfbf;white-space:pre-wrap;word-break:break-word}.warn{color:#ffd38a;background:#2b2111;border:1px solid #5b4620;border-radius:9px;padding:7px 9px;font-size:.76rem;margin-top:8px}.wa{background:#134d37;border-radius:12px;border-top-left-radius:3px;padding:12px 14px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.82rem;white-space:pre-wrap;line-height:1.45;word-break:break-word}.cs{color:#fff;font-weight:800}.ch{color:#ff777d;font-weight:800}.cd{color:#82aaff;font-weight:800}.cc{color:#83e5ab;font-weight:800}.cq{color:#c3c9d2;font-weight:800}details{margin-top:10px}summary{cursor:pointer;color:var(--gold);font-weight:700;padding:8px 0}.player-mini{display:flex;justify-content:space-between;gap:8px;align-items:flex-start;background:var(--surface2);border:1px solid var(--line);border-radius:10px;padding:10px;margin-top:8px}.player-mini .main{font-weight:800}.overlay{position:fixed;inset:0;background:rgba(0,0,0,.66);display:flex;align-items:flex-end;justify-content:center;z-index:40}.picker{background:var(--surface);border-top:1px solid var(--line);border-radius:18px 18px 0 0;padding:15px 13px 24px;width:100%;max-width:560px}.rankgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:7px;margin-bottom:12px}.suitgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:7px}.rankgrid button,.suitgrid button{background:var(--surface2);border:1px solid var(--line);color:var(--text);border-radius:9px;padding:11px 0;font-weight:800}.rankgrid .on{background:var(--felt)}.rankgrid button:disabled,.suitgrid button:disabled{opacity:.25}.picker .suit-s{color:#f4f7fa}.picker .suit-h{color:#ff5c61}.picker .suit-d{color:#6399ff}.picker .suit-c{color:#35c77f}.picker .suit-q{color:#9aa4b2}.bottom{position:fixed;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(17,21,27,.96) 22%);padding:20px 12px 10px}.bottom .inner{max-width:560px;margin:0 auto}.compact{font-size:.85rem;color:var(--muted)}label:has(input[type=checkbox]){display:flex;align-items:center;gap:8px;color:var(--text);font-size:.9rem;text-transform:none;letter-spacing:0}@media(max-width:380px){.qgrid{grid-template-columns:repeat(2,1fr)}.action-row{grid-template-columns:minmax(48px,.82fr) minmax(56px,.88fr) minmax(78px,1.08fr) minmax(62px,.62fr) 28px;gap:3px}.action-row select,.action-row input{padding-left:5px;padding-right:5px;font-size:.82rem}.action-menu{width:28px}.action-editbar{grid-template-columns:repeat(4,1fr);gap:4px}.action-editbar button{padding:4px;font-size:.9rem}}
@@ -26,15 +11,17 @@
 .version-btn{width:auto;margin:0;padding:5px 10px;border-radius:20px;background:var(--surface2);border:1px solid var(--line);color:var(--muted);font-size:.69rem;cursor:pointer}.release-overlay{position:fixed;inset:0;background:rgba(0,0,0,.72);display:flex;align-items:center;justify-content:center;padding:18px;z-index:60}.release-panel{width:100%;max-width:520px;max-height:82vh;overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px}.release-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}.release-version{font-size:1.05rem;font-weight:850}.release-date{color:var(--muted);font-size:.78rem}.release-item{padding:9px 0;border-top:1px solid var(--line);line-height:1.4}.release-id{display:inline-block;min-width:58px;color:var(--gold);font-weight:800}.release-type{color:var(--muted);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em}.input-hint{font-size:.69rem;color:var(--muted);margin-top:4px}.winner-static{width:100%;background:var(--surface2);border:1px solid var(--line);color:var(--text);border-radius:10px;padding:11px 10px;min-height:46px}.stack-grid{display:grid;grid-template-columns:minmax(88px,.72fr) minmax(0,1.28fr);gap:8px;width:100%}.stack-grid>*{min-width:0}.stack-grid input{padding-left:8px;padding-right:8px}.stack-grid input::placeholder{font-size:.78rem}.villain-stack-wide{width:100%}.villain-stack-wide .stack-grid{grid-template-columns:minmax(96px,112px) minmax(210px,1fr)}.hero-stack-cards{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(112px,.55fr);gap:14px;align-items:end}.hero-cards-block{min-width:0}.hero-cards-block .cardrow{justify-content:flex-end}.villain-showdown-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(145px,.72fr);gap:12px;align-items:end}.villain-showdown-row .cardrow{flex-wrap:nowrap}.stack-grid input{font-variant-numeric:tabular-nums}.stack-grid input::placeholder{font-size:.75rem}@media(max-width:420px){.hero-stack-cards{grid-template-columns:minmax(0,1.6fr) minmax(98px,.4fr);gap:10px}.hero-cards-block .pcard{width:42px}.villain-showdown-row{grid-template-columns:minmax(0,1fr) minmax(132px,.68fr);gap:10px}}
 
 .toggle-row{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--surface2);border:1px solid var(--line);border-radius:11px;padding:10px 11px;margin-top:8px}.toggle-row .toggle-label{font-size:.9rem;font-weight:700;color:var(--text)}.toggle{position:relative;width:48px;height:28px;border-radius:999px;border:1px solid var(--line);background:#151b22;padding:0;flex:0 0 auto}.toggle::after{content:'';position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:var(--muted);transition:.16s}.toggle.on{background:var(--felt);border-color:var(--felt)}.toggle.on::after{left:23px;background:#fff}.subpanel{background:rgba(255,255,255,.025);border:1px solid var(--line);border-radius:12px;padding:10px;margin-top:10px}.session-edit-note{margin-top:10px}.session-notes{min-height:132px;line-height:1.6}.straddle-count-wrap{display:flex;justify-content:flex-end;margin-top:10px}.straddle-count-box{width:132px}.straddle-amount{width:42%;min-width:140px;max-width:220px}.search-result{cursor:pointer}.search-result.disabled{cursor:default;opacity:.82}.inline-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.library-new{margin-top:12px}.search-results-wrap{min-height:0}.search-results-wrap h2:first-child{margin-top:14px}.search-empty{color:var(--muted);padding:10px 2px;font-size:.82rem}.disabled-feature{background:rgba(255,255,255,.018);border:1px solid var(--line);border-radius:10px;padding:11px;color:var(--muted);line-height:1.4}.input-error{border-color:var(--red)!important;box-shadow:0 0 0 1px rgba(231,80,85,.35)}
+
+.checklist label,.import-checklist label{display:flex;align-items:center;gap:9px;margin:9px 0;color:var(--text);font-size:.9rem;text-transform:none;letter-spacing:0}.checklist input[type=checkbox],.import-checklist input[type=checkbox]{width:auto;flex:0 0 auto;margin:0}.safety-meta{line-height:1.5}.recovery{max-width:560px;margin:8vh auto 0}.status-error{color:#ffb2b5}.status-ok{color:#83e5ab}.checklist label{margin:8px 0}.filebox{border:1px dashed var(--line);border-radius:10px;padding:10px}.modal-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:10px}.hidden{display:none!important}
 </style>
 </head>
 <body><div id="app"></div><script>
 'use strict';
-const APP_VERSION='v2.4';
-const SCHEMA_VERSION=11;
-const VERSION='v2.4 · 2026-07-21';
-const KEY='hhl:v11:data';
-const OLDKEYS=['hhl:v10:data','hhl:v9:data','hhl:v8:data','hhl:v7:data','hhl:v6:data'];
+const APP_VERSION='v2.5 RC6';
+const SCHEMA_VERSION=12;
+const VERSION='v2.5 RC6 · 2026-07-27';
+const KEY='hhl:v12:data';
+const OLDKEYS=['hhl:v11:data','hhl:v10:data','hhl:v9:data','hhl:v8:data','hhl:v7:data','hhl:v6:data'];
 const $=id=>document.getElementById(id);
 const uid=()=>Math.random().toString(36).slice(2,10);
 const esc=s=>String(s??'').replace(/[&<>\"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;'}[c]));
@@ -46,6 +33,36 @@ const STREET_INDEX={pf:0,flop:1,turn:2,river:3};
 const ACTF={fold:'fold',check:'check',call:'call',bet:'bet',raise:'raise',allin:'all-in',jam:'jam'};
 const CUR={EUR:'€',USD:'$',GBP:'£'};
 const RELEASE_NOTES=[
+  {version:'v2.5 RC6',date:'27-07-2026',changes:[
+    {type:'Opgelost',text:'Forced blinds worden altijd direct aan de betreffende positie gekoppeld, zodat een raise vanuit SB of BB via de zichtbare interface niet bovenop de blind wordt geteld.'},
+    {type:'Opgelost',text:'Toernooipotten met en zonder big blind ante gebruiken dezelfde positiegebonden forced-contributionlogica bij invoer in big blinds en chips.'},
+    {type:'Veiligheid',text:'Importeren met Vervangen vraagt vóór de destructieve actie expliciet om bevestiging en meldt dat eerst een veiligheidskopie wordt gemaakt.'},
+    {type:'Testbaarheid',text:'De sessieconflicttest op ID is expliciet toegevoegd: dezelfde naam met een andere ID is geen conflict; dezelfde ID met andere inhoud wel.'}
+  ]},
+  {version:'v2.5 RC5',date:'26-07-2026',changes:[
+    {type:'Opgelost',text:'De pot-engine verwerkt ongecallde 3-bets, squeezes, 4-bets en hogere raises generiek voor cashgames en alle toernooivarianten.'},
+    {type:'Technisch',text:'Forced contributions en vrijwillig bereikte actieniveaus worden per street afzonderlijk bijgehouden.'},
+    {type:'Opgelost',text:'Blinds, big blind ante en straddles blijven volledig in de pot, maar matchen zonder vrijwillige actie geen deel van een raise.'},
+    {type:'Verbeterd',text:'Dezelfde potlogica wordt gebruikt voor cash, Regular MTT, PKO, KO en Mystery Bounty, met invoer in geld, chips of big blinds.'}
+  ]},
+  {version:'v2.5 RC4',date:'26-07-2026',changes:[
+    {type:'Opgelost',text:'Ongecallde raises worden nu correct teruggegeven, met behoud van de eigen verplichte blind- of straddlebijdage.'},
+    {type:'Verbeterd',text:'Villainverwijzingen worden bij iedere sessie-import gecontroleerd tegen de spelerslijst van diezelfde sessie.'},
+    {type:'Verbeterd',text:'Een hand met een afwijkende sessiereferentie wordt afgewezen; een overeenkomende overbodige referentie wordt tijdens migratie verwijderd.'}
+  ]},
+  {version:'v2.5 RC3',date:'26-07-2026',changes:[
+    {type:'Opgelost',text:'Emergency Mode gebruikt nu volledig gescheiden opslag en laat de normale database ongemoeid.'},
+    {type:'Verbeterd',text:'Importbestanden worden strenger gecontroleerd voordat gegevens worden gewijzigd.'},
+    {type:'Nieuwe functionaliteit',text:'De interne veiligheidskopie is zichtbaar, downloadbaar en herstelbaar via Gegevensbeheer.'},
+    {type:'Verbeterd',text:'Spelers uit de spelersbibliotheek kunnen direct bij een villain worden geselecteerd en aan de sessie worden toegevoegd.'},
+    {type:'Interface',text:'Import- en exportkeuzes zijn beter uitgelijnd en teksten zijn vereenvoudigd.'},
+    {type:'Naamgeving',text:'De appnaam is overal gewijzigd naar Live Poker Handlog.'},
+    {type:'Nieuwe functionaliteit',text:'Gegevensbeheer met selectieve JSON-export, samenvoegen, vervangen en automatische veiligheidsback-up.'},
+    {type:'Nieuwe functionaliteit',text:'Recovery-scherm en afzonderlijke Emergency Mode bij beschadigde opslag.'},
+    {type:'Verbeterd',text:'Cross-street-validatie, impliciete folds na raises en waarschuwingen bij onbekende all-inomvang.'},
+    {type:'Opgelost',text:'Startstacks van villains worden centraal en consistent in cashgames en toernooien weergegeven.'},
+    {type:'Technisch',text:'Datamigratie naar schema 12 en gecontroleerde tijdelijke verwerking voor import en herstel.'}
+  ]},
   {version:'v2.4',date:'21-07-2026',changes:[
     {type:'Nieuwe functionaliteit',text:'Ondersteuning voor reguliere straddles, re-straddles en BTN-straddles bij cashgames.'},
     {type:'Verbeterd',text:'Pot-engine verbeterd voor cashgames en toernooien.'},
@@ -74,8 +91,8 @@ const RELEASE_NOTES=[
 let DB={schemaVersion:SCHEMA_VERSION,sessions:[],playerLibrary:[],prefs:{verbosity:'full'}};
 let UI={screen:'home',sid:null,hid:null,draft:null,picker:null,pickRank:null,confirm:null,activeStreet:'pf',flashAction:null,flashQuick:null,selectMode:false,selectedSessions:[],releaseNotes:false,playerSearch:'',newPlayerName:'',newPlayerNotes:'',newPlayerLibraryNotes:'',saveNewToLibrary:false,librarySearch:'',editingSessionId:null,showNewPlayerForm:false,libraryNewName:'',libraryNewNotes:'',focusPlayerSearch:false,focusLibrarySearch:false,actionEdit:null};
 let saveTimer=null;
-function load(){try{let raw=localStorage.getItem(KEY);if(!raw){for(const k of OLDKEYS){raw=localStorage.getItem(k);if(raw)break}}if(raw)DB=JSON.parse(raw)}catch(e){} if(!DB.prefs)DB.prefs={verbosity:'full'};migrate();render()}
-function migrate(){
+function loadV24(){try{let raw=localStorage.getItem(KEY);if(!raw){for(const k of OLDKEYS){raw=localStorage.getItem(k);if(raw)break}}if(raw)DB=JSON.parse(raw)}catch(e){} if(!DB.prefs)DB.prefs={verbosity:'full'};migrate();render()}
+function migrate(persist=true){
   if(!DB.sessions)DB.sessions=[];
   if(!DB.playerLibrary)DB.playerLibrary=[];
   if(!DB.prefs)DB.prefs={verbosity:'full'};
@@ -118,6 +135,7 @@ function migrate(){
       if(Object.prototype.hasOwnProperty.call(p,'playerId'))delete p.playerId;
     });
     (s.hands||[]).forEach(h=>{
+      if(Object.prototype.hasOwnProperty.call(h,'sessionId')&&String(h.sessionId)===String(s.id))delete h.sessionId;
       if(!h.heroSeat)h.heroSeat=s.heroSeat||'';
       if(!h.activeStreet)h.activeStreet='pf';
       if(h.runoutFrom===undefined)h.runoutFrom='';
@@ -141,9 +159,9 @@ function migrate(){
     });
   });
   DB.schemaVersion=SCHEMA_VERSION;
-  try{localStorage.setItem(KEY,JSON.stringify(DB))}catch(e){}
+  if(persist)persistNow();
 }
-function save(){clearTimeout(saveTimer);saveTimer=setTimeout(()=>{try{localStorage.setItem(KEY,JSON.stringify(DB))}catch(e){toast('Opslaan mislukt')}} ,250)}
+function saveV24(){clearTimeout(saveTimer);saveTimer=setTimeout(()=>{try{localStorage.setItem(KEY,JSON.stringify(DB))}catch(e){toast('Opslaan mislukt')}} ,250)}
 function currentSession(){return DB.sessions.find(s=>s.id===UI.sid)}
 function go(screen,sid,hid){UI.confirm=null;UI.actionEdit=null;UI.screen=screen;if(screen==='home'&&sid===undefined)UI.sid=null;if(sid!==undefined)UI.sid=sid;if(hid!==undefined)UI.hid=hid;render();scrollTo(0,0)}
 function positions(n){n=Math.max(2,Math.min(10,Number(n)||9));if(n===2)return['BTN/SB','BB'];const back=['BB','SB','BTN','CO','HJ','LJ'];const a=back.slice(0,Math.min(n,6));for(let i=n-7;i>=0;i--)a.push(i===0?'UTG':'UTG+'+i);return a.reverse()}
@@ -229,7 +247,7 @@ function resolvedVillainPos(h,v){
 }
 function villainLabel(s,v,h=null){const p=(s.players||[]).find(x=>x.id===v.playerId);const name=((p&&p.name)||v.name||'').trim();const vp=h?resolvedVillainPos(h,v):(v.pos||'');const meta=[vp,v.seat?'Seat '+v.seat:''].filter(Boolean).join(' · ');return name?(meta?`${name} (${meta})`:name):(meta?`(${meta})`:(vp||'Villain'))}
 function villainHeader(s,v,h=null){return villainLabel(s,v,h)}
-function reportVillains(h){
+function reportVillainsV24(h){
   const groups=[];
   const keyOf=v=>{
     if(v.playerId)return'player:'+v.playerId;
@@ -325,7 +343,7 @@ function saveSession(){
 }
 function newHand(){const s=currentSession(),last=s.hands[0],cash=s.type==='cash';UI.activeStreet='pf';UI.actionEdit=null;UI.draft={id:uid(),ts:Date.now(),date:last?last.date:new Date().toISOString().slice(0,10),sb:s.sb||'',bb:s.bb||'',ante:cash?'':(last?last.ante:''),players:last?last.players:9,heroPos:last?last.heroPos:'BTN',heroSeat:s.heroSeat||'',stackMode:'bb',heroStackBB:last?last.heroStackBB:'',heroStackChips:last?last.heroStackChips:'',heroCards:[null,null],board:[null,null,null,null,null],streets:{pf:[],flop:[],turn:[],river:[]},villains:[],outcome:'win',winner:'hero',potMode:cash?'cash':'bb',potBB:'',potChips:'',potOverride:false,runoutFrom:'',ownBounty:last?last.ownBounty:'',bountyWon:'',bountyCount:'',note:'',straddleType:'',straddleCount:1,straddleAmounts:[]};UI.hid=null;go('hand')}
 function editHand(id){const s=currentSession(),h=s.hands.find(x=>x.id===id);UI.actionEdit=null;UI.draft=JSON.parse(JSON.stringify(h));UI.activeStreet=UI.draft.activeStreet||'pf';UI.hid=id;go('hand')}
-function saveHand(){if(!validateVisibleChipInputs())return;const s=currentSession(),d=UI.draft;if(!validateHandStraddles(s,d))return;syncHeroStack(d);s.heroSeat=d.heroSeat||s.heroSeat||'';d.villains.forEach(v=>{syncVStack(d,v);updateSessionPlayerFromHand(s,v);if(v.playerId)touchPlayer(v.playerId)});if(d.outcome==='win')d.winner='hero';else if(d.outcome==='chop')d.winner='chop';else if(d.outcome==='fold')d.winner='';else if(d.outcome==='lose')canonicalizeWinner(s,d);const i=s.hands.findIndex(x=>x.id===d.id);if(i>=0)s.hands[i]=d;else s.hands.unshift(d);save();go('share',s.id,d.id)}
+function saveHandV24(){if(!validateVisibleChipInputs())return;const s=currentSession(),d=UI.draft;if(!validateHandStraddles(s,d))return;syncHeroStack(d);s.heroSeat=d.heroSeat||s.heroSeat||'';d.villains.forEach(v=>{syncVStack(d,v);updateSessionPlayerFromHand(s,v);if(v.playerId)touchPlayer(v.playerId)});if(d.outcome==='win')d.winner='hero';else if(d.outcome==='chop')d.winner='chop';else if(d.outcome==='fold')d.winner='';else if(d.outcome==='lose')canonicalizeWinner(s,d);const i=s.hands.findIndex(x=>x.id===d.id);if(i>=0)s.hands[i]=d;else s.hands.unshift(d);save();go('share',s.id,d.id)}
 function addSessionPlayer(){const s=currentSession();s.players.push({id:uid(),name:'',seat:'',notes:''});save();render()}
 function deleteSessionPlayer(i){const s=currentSession();if(UI.confirm!=='player'+i){UI.confirm='player'+i;render();return}s.players.splice(i,1);UI.confirm=null;save();render()}
 function newTable(){const s=currentSession();if(UI.confirm!=='newtable'){UI.confirm='newtable';render();return}s.heroSeat='';(s.players||[]).forEach(p=>p.seat='');UI.confirm=null;save();render()}
@@ -337,7 +355,18 @@ function toggleSessionSelected(id){UI.selectMode=true;const a=UI.selectedSession
 function deleteSelectedSessions(){const a=UI.selectedSessions||[];if(!a.length)return;if(UI.confirm!=='deleteSessions'){UI.confirm='deleteSessions';render();return}DB.sessions=DB.sessions.filter(s=>!a.includes(s.id));UI.selectedSessions=[];UI.selectMode=false;UI.confirm=null;save();render()}
 function moveAction(st,i,dir){const arr=UI.draft.streets[st]||[];i=+i;const j=dir==='up'?i-1:i+1;if(j<0||j>=arr.length)return;[arr[i],arr[j]]=[arr[j],arr[i]];UI.actionEdit=st+':'+j;render();save()}
 function setPath(p,v){if(v==='true')v=true;else if(v==='false')v=false;const d=UI.draft,s=currentSession();let m;if(p.startsWith('s.')){m=s;p=p.slice(2)}else if(p.startsWith('h.')){m=d;p=p.slice(2)}else if(p.startsWith('sp.')){const [,i,k]=p.split('.');s.players[+i][k]=v;return}else if(p.startsWith('v.')){const [,i,k]=p.split('.');d.villains[+i][k]=v;if(k==='playerId')applyPlayerToVillain(+i,v);return}else if(p.startsWith('a.')){const [,st,i,k]=p.split('.');d.streets[st][+i][k]=v;return}else return;m[p]=v}
-function applyPlayerToVillain(i,id){const s=currentSession(),v=UI.draft.villains[i],p=(s.players||[]).find(x=>x.id===id);if(p){v.name=p.name||'';if(p.seat)v.seat=p.seat}}
+function applyPlayerToVillain(i,id){
+  const s=currentSession(),v=UI.draft.villains[i];
+  if(String(id).startsWith('lib:')){
+    const realId=String(id).slice(4),lp=libraryPlayer(realId);
+    if(!lp)return;
+    let p=(s.players||[]).find(x=>x.id===realId);
+    if(!p){p={id:lp.id,name:lp.name,notes:'',seat:''};s.players.push(p);}
+    v.playerId=p.id;v.name=p.name||'';if(p.seat)v.seat=p.seat;touchPlayer(p.id);toast('Speler aan deze sessie toegevoegd');
+    return;
+  }
+  const p=(s.players||[]).find(x=>x.id===id);if(p){v.name=p.name||'';if(p.seat)v.seat=p.seat}
+}
 function syncHeroStack(d){const bb=num(d.bb);if(d.stackMode==='bb'&&d.heroStackBB&&bb)d.heroStackChips=Math.round(num(d.heroStackBB)*bb);if(d.stackMode==='chips'&&d.heroStackChips&&bb)d.heroStackBB=+(num(d.heroStackChips)/bb).toFixed(1)}
 function syncVStack(d,v){const bb=num(d.bb);if(!bb)return;if(v.stackMode==='chips'&&v.stackChips)v.stackBB=+(num(v.stackChips)/bb).toFixed(1);if((!v.stackMode||v.stackMode==='bb')&&v.stackBB)v.stackChips=Math.round(num(v.stackBB)*bb)}
 function addVillain(){const s=currentSession();const p=(s.players||[])[0];UI.draft.villains.push({id:uid(),playerId:p?p.id:'',name:p?p.name:'',seat:p?p.seat:'',pos:'BB',stackMode:'bb',stackBB:'',stackChips:'',bounty:'',cards:[null,null],note:''});render();save()}
@@ -380,35 +409,44 @@ function analyze(s,h){
   const handActors=()=>{const set=new Set(['ik']);(h.villains||[]).forEach(v=>{if(v.pos)set.add(v.pos)});Object.values(h.streets||{}).forEach(arr=>(arr||[]).forEach(a=>{if(a.pos)set.add(a.pos)}));return set};
   let res={potStart:{},finalPot:0,heroInvested:0,unknown:false,callAllIn};
   STREETS.forEach(([k])=>{
-    let streetIn={},cur=0,lastAgg=null,lastAggBefore=0,lastAggCalled=false;
+    let streetIn={},voluntaryLevel={},cur=0,lastAgg=null,lastAggBefore=0;
     res.potStart[k]=Object.values(inv).reduce((a,b)=>a+b,0);
     if(k==='pf'){
-      const actors=handActors(),sbPos=h.players===2?'BTN/SB':'SB',bbPos='BB';
-      const postForced=(pos,amount,deadKey)=>{if(amount<=0)return;const actor=actorForPos(pos);const key=actors.has(actor)?actor:deadKey;streetIn[key]=(streetIn[key]||0)+amount;put(key,amount)};
-      postForced(sbPos,sb,'_sb');
-      postForced(bbPos,BB,'_bb');
-      /* In toernooien behandelt de logger het ingevulde antebedrag als één big-blind ante. */
-      if(ante>0){const anteActor=actorForPos(bbPos);put(actors.has(anteActor)?anteActor:'_ante',ante);}
+      const sbPos=h.players===2?'BTN/SB':'SB',bbPos='BB';
+      const postForced=(pos,amount)=>{if(amount<=0)return;const actor=actorForPos(pos);streetIn[actor]=(streetIn[actor]||0)+amount;put(actor,amount)};
+      postForced(sbPos,sb);
+      postForced(bbPos,BB);
+      /* Het ingevoerde antebedrag wordt behandeld als één big-blind ante. */
+      if(ante>0){const anteActor=actorForPos(bbPos);put(anteActor,ante);}
       cur=BB;
-      handStraddles(s,h).forEach((st,si)=>{
-        const actor=actorForPos(st.pos),key=actors.has(actor)?actor:'_straddle'+si;
-        streetIn[key]=(streetIn[key]||0)+st.amount;put(key,st.amount);cur=Math.max(cur,st.amount);
+      handStraddles(s,h).forEach(st=>{
+        const actor=actorForPos(st.pos);
+        streetIn[actor]=(streetIn[actor]||0)+st.amount;
+        put(actor,st.amount);
+        cur=Math.max(cur,st.amount);
       });
-
     }
     (h.streets[k]||[]).forEach((a,idx)=>{
       const who=a.pos;
       if(a.act==='fold'||a.act==='check')return;
+
       if(a.act==='call'){
-        const rem=remaining(who);let need;
-        if(a.amt!==''&&a.amt!=null){let explicit=toBase(a,s,bb,Object.values(inv).reduce((x,y)=>x+y,0));need=Math.max(0,explicit==null?0:explicit)}
-        else need=Math.max(0,cur-(streetIn[who]||0));
+        const rem=remaining(who);
+        let need;
+        if(a.amt!==''&&a.amt!=null){
+          const explicit=toBase(a,s,bb,Object.values(inv).reduce((x,y)=>x+y,0));
+          need=Math.max(0,explicit==null?0:explicit);
+        }else{
+          need=Math.max(0,cur-(streetIn[who]||0));
+        }
         if(rem!=null)need=Math.min(need,rem);
-        streetIn[who]=(streetIn[who]||0)+need;put(who,need);
+        streetIn[who]=(streetIn[who]||0)+need;
+        put(who,need);
+        voluntaryLevel[who]=Math.max(voluntaryLevel[who]||0,streetIn[who]||0);
         if(rem!=null&&need>0&&Math.abs(need-rem)<0.000001)callAllIn[k+':'+idx]=true;
-        if(lastAgg&&who!==lastAgg&&need>0)lastAggCalled=true;
         return;
       }
+
       if(['bet','raise','allin','jam'].includes(a.act)){
         const potNow=Object.values(inv).reduce((x,y)=>x+y,0);
         let to=toBase(a,s,bb,potNow),prev=streetIn[who]||0,rem=remaining(who);
@@ -419,20 +457,36 @@ function analyze(s,h){
         if(to!=null){
           let need=Math.max(0,to-prev);
           if(rem!=null)need=Math.min(need,rem);
-          to=prev+need;streetIn[who]=to;put(who,need);
-          if(to>cur+0.000001){lastAgg=who;lastAggBefore=prev;lastAggCalled=false;cur=to}
-          else if(lastAgg&&who!==lastAgg&&need>0){lastAggCalled=true}
+          to=prev+need;
+          streetIn[who]=to;
+          put(who,need);
+          voluntaryLevel[who]=Math.max(voluntaryLevel[who]||0,to);
+
+          if(to>cur+0.000001){
+            lastAgg=who;
+            lastAggBefore=prev;
+            cur=to;
+          }
         }
       }
     });
-    if(lastAgg&&!lastAggCalled){const ret=Math.max(0,(streetIn[lastAgg]||0)-Math.max(lastAggBefore,...Object.entries(streetIn).filter(([p])=>p!==lastAgg).map(([,v])=>v)));if(ret>0)take(lastAgg,ret)}
-    else if(lastAgg&&lastAggCalled){
-      const matched=Math.max(lastAggBefore,...Object.entries(streetIn).filter(([p])=>p!==lastAgg).map(([,v])=>v));
-      const ret=Math.max(0,(streetIn[lastAgg]||0)-matched);
-      if(ret>0)take(lastAgg,ret);
+
+    if(lastAgg){
+      const highestVoluntaryOther=Math.max(
+        0,
+        ...Object.entries(voluntaryLevel)
+          .filter(([player])=>player!==lastAgg)
+          .map(([,level])=>level)
+      );
+      const matchedLevel=Math.max(lastAggBefore,highestVoluntaryOther);
+      const returned=Math.max(0,(streetIn[lastAgg]||0)-matchedLevel);
+      if(returned>0)take(lastAgg,returned);
     }
   });
-  res.finalPot=Object.values(inv).reduce((a,b)=>a+b,0);res.heroInvested=inv.ik||0;res.unknown=unknown;return res;
+  res.finalPot=Object.values(inv).reduce((a,b)=>a+b,0);
+  res.heroInvested=inv.ik||0;
+  res.unknown=unknown;
+  return res;
 }
 function fmtPot(x,s){x=num(x);if(s.type==='cash')return cur(s)+chipDisplay(x);return fmtBB(x)}
 function amtTxt(a,s){if(a.amt===''||a.amt==null)return'';if(a.unit==='%')return fmtN(a.amt)+'%';if(a.unit==='chips')return chipDisplay(a.amt);if(a.unit==='cash')return money(s,a.amt);return fmtBB(a.amt)}
@@ -449,7 +503,7 @@ function showdownLines(s,h,a){
   reportVillains(h).forEach((v,i)=>{const vc=(v.cards||[]).filter(Boolean).map(cardTxt).join('');if(!vc)return;const isWin=h.outcome==='lose'&&(winnerIsVillain(h,v)||(!winner&&i===0));let extra='';if(isWin)extra=' (wint'+(potTxt?' '+potTxt:'')+')';else if(winner==='chop')extra=' (split'+(potTxt?' '+potTxt:'')+')';lines.push(`${villainLabel(s,v,h)}: ${vc}${extra}`)});
   return lines;
 }
-function shareText(s,h){
+function shareTextV24(s,h){
   const a=analyze(s,h),L=[],short=(DB.prefs.verbosity==='short');
   if(s.showName!==false)L.push('🃏 '+s.name+(h.date?' — '+new Date(h.date+'T00:00:00').toLocaleDateString('nl-NL',{day:'numeric',month:'short',year:'numeric'}):''));
   L.push(s.type==='cash'?`${h.players}-handed, blinds ${h.sb!==''&&h.sb!=null?money(s,h.sb):cur(s)+'?'}/${h.bb!==''&&h.bb!=null?money(s,h.bb):cur(s)+'?'}`:`${h.players}-handed, blinds ${fmtChips(h.sb)}/${fmtChips(h.bb)}${h.ante?' ante '+fmtChips(h.ante):''}`);
@@ -493,8 +547,8 @@ function waShare(){const s=currentSession(),h=s.hands.find(x=>x.id===UI.hid);loc
 function toast(msg,duration=1500){const t=document.createElement('div');t.textContent=msg;t.style.cssText='position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:var(--felt);color:#fff;padding:10px 18px;border-radius:22px;font-weight:800;z-index:99';document.body.appendChild(t);setTimeout(()=>t.remove(),duration)}
 function usedCards(){const d=UI.draft,set=new Set(),add=c=>{if(c&&!c.includes('?'))set.add(c)};d.heroCards.forEach(add);d.board.forEach(add);(d.villains||[]).forEach(v=>(v.cards||[]).forEach(add));return set}
 function setCard(path,c){const d=UI.draft,p=path.split('.');if(p[0]==='hero'){d.heroCards[+p[1]]=c;sortPair(d.heroCards)}if(p[0]==='board'){d.board[+p[1]]=c;if(+p[1]<3)sortFlop(d.board)}if(p[0]==='v'){d.villains[+p[1]].cards[+p[2]]=c;sortPair(d.villains[+p[1]].cards)}save()}
-function render(){const app=$('app');let html='';if(UI.screen==='home')html=rHome();if(UI.screen==='newSession')html=rNewSession();if(UI.screen==='session')html=rSession();if(UI.screen==='players')html=rPlayers();if(UI.screen==='library')html=rLibrary();if(UI.screen==='hand')html=rHand();if(UI.screen==='share')html=rShare();if(UI.picker)html+=rPicker();if(UI.releaseNotes)html+=rReleaseNotes();app.innerHTML=html;if(UI.focusPlayerSearch){UI.focusPlayerSearch=false;requestAnimationFrame(()=>{const el=document.querySelector('[data-player-search]');if(el){el.focus();el.setSelectionRange(el.value.length,el.value.length)}})}if(UI.focusLibrarySearch){UI.focusLibrarySearch=false;requestAnimationFrame(()=>{const el=document.querySelector('[data-library-search]');if(el){el.focus();el.setSelectionRange(el.value.length,el.value.length)}})}}
-function rHome(){
+function renderV24(){const app=$('app');let html='';if(UI.screen==='home')html=rHome();if(UI.screen==='newSession')html=rNewSession();if(UI.screen==='session')html=rSession();if(UI.screen==='players')html=rPlayers();if(UI.screen==='library')html=rLibrary();if(UI.screen==='hand')html=rHand();if(UI.screen==='share')html=rShare();if(UI.picker)html+=rPicker();if(UI.releaseNotes)html+=rReleaseNotes();app.innerHTML=html;if(UI.focusPlayerSearch){UI.focusPlayerSearch=false;requestAnimationFrame(()=>{const el=document.querySelector('[data-player-search]');if(el){el.focus();el.setSelectionRange(el.value.length,el.value.length)}})}if(UI.focusLibrarySearch){UI.focusLibrarySearch=false;requestAnimationFrame(()=>{const el=document.querySelector('[data-library-search]');if(el){el.focus();el.setSelectionRange(el.value.length,el.value.length)}})}}
+function rHomeV24(){
   const sel=UI.selectedSessions||[],mode=UI.selectMode;
   let h=`<div class="top"><h1 style="flex:1">♠ Live Poker Handlog</h1><button class="version-btn" data-release-notes="1">${VERSION}</button></div><button class="btn" data-act="newSession">+ Nieuwe sessie</button><button class="btn sub" data-go="library">Naar spelersbibliotheek</button>`;
   if(DB.sessions.length){
@@ -545,7 +599,10 @@ h+=`<div class="board-strip"><div class="street-tabs">${STREETS.map(([k,n])=>`<b
 h+=`<div class="panel"><h2 style="margin-top:0">Quick log — ${STREETS.find(x=>x[0]===active)[1]}</h2>${rStreet(active,a)}</div>`;
 h+=`<div class="panel"><label>Resultaat</label><div class="seg">${[['win','Win'],['lose','Verlies'],['chop','Chop'],['fold','Fold']].map(x=>`<button class="${d.outcome===x[0]?'on':''}" data-set-render="h.outcome:${x[0]}">${x[1]}</button>`).join('')}</div>${d.outcome==='lose'?`<label>Winnaar van de hand</label>${wc.length===1?`<div class="winner-static">${esc(wc[0].label)}</div>`:wc.length>1?`<select data-path="h.winner">${wc.map(x=>`<option value="${x.value}" ${d.winner===x.value?'selected':''}>${esc(x.label)}</option>`).join('')}</select>`:`<div class="winner-static compact">Leg eerst minimaal één niet-gefoldo tegenstander vast bij de acties</div>`}`:''}<label>Algemene handnote</label><textarea data-path="h.note" placeholder="bijv. ICM-spot / twijfel over sizing">${esc(d.note)}</textarea><details open><summary>Villains / showdown</summary><button class="btn sub" data-act="addVillain">+ Villain</button>${d.villains.map((v,i)=>rVillain(v,i,pos)).join('')}</details><details><summary>Meer opties</summary><div class="grid2"><div><label>Handmatige pot</label><input inputmode="decimal" data-path="h.potBB" ${cash?'data-chip="1"':''} value="${esc(cash?chipDisplay(d.potBB):bbNumberDisplay(d.potBB))}" placeholder="${cash?cur(s):'bb'}"></div><div><label>Gebruik handmatige pot</label><div class="seg"><button class="${d.potOverride?'on':''}" data-set-render="h.potOverride:true">Aan</button><button class="${!d.potOverride?'on':''}" data-set-render="h.potOverride:false">Uit</button></div></div></div>${s.type!=='cash'&&s.subtype==='pko'?`<label>Bounty gewonnen</label><input inputmode="decimal" data-path="h.bountyWon" value="${esc(d.bountyWon)}" placeholder="${cur(s)}">`:''}${s.type!=='cash'&&s.subtype==='ko'?`<label>Aantal KO's gewonnen</label><input inputmode="numeric" data-path="h.bountyCount" value="${esc(d.bountyCount)}"><div class="note">Vast bountybedrag sessie: ${s.bountyAmount?money(s,s.bountyAmount):'niet ingevuld'}</div>`:''}${s.type!=='cash'&&s.subtype==='mystery'?`<label>Mystery bounties gewonnen</label><input inputmode="numeric" data-path="h.bountyCount" value="${esc(d.bountyCount)}"><label>Getrokken bedragen / toelichting mystery bounty</label><input data-path="h.bountyWon" value="${esc(d.bountyWon)}" placeholder="optioneel">`:''}</details><div class="preview">Eindpot berekend: ${fmtPot(a.finalPot,s)}</div>${a.unknown?`<div class="warn">De effectieve all-in kan niet worden berekend omdat voor één of meer all-in spelers geen bedrag beschikbaar is. Vul een startstack of een all-in getal in.</div>`:""}</div><div class="bottom"><div class="inner"><button class="btn gold" data-act="saveHand">Opslaan & delen</button></div></div>`;return h}
 function rStreet(k,a){const s=currentSession(),d=UI.draft,cash=s.type==='cash',board=k==='flop'?[0,1,2]:k==='turn'?[3]:k==='river'?[4]:null;const runBlocks=d.runoutFrom&&STREET_INDEX[k]>STREET_INDEX[d.runoutFrom];let h='';if(board)h+=`<label>Kaarten deze street</label><div class="cardrow" style="margin-bottom:8px">${board.map(i=>cardHTML(d.board[i],'board.'+i)).join('')}</div>`;if(runBlocks){h+=`<div class="warn">Alle resterende spelers zijn all-in. Vul alleen de resterende boardkaarten in.</div>${streetText(s,d,k,STREETS.find(x=>x[0]===k)[1],true,a)?`<div class="preview">${esc(streetText(s,d,k,STREETS.find(x=>x[0]===k)[1],true,a))}</div>`:''}`;return h}h+=`<div class="quickbar">${k==='pf'?`<div class="qgroup hero"><div class="qtitle">Mijn acties</div><div class="qgrid"><button class="qbtn ${qClass(k,'heroRaiseBlank')}" data-quick="${k}:heroRaiseBlank">Ik raise bb</button><button class="qbtn ${qClass(k,'heroRaise2')}" data-quick="${k}:heroRaise2">Ik raise 2 bb</button><button class="qbtn ${qClass(k,'heroRaise25')}" data-quick="${k}:heroRaise25">Ik raise 2,5 bb</button><button class="qbtn ${qClass(k,'heroCall')}" data-quick="${k}:heroCall">Ik call</button><button class="qbtn ${qClass(k,'heroCheck')}" data-quick="${k}:heroCheck">Ik check</button><button class="qbtn ${qClass(k,'heroFold')}" data-quick="${k}:heroFold">Ik fold</button><button class="qbtn ${qClass(k,'heroJam')}" data-quick="${k}:heroJam">Ik jam</button></div></div><div class="qgroup villain"><div class="qtitle">Villain acties</div><div class="qgrid"><button class="qbtn ${qClass(k,'villainRaiseBlank')}" data-quick="${k}:villainRaiseBlank">Villain raise bb</button><button class="qbtn ${qClass(k,'villainCall')}" data-quick="${k}:villainCall">Villain call</button><button class="qbtn ${qClass(k,'villainFold')}" data-quick="${k}:villainFold">Villain fold</button><button class="qbtn ${qClass(k,'villainCheck')}" data-quick="${k}:villainCheck">Villain check</button><button class="qbtn ${qClass(k,'villainJam')}" data-quick="${k}:villainJam">Villain jam</button></div></div>`:`<div class="qgroup hero"><div class="qtitle">Mijn acties</div><div class="qgrid"><button class="qbtn ${qClass(k,'heroBetPctBlank')}" data-quick="${k}:heroBetPctBlank">Ik bet % pot</button><button class="qbtn ${qClass(k,'heroBet50')}" data-quick="${k}:heroBet50">Ik bet 50%</button><button class="qbtn ${qClass(k,'heroBetChipsBlank')}" data-quick="${k}:heroBetChipsBlank">Ik bet #</button><button class="qbtn ${qClass(k,'heroRaiseBlank')}" data-quick="${k}:heroRaiseBlank">Ik raise bb</button><button class="qbtn ${qClass(k,'heroCheck')}" data-quick="${k}:heroCheck">Ik check</button><button class="qbtn ${qClass(k,'heroCall')}" data-quick="${k}:heroCall">Ik call</button><button class="qbtn ${qClass(k,'heroFold')}" data-quick="${k}:heroFold">Ik fold</button><button class="qbtn ${qClass(k,'heroJam')}" data-quick="${k}:heroJam">Ik jam</button></div></div><div class="qgroup villain"><div class="qtitle">Villain acties</div><div class="qgrid"><button class="qbtn ${qClass(k,'villainBetPctBlank')}" data-quick="${k}:villainBetPctBlank">Villain bet % pot</button><button class="qbtn ${qClass(k,'villainBetChipsBlank')}" data-quick="${k}:villainBetChipsBlank">Villain bet #</button><button class="qbtn ${qClass(k,'villainRaiseBlank')}" data-quick="${k}:villainRaiseBlank">Villain raise bb</button><button class="qbtn ${qClass(k,'villainCheck')}" data-quick="${k}:villainCheck">Villain check</button><button class="qbtn ${qClass(k,'villainCall')}" data-quick="${k}:villainCall">Villain call</button><button class="qbtn ${qClass(k,'villainFold')}" data-quick="${k}:villainFold">Villain fold</button><button class="qbtn ${qClass(k,'villainJam')}" data-quick="${k}:villainJam">Villain jam</button></div></div><div class="qgroup other"><div class="qtitle">Overige acties</div><div class="qgrid"><button class="qbtn ${qClass(k,'allx')}" data-quick="${k}:allx">All check</button><button class="qbtn ${qClass(k,'runout')}" data-quick="${k}:runout">Runout</button></div></div>`}</div><div class="street-head"><b>Acties</b><button class="btn sub small ${qClass(k,'add')}" data-add-action="${k}">+ actie</button></div>${(d.streets[k]||[]).map((x,i)=>{const key=k+':'+i,selected=UI.actionEdit===key;return`<div class="action-item"><div class="action-row ${selected?'selected':''}"><select data-path-render="a.${k}.${i}.pos">${actorOpts(k,x.pos,i)}</select><select data-path-render="a.${k}.${i}.act">${['fold','check','call','bet','raise','allin','jam'].map(v=>`<option value="${v}" ${x.act===v?'selected':''}>${ACTF[v]}</option>`).join('')}</select><input inputmode="decimal" data-path="a.${k}.${i}.amt" ${x.unit==='chips'||x.unit==='cash'?'data-chip="1"':''} value="${esc((x.unit==='chips'||x.unit==='cash')?chipDisplay(x.amt):(x.unit==='bb'?bbNumberDisplay(x.amt):x.amt))}" placeholder="#"><select data-path-render="a.${k}.${i}.unit">${(cash?[['cash',cur(s)],['%','%']]:[['bb','bb'],['chips','chips'],['%','%']]).map(u=>`<option value="${u[0]}" ${x.unit===u[0]?'selected':''}>${u[1]}</option>`).join('')}</select><button class="action-menu" data-toggle-action-edit="${key}" aria-label="Actieregel bewerken">${selected?'⋯':'⋯'}</button></div>${selected?`<div class="action-editbar"><button class="btn sub" data-move-action="${k}:${i}:up" ${i===0?'disabled':''} aria-label="Omhoog">↑</button><button class="btn sub" data-move-action="${k}:${i}:down" ${i===(d.streets[k].length-1)?'disabled':''} aria-label="Omlaag">↓</button><button class="btn danger" data-del-action="${k}:${i}" aria-label="Verwijderen">✕</button><button class="btn confirm" data-close-action-edit="1" aria-label="Bewerken afronden">✓</button></div>`:''}</div>`}).join('')}${streetText(s,d,k,STREETS.find(x=>x[0]===k)[1],true,a)?`<div class="preview">${esc(streetText(s,d,k,STREETS.find(x=>x[0]===k)[1],true,a))}</div>`:''}`;return h}
-function rVillain(v,i,pos){const s=currentSession();const cash=s.type==='cash';const opts=`<option value="" ${!v.playerId?'selected':''}>Nieuwe / onbekende speler</option>`+(s.players||[]).map(p=>`<option value="${p.id}" ${v.playerId===p.id?'selected':''}>${esc(p.name||'Naamloos')}${p.seat?' — Seat '+p.seat:''}</option>`).join('');const stackField=cash?`<input inputmode="decimal" data-path="v.${i}.stackChips" data-chip="1" value="${esc(chipDisplay(v.stackChips))}" placeholder="Aantal chips">`:`<div class="stack-grid"><select data-path-render="v.${i}.stackMode"><option value="bb" ${v.stackMode==='bb'?'selected':''}>bb</option><option value="chips" ${v.stackMode==='chips'?'selected':''}>chips</option></select><input inputmode="decimal" data-vstack="${i}" data-chip="${v.stackMode==='chips'?'1':''}" value="${esc(v.stackMode==='bb'?bbNumberDisplay(v.stackBB):chipDisplay(v.stackChips))}" placeholder="${v.stackMode==='bb'?'Aantal bb':'Aantal chips'}"></div>`;return`<div class="panel" style="background:var(--surface2);margin-top:8px"><div class="grid2"><div><label>Sessiespeler</label><select data-path-render="v.${i}.playerId">${opts}</select></div><div><label>Seat deze hand</label><select data-path-render="v.${i}.seat">${seatOpts(s.tableSeats,v.seat)}</select></div></div><div class="grid2"><div><label>Naam / omschrijving</label><input data-path="v.${i}.name" value="${esc(v.name)}" placeholder="optioneel"></div><div><label>Positie in hand</label><select data-path-render="v.${i}.pos">${pos.filter(p=>p!==UI.draft.heroPos).map(p=>`<option ${v.pos===p?'selected':''}>${p}</option>`).join('')}</select></div></div><div class="villain-stack-wide"><label>Startstack hand</label>${stackField}</div>${s.type!=='cash'&&s.subtype==='pko'?`<div class="villain-showdown-row"><div><label>Holecards bij showdown / getoond</label><div class="cardrow">${cardHTML(v.cards[0],`v.${i}.0`)}${cardHTML(v.cards[1],`v.${i}.1`)}<button class="btn sub small" data-del-villain="${i}">verwijder</button></div></div><div><label>Bounty op villain</label><input inputmode="decimal" data-path="v.${i}.bounty" value="${esc(v.bounty)}" placeholder="${cur(s)}"></div></div>`:`<label>Holecards bij showdown / getoond</label><div class="cardrow">${cardHTML(v.cards[0],`v.${i}.0`)}${cardHTML(v.cards[1],`v.${i}.1`)}<button class="btn sub small" data-del-villain="${i}">verwijder</button></div>`}<label>Note over deze villain in deze hand</label><textarea data-path="v.${i}.note">${esc(v.note)}</textarea></div>`}
+function rVillain(v,i,pos){const s=currentSession();const cash=s.type==='cash';const sessionOpts=(s.players||[]).map(p=>`<option value="${p.id}" ${v.playerId===p.id?'selected':''}>${esc(p.name||'Naamloos')}${p.seat?' — Seat '+p.seat:''}</option>`).join('');
+const sessionIds=new Set((s.players||[]).map(p=>p.id));
+const libraryOpts=(DB.playerLibrary||[]).filter(p=>!sessionIds.has(p.id)&&!sessionNameExists(s,p.name)).map(p=>`<option value="lib:${p.id}">${esc(p.name||'Naamloos')}</option>`).join('');
+const opts=`<option value="" ${!v.playerId?'selected':''}>Nieuwe / onbekende speler</option>${sessionOpts?`<optgroup label="Spelers in deze sessie">${sessionOpts}</optgroup>`:''}${libraryOpts?`<optgroup label="Spelersbibliotheek">${libraryOpts}</optgroup>`:''}`;const stackField=cash?`<input inputmode="decimal" data-path="v.${i}.stackChips" data-chip="1" value="${esc(chipDisplay(v.stackChips))}" placeholder="Aantal chips">`:`<div class="stack-grid"><select data-path-render="v.${i}.stackMode"><option value="bb" ${v.stackMode==='bb'?'selected':''}>bb</option><option value="chips" ${v.stackMode==='chips'?'selected':''}>chips</option></select><input inputmode="decimal" data-vstack="${i}" data-chip="${v.stackMode==='chips'?'1':''}" value="${esc(v.stackMode==='bb'?bbNumberDisplay(v.stackBB):chipDisplay(v.stackChips))}" placeholder="${v.stackMode==='bb'?'Aantal bb':'Aantal chips'}"></div>`;return`<div class="panel" style="background:var(--surface2);margin-top:8px"><div class="grid2"><div><label>Sessiespeler</label><select data-path-render="v.${i}.playerId">${opts}</select></div><div><label>Seat deze hand</label><select data-path-render="v.${i}.seat">${seatOpts(s.tableSeats,v.seat)}</select></div></div><div class="grid2"><div><label>Naam / omschrijving</label><input data-path="v.${i}.name" value="${esc(v.name)}" placeholder="optioneel"></div><div><label>Positie in hand</label><select data-path-render="v.${i}.pos">${pos.filter(p=>p!==UI.draft.heroPos).map(p=>`<option ${v.pos===p?'selected':''}>${p}</option>`).join('')}</select></div></div><div class="villain-stack-wide"><label>Startstack hand</label>${stackField}</div>${s.type!=='cash'&&s.subtype==='pko'?`<div class="villain-showdown-row"><div><label>Holecards bij showdown / getoond</label><div class="cardrow">${cardHTML(v.cards[0],`v.${i}.0`)}${cardHTML(v.cards[1],`v.${i}.1`)}<button class="btn sub small" data-del-villain="${i}">verwijder</button></div></div><div><label>Bounty op villain</label><input inputmode="decimal" data-path="v.${i}.bounty" value="${esc(v.bounty)}" placeholder="${cur(s)}"></div></div>`:`<label>Holecards bij showdown / getoond</label><div class="cardrow">${cardHTML(v.cards[0],`v.${i}.0`)}${cardHTML(v.cards[1],`v.${i}.1`)}<button class="btn sub small" data-del-villain="${i}">verwijder</button></div>`}<label>Note over deze villain in deze hand</label><textarea data-path="v.${i}.note">${esc(v.note)}</textarea></div>`}
 
 const IMG_COL={s:'#F2F5FA',h:'#FF7B7F',d:'#7FAAFF',c:'#7FE0A7',x:'#B9C2CE'};
 function roundRect(ctx,x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath()}
@@ -559,23 +616,163 @@ document.addEventListener('blur',e=>{if(e.target.dataset&&e.target.dataset.chip=
 document.addEventListener('change',e=>{if(e.target.dataset.uiCheck){UI[e.target.dataset.uiCheck]=e.target.checked;render()}if(e.target.dataset.boolPath){setPath(e.target.dataset.boolPath,e.target.checked);save();render()}if(e.target.dataset.libraryName){renameLibraryPlayer(e.target.dataset.libraryName,e.target.value)}if(e.target.dataset.sessionBb){const s=currentSession(),old=s.bb;s.bb=e.target.value;maybeAdjustFixedBtnStraddle(s,old,s.bb);save();render()}if(e.target.dataset.path){setPath(e.target.dataset.path,e.target.value);save()}if(e.target.dataset.pathRender){setPath(e.target.dataset.pathRender,e.target.value);render();save()}});
 document.addEventListener('click',e=>{const t=e.target.closest('button,[data-open-session],[data-open-share],[data-toggle-session],[data-add-library-player]');if(!t)return;if(t.dataset.releaseNotes){UI.releaseNotes=true;render()}if(t.dataset.closeRelease){UI.releaseNotes=false;render()}if(t.dataset.go){go(t.dataset.go)}if(t.dataset.openSession){go('session',t.dataset.openSession)}if(t.dataset.toggleSession){toggleSessionSelected(t.dataset.toggleSession)}if(t.dataset.openShare){go('share',UI.sid,t.dataset.openShare)}if(t.dataset.edit){editHand(t.dataset.edit)}if(t.dataset.act){({newSession,saveSession,editSession,newHand,saveHand,addVillain,addSessionPlayer,createSessionPlayer,createLibraryPlayer,newTable,copyShare,waShare,shareImage,toggleSelectMode,selectAllSessions,clearSelectedSessions,deleteSelectedSessions}[t.dataset.act]||(()=>{}))()}if(t.dataset.togglePath){const p=t.dataset.togglePath;const current=!!UI.draft[p.slice(2)];setPath(p,!current);render();save()}if(t.dataset.setRender&&!t.disabled){const [p,v]=t.dataset.setRender.split(':');const val=v==='true'?true:v==='false'?false:v;setPath(p,val);if(p==='h.outcome'){if(val==='win')UI.draft.winner='hero';else if(val==='chop')UI.draft.winner='chop';else if(val==='fold')UI.draft.winner='';else if(val==='lose')canonicalizeWinner(currentSession(),UI.draft)}render();save()}if(t.dataset.addAction){flashQuick(t.dataset.addAction,'add');addAction(t.dataset.addAction)}if(t.dataset.toggleActionEdit){UI.actionEdit=UI.actionEdit===t.dataset.toggleActionEdit?null:t.dataset.toggleActionEdit;render()}if(t.dataset.closeActionEdit){UI.actionEdit=null;render()}if(t.dataset.delAction){const [k,i]=t.dataset.delAction.split(':');UI.draft.streets[k].splice(+i,1);UI.actionEdit=null;render();save()}if(t.dataset.moveAction){const [k,i,dir]=t.dataset.moveAction.split(':');moveAction(k,i,dir)}if(t.dataset.deleteHand){deleteHandFromSession(t.dataset.deleteHand)}if(t.dataset.quick){const [k,q]=t.dataset.quick.split(':');quick(k,q)}if(t.dataset.streetTab){UI.activeStreet=t.dataset.streetTab;UI.actionEdit=null;UI.draft.activeStreet=UI.activeStreet;render();save()}if(t.dataset.clearRunout){UI.draft.runoutFrom='';render();save()}if(t.dataset.delVillain){UI.draft.villains.splice(+t.dataset.delVillain,1);render();save()}if(t.dataset.delPlayer){deleteSessionPlayer(+t.dataset.delPlayer)}if(t.dataset.newPlayerForm){UI.showNewPlayerForm=true;UI.newPlayerName=UI.playerSearch;render()}if(t.dataset.addLibraryPlayer){addExistingPlayerToSession(t.dataset.addLibraryPlayer)}if(t.dataset.saveLibrary){saveSessionPlayerToLibrary(t.dataset.saveLibrary)}if(t.dataset.removeSessionPlayer){const id=t.dataset.removeSessionPlayer;if(UI.confirm!=='sessionPlayer'+id){UI.confirm='sessionPlayer'+id;render()}else{const s=currentSession();s.players=s.players.filter(p=>p.id!==id);UI.confirm=null;save();render()}}if(t.dataset.deleteLibrary){deleteLibraryPlayer(t.dataset.deleteLibrary)}if(t.dataset.pick){UI.picker=t.dataset.pick;UI.pickRank=null;render()}if(t.dataset.rank){UI.pickRank=t.dataset.rank;render()}if(t.dataset.suit){setCard(UI.picker,UI.pickRank+t.dataset.suit);UI.picker=null;UI.pickRank=null;render()}if(t.dataset.clearCard){setCard(UI.picker,null);UI.picker=null;render()}if(t.dataset.close){UI.picker=null;render()}if(t.dataset.pref){DB.prefs.verbosity=t.dataset.pref;save();render()}if(t.dataset.showName){currentSession().showName=t.dataset.showName==='true';save();render()}});
 document.addEventListener('click',e=>{if(e.target.dataset.closePicker){UI.picker=null;render()}});
-load();
-</script>
 
-<script>
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker
-      .register('./service-worker.js')
-      .then(registration => {
-        console.log('Service Worker geregistreerd:', registration.scope);
-      })
-      .catch(error => {
-        console.error('Service Worker registratie mislukt:', error);
-      });
+/* ===== v2.5 RC6: gegevensbeheer, recovery en centrale validatie ===== */
+const BACKUP_VERSION=1;
+const SAFETY_KEY='hhl:v12:safety';
+const FAILED_KEY='hhl:v12:restore_failed';
+const EMERGENCY_KEY='hhl:v12:emergency';
+let STORAGE_AVAILABLE=true,RECOVERY_RAW='',RECOVERY_REASON='',EMERGENCY_MODE=false;
+UI.backupSelection={players:true,sessions:true,settings:true};UI.importMode='merge';UI.importFile=null;UI.importInfo=null;UI.importSelection={players:true,sessions:true,settings:true};
+function deepClone(v){return JSON.parse(JSON.stringify(v))}
+function normalizePlayerName(v){return String(v||'').trim().replace(/\s+/g,' ').toLocaleLowerCase('nl-NL')}
+function safeStorageSet(k,v){try{localStorage.setItem(k,v);return true}catch(e){STORAGE_AVAILABLE=false;return false}}
+function validateDatabaseShape(db){if(!db||typeof db!=='object'||Array.isArray(db))throw new Error('De database heeft geen geldige hoofdstructuur.');if(!Array.isArray(db.sessions))throw new Error('De sessiegegevens hebben geen geldige structuur.');if(!Array.isArray(db.playerLibrary))throw new Error('De spelersgegevens hebben geen geldige structuur.');if(!db.prefs||typeof db.prefs!=='object'||Array.isArray(db.prefs))throw new Error('De instellingen hebben geen geldige structuur.');db.sessions.forEach((s,i)=>{if(!s||typeof s!=='object'||!Array.isArray(s.hands)||!Array.isArray(s.players))throw new Error('Sessie '+(i+1)+' is beschadigd.');});return true}
+function migrateObject(input){const previous=DB;DB=deepClone(input);migrate(false);const out=deepClone(DB);DB=previous;return out}
+function persistNow(){const target=EMERGENCY_MODE?EMERGENCY_KEY:KEY;return safeStorageSet(target,JSON.stringify(DB))}
+function save(){clearTimeout(saveTimer);saveTimer=setTimeout(()=>{if(!persistNow())toast(EMERGENCY_MODE?'Emergencygegevens kunnen alleen in het geheugen worden bewaard.':'Opslaan mislukt')},250)}
+function load(){let raw=null,source=KEY;try{raw=localStorage.getItem(KEY);if(!raw){for(const k of OLDKEYS){raw=localStorage.getItem(k);if(raw){source=k;break}}}if(!raw){DB={schemaVersion:SCHEMA_VERSION,sessions:[],playerLibrary:[],prefs:{verbosity:'full'}};migrate();render();return}const parsed=JSON.parse(raw);validateDatabaseShape(parsed);DB=parsed;migrate();if(source!==KEY)persistNow();render()}catch(e){RECOVERY_RAW=raw||'';RECOVERY_REASON=e&&e.message?e.message:'De opgeslagen gegevens kunnen niet worden gelezen.';UI.screen='recovery';render()}}
+function makeBackup(categories){const c=categories||{players:true,sessions:true,settings:true},present=[];const data={};if(c.players){present.push('players');data.players=deepClone(DB.playerLibrary||[])}if(c.sessions){present.push('sessions');data.sessions=deepClone(DB.sessions||[])}if(c.settings){present.push('settings');data.settings=deepClone(DB.prefs||{})}return{metadata:{backupVersion:BACKUP_VERSION,schemaVersion:SCHEMA_VERSION,appVersion:APP_VERSION,exportDate:new Date().toISOString(),categories:present},data}}
+function downloadJson(obj,name){const blob=new Blob([JSON.stringify(obj,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500)}
+function exportSelected(){const c=UI.backupSelection;if(!c.players&&!c.sessions&&!c.settings){toast('Selecteer minimaal één categorie.');return}const parts=[];if(c.players)parts.push('spelers');if(c.sessions)parts.push('sessies-en-handen');if(c.settings)parts.push('instellingen');downloadJson(makeBackup(c),'Live_Poker_Handlog_backup_'+new Date().toISOString().slice(0,10)+'_'+parts.join('_')+'.json')}
+function assertUniqueIds(records,label){
+  const seen=new Set();
+  records.forEach((r,i)=>{
+    if(!r||typeof r!=='object'||Array.isArray(r))throw new Error(label+' '+(i+1)+' is geen geldig record.');
+    if(!String(r.id||'').trim())throw new Error(label+' '+(i+1)+' heeft geen geldige ID.');
+    if(seen.has(r.id))throw new Error(label+' bevat een dubbele ID: '+r.id+'.');
+    seen.add(r.id);
   });
 }
-</script>
+function validateBackupRecords(b){
+  const cats=b.metadata.categories||[];
+  if(cats.includes('players')){
+    assertUniqueIds(b.data.players,'Speler');
+    b.data.players.forEach((p,i)=>{if(!String(p.name||'').trim())throw new Error('Speler '+(i+1)+' heeft geen naam.');});
+  }
+  if(cats.includes('sessions')){
+    assertUniqueIds(b.data.sessions,'Sessie');
+    const availablePlayers=new Set((b.data.players||[]).map(p=>p.id));
+    b.data.sessions.forEach((s,si)=>{
+      if(!Array.isArray(s.players)||!Array.isArray(s.hands))throw new Error('Sessie '+(si+1)+' heeft geen geldige spelers- of handenlijst.');
+      assertUniqueIds(s.players,'Sessiespeler in sessie '+(si+1));
+      assertUniqueIds(s.hands,'Hand in sessie '+(si+1));
+      const sessionPlayerIds=new Set(s.players.map(p=>p.id));
+      s.players.forEach(p=>availablePlayers.add(p.id));
+      s.hands.forEach((h,hi)=>{
+        if(Object.prototype.hasOwnProperty.call(h,'sessionId')&&String(h.sessionId)!==String(s.id))throw new Error('Hand '+(hi+1)+' in sessie '+(si+1)+' verwijst naar een andere sessie.');
+        if(!h.streets||typeof h.streets!=='object'||Array.isArray(h.streets))throw new Error('Hand '+(hi+1)+' in sessie '+(si+1)+' heeft geen geldige actielijst.');
+        if(h.villains!==undefined&&!Array.isArray(h.villains))throw new Error('Hand '+(hi+1)+' in sessie '+(si+1)+' heeft geen geldige villainlijst.');
+        (h.villains||[]).forEach((v,vi)=>{
+          if(!v||typeof v!=='object'||Array.isArray(v))throw new Error('Villain '+(vi+1)+' in hand '+(hi+1)+' is ongeldig.');
+          if(v.playerId&&!sessionPlayerIds.has(v.playerId))throw new Error('Villain '+(vi+1)+' in hand '+(hi+1)+' verwijst niet naar een speler in dezelfde sessie.');
+        });
+      });
+    });
+  }
+}
+function validateBackup(b,requireFull=false){
+  if(!b||typeof b!=='object'||Array.isArray(b)||!b.metadata||!b.data)throw new Error('Dit bestand is geen geldige Live Poker Handlog-back-up.');
+  if(!Number.isInteger(Number(b.metadata.backupVersion))||Number(b.metadata.backupVersion)<1)throw new Error('De back-upversie ontbreekt of is ongeldig.');
+  if(!Number.isInteger(Number(b.metadata.schemaVersion))||Number(b.metadata.schemaVersion)<1)throw new Error('De schema-versie ontbreekt of is ongeldig.');
+  if(!Array.isArray(b.metadata.categories))throw new Error('De metadata met categorieën ontbreekt.');
+  const allowed=['players','sessions','settings'],cats=b.metadata.categories;
+  if(!cats.length||cats.some(x=>!allowed.includes(x))||new Set(cats).size!==cats.length)throw new Error('De categorieaanduiding in de back-up is ongeldig.');
+  if(Number(b.metadata.backupVersion)>BACKUP_VERSION||Number(b.metadata.schemaVersion)>SCHEMA_VERSION)throw new Error('Deze back-up is gemaakt met een nieuwere, nog niet ondersteunde versie.');
+  if(requireFull&&!allowed.every(x=>cats.includes(x)))throw new Error('Voor volledig herstel is een back-up met spelers, sessies én instellingen vereist.');
+  if(cats.includes('players')&&!Array.isArray(b.data.players))throw new Error('De spelerscategorie is beschadigd.');
+  if(cats.includes('sessions')&&!Array.isArray(b.data.sessions))throw new Error('De sessiecategorie is beschadigd.');
+  if(cats.includes('settings')&&(!b.data.settings||typeof b.data.settings!=='object'||Array.isArray(b.data.settings)))throw new Error('De instellingencategorie is beschadigd.');
+  if(!cats.includes('players')&&Object.prototype.hasOwnProperty.call(b.data,'players'))throw new Error('De inhoud en categorieaanduiding voor spelers komen niet overeen.');
+  if(!cats.includes('sessions')&&Object.prototype.hasOwnProperty.call(b.data,'sessions'))throw new Error('De inhoud en categorieaanduiding voor sessies komen niet overeen.');
+  if(!cats.includes('settings')&&Object.prototype.hasOwnProperty.call(b.data,'settings'))throw new Error('De inhoud en categorieaanduiding voor instellingen komen niet overeen.');
+  validateBackupRecords(b);
+  return true;
+}
+function mergePlayers(local,incoming){const out=deepClone(local),idMap={};incoming.forEach(p=>{let m=out.find(x=>x.id&&p.id&&x.id===p.id);if(!m){const nk=normalizePlayerName(p.name),matches=out.filter(x=>normalizePlayerName(x.name)===nk);if(matches.length===1)m=matches[0];else if(matches.length>1){const choice=prompt('Meerdere lokale spelers passen bij "'+(p.name||'Naamloos')+'". Vul exact de lokale speler-ID in of laat leeg voor een nieuwe speler.','');m=out.find(x=>x.id===choice)}}if(m){idMap[p.id]=m.id;Object.keys(p).forEach(k=>{if((m[k]===undefined||m[k]===''||m[k]===null)&&p[k]!==undefined)m[k]=deepClone(p[k])})}else{const n=deepClone(p);if(!n.id||out.some(x=>x.id===n.id))n.id=uid();if(p.id)idMap[p.id]=n.id;out.push(n)}});return{players:out,idMap}}
+function remapSessionPlayers(s,idMap){const n=deepClone(s);(n.players||[]).forEach(p=>{if(idMap[p.id])p.id=idMap[p.id];if(idMap[p.playerId])p.playerId=idMap[p.playerId]});(n.hands||[]).forEach(h=>(h.villains||[]).forEach(v=>{if(idMap[v.playerId])v.playerId=idMap[v.playerId]}));return n}
+function materiallyEqual(a,b){return JSON.stringify(a)===JSON.stringify(b)}
+function buildImportedDatabase(backup,mode,selection){validateBackup(backup);const cats=backup.metadata.categories.filter(c=>selection[c]);let stage=mode==='replace'?deepClone(DB):deepClone(DB),idMap={};if(mode==='replace'){if(cats.includes('players'))stage.playerLibrary=deepClone(backup.data.players);if(cats.includes('sessions'))stage.sessions=deepClone(backup.data.sessions);if(cats.includes('settings'))stage.prefs=deepClone(backup.data.settings)}else{if(cats.includes('players')){const mp=mergePlayers(stage.playerLibrary||[],backup.data.players||[]);stage.playerLibrary=mp.players;idMap=mp.idMap}if(cats.includes('sessions')){(backup.data.sessions||[]).forEach(raw=>{const inc=remapSessionPlayers(raw,idMap),idx=stage.sessions.findIndex(x=>x.id===inc.id);if(idx<0)stage.sessions.push(inc);else if(!materiallyEqual(stage.sessions[idx],inc)){const replace=confirm('Sessieconflict: "'+(inc.name||inc.id)+'" bestaat lokaal met andere inhoud. OK = geïmporteerde sessie gebruiken; Annuleren = lokale sessie behouden.');if(replace)stage.sessions[idx]=inc}})}if(cats.includes('settings'))stage.prefs=Object.assign({},stage.prefs||{},deepClone(backup.data.settings||{}))}stage=migrateObject(stage);validateDatabaseShape(stage);return stage}
+function promoteStaging(stage,destructive){const old=deepClone(DB);if(destructive&&!safeStorageSet(SAFETY_KEY,JSON.stringify(makeBackup({players:true,sessions:true,settings:true}))))throw new Error('De veiligheidskopie kon niet worden opgeslagen.');try{safeStorageSet('hhl:v12:staging',JSON.stringify(stage));validateDatabaseShape(JSON.parse(localStorage.getItem('hhl:v12:staging')));DB=stage;if(!persistNow())throw new Error('De actieve gegevens konden niet worden opgeslagen.');localStorage.removeItem('hhl:v12:staging');localStorage.removeItem(FAILED_KEY);return true}catch(e){DB=old;safeStorageSet(FAILED_KEY,JSON.stringify(stage));throw e}}
+function performImport(requireFull=false){
+  try{
+    const b=UI.importFile;
+    validateBackup(b,requireFull);
+    const replaceMode=requireFull||UI.importMode==='replace';
+    if(replaceMode&&!requireFull){
+      const selected=(b.metadata.categories||[]).filter(c=>UI.importSelection[c]).map(c=>c==='players'?'spelers':c==='sessions'?'sessies en handen':'instellingen');
+      const what=selected.length?selected.join(', '):'de geselecteerde gegevens';
+      if(!confirm('Je staat op het punt '+what+' te vervangen. De app maakt eerst een veiligheidskopie van je huidige gegevens.\n\nDoorgaan?'))return;
+    }
+    const sel=requireFull?{players:true,sessions:true,settings:true}:UI.importSelection;
+    const stage=buildImportedDatabase(b,replaceMode?'replace':'merge',sel);
+    promoteStaging(stage,replaceMode);
+    UI.importInfo=null;
+    UI.importFile=null;
+    EMERGENCY_MODE=false;
+    alert('Import voltooid.');
+    go('home');
+  }catch(e){
+    alert('Import niet uitgevoerd: '+e.message+' De actieve gegevens zijn niet gewijzigd.');
+  }
+}
+function formatPlayerStartStack(s,h,p){if(s.type==='cash'){return p.stackChips!==''&&p.stackChips!=null&&num(p.stackChips)>0?money(s,p.stackChips):''}const bbv=p.stackBB!==''&&p.stackBB!=null&&num(p.stackBB)>0?fmtBB(p.stackBB):'',chips=p.stackChips!==''&&p.stackChips!=null&&num(p.stackChips)>0?fmtChips(p.stackChips):'';return bbv&&chips?bbv+' ('+chips+')':bbv||chips}
+function mergeVillainFields(base,v){const out=deepClone(base);Object.keys(v).forEach(k=>{const cur=out[k],val=v[k];const empty=cur===undefined||cur===null||cur===''||(Array.isArray(cur)&&!cur.some(Boolean));if(empty&&val!==undefined&&val!==null&&val!=='')out[k]=deepClone(val);else if(k==='cards'&&Array.isArray(val)){out.cards=out.cards||[null,null];val.forEach((c,i)=>{if(!out.cards[i]&&c)out.cards[i]=c})}});return out}
+function reportVillains(h){const groups=[],keyOf=v=>v.playerId?'player:'+v.playerId:(normalizePlayerName(v.name)?'name:'+normalizePlayerName(v.name)+'|seat:'+(v.seat||''):'id:'+v.id);(h.villains||[]).forEach(v=>{const key=keyOf(v),g=groups.find(x=>x.key===key);if(!g)groups.push({key,v:deepClone(v)});else g.v=mergeVillainFields(g.v,v)});return groups.map(x=>x.v)}
+function actionAmountKnown(s,h,a,pos){if(a.amt!==''&&a.amt!=null&&num(a.amt)>0)return true;return actorStackBase(s,h,pos)!=null}
+function deriveHandState(s,h){const state={},implicit=[],unknownAllins=[];STREETS.forEach(([k])=>{let current=0,participants=new Set();(h.streets[k]||[]).forEach(a=>{if(!state[a.pos])state[a.pos]={folded:false,allin:false,street:null,implicit:false};if(state[a.pos].folded||state[a.pos].allin)return;participants.add(a.pos);if(a.act==='fold'){state[a.pos].folded=true;state[a.pos].street=k;return}if(a.act==='allin'||a.act==='jam'){if(!actionAmountKnown(s,h,a,a.pos))unknownAllins.push(a.pos);state[a.pos].allin=true;state[a.pos].street=k}if(['bet','raise','allin','jam'].includes(a.act)&&actionAmountKnown(s,h,a,a.pos)){const amt=a.amt!==''&&a.amt!=null?num(a.amt):actorStackBase(s,h,a.pos);if(amt>current)current=amt}});if(current>0&&!unknownAllins.length){const arr=h.streets[k]||[];participants.forEach(pos=>{const acts=arr.filter(a=>a.pos===pos),last=acts[acts.length-1];if(last&&!['fold','allin','jam'].includes(last.act)){const lastAggIndex=arr.map(a=>a.pos===pos&&['bet','raise','allin','jam'].includes(a.act)?0:0);const after=arr.slice(arr.lastIndexOf(last)+1).some(a=>['bet','raise','allin','jam'].includes(a.act)&&actionAmountKnown(s,h,a,a.pos));if(after){state[pos].folded=true;state[pos].street=k;state[pos].implicit=true;implicit.push({pos,street:k})}}})}});return{state,implicit,unknownAllins:[...new Set(unknownAllins)]}}
+function boardStructureErrors(h){const b=h.board||[];const e=[];if(b[3]&&!b.slice(0,3).every(Boolean))e.push('De turn card is ingevuld zonder een volledig flopboard.');if(b[4]&&!b[3])e.push('De river card is ingevuld zonder turn card.');return e}
+function validateHandFlow(s,h){const derived=deriveHandState(s,h),errors=boardStructureErrors(h),status={};STREETS.forEach(([k,n])=>(h.streets[k]||[]).forEach(a=>{const st=status[a.pos];if(st){errors.push('Controleer de acties van '+a.pos+'. '+a.pos+' is op de '+st.street+' '+st.kind+', maar heeft op de '+n.toLowerCase()+' nog een actie geregistreerd.')}if(a.act==='fold')status[a.pos]={street:n.toLowerCase(),kind:'gefold'};if(a.act==='allin'||a.act==='jam')status[a.pos]={street:n.toLowerCase(),kind:'all-in gegaan'}}));const folded=new Set(Object.entries(derived.state).filter(([,v])=>v.folded).map(([p])=>p));reportVillains(h).forEach(v=>{const p=resolvedVillainPos(h,v);if(folded.has(p)&&(v.cards||[]).some(Boolean))errors.push('Showdown is niet toegestaan voor '+p+', omdat deze speler is gefold.');if(folded.has(p)&&winnerIsVillain(h,v))errors.push(p+' kan niet als winnaar worden geregistreerd, omdat deze speler is gefold.')});return{errors:[...new Set(errors)],derived}}
+function saveHand(){if(!validateVisibleChipInputs())return;const s=currentSession(),d=UI.draft;if(!validateHandStraddles(s,d))return;const v=validateHandFlow(s,d);if(v.errors.length){alert(v.errors.join('\n\n'));return}d.implicitFolds=v.derived.implicit;d.potReliable=!v.derived.unknownAllins.length;d.unknownAllInPositions=v.derived.unknownAllins;if(v.derived.implicit.length){const ps=[...new Set(v.derived.implicit.map(x=>x.pos))];const msg=ps.length===1?'Let op: voor '+ps[0]+' is geen expliciete fold ingevoerd na de laatste raise. De speler is als gefold verwerkt. De eerdere inzet blijft meetellen in de pot.':'Let op: voor '+ps.join(', ').replace(/, ([^,]*)$/,' en $1')+' is geen expliciete fold ingevoerd na de laatste raise. Deze spelers zijn als gefold verwerkt. De eerdere inzetten blijven meetellen in de pot.';if(!confirm(msg+'\n\nOK = bewust doorgaan; Annuleren = hand aanpassen.'))return}if(v.derived.unknownAllins.length){const ps=v.derived.unknownAllins,who=ps.join(', ').replace(/, ([^,]*)$/,' en $1');if(!confirm('Let op: de pot kan niet correct worden berekend. De all-inomvang van '+who+' is niet bekend.\n\nOK = bewust doorgaan zonder betrouwbare pot; Annuleren = hand corrigeren.'))return}syncHeroStack(d);s.heroSeat=d.heroSeat||s.heroSeat||'';d.villains.forEach(x=>{syncVStack(d,x);updateSessionPlayerFromHand(s,x);if(x.playerId)touchPlayer(x.playerId)});if(d.outcome==='win')d.winner='hero';else if(d.outcome==='chop')d.winner='chop';else if(d.outcome==='fold')d.winner='';else if(d.outcome==='lose')canonicalizeWinner(s,d);const i=s.hands.findIndex(x=>x.id===d.id);if(i>=0)s.hands[i]=d;else s.hands.unshift(d);save();go('share',s.id,d.id)}
+function shareText(s,h){let txt=shareTextV24(s,h),lines=txt.split('\n');const heroIndex=lines.findIndex(x=>x.startsWith('Ik ('));if(heroIndex>=0){const hs=formatPlayerStartStack(s,h,{stackBB:h.heroStackBB,stackChips:h.heroStackChips});lines[heroIndex]=lines[heroIndex].replace(/ \| (?:[^|]+)(?= \| bounty|$)/,hs?' | '+hs:'')}reportVillains(h).forEach(v=>{const prefix=villainHeader(s,v,h),idx=lines.findIndex(x=>x.startsWith(prefix));if(idx>=0){const st=formatPlayerStartStack(s,h,v);lines[idx]=prefix+(st?' | '+st:'')+(s.type!=='cash'&&s.subtype==='pko'&&v.bounty?' | bounty '+money(s,v.bounty):'')}});if(h.potReliable===false||(h.unknownAllInPositions||[]).length){lines=lines.map(x=>/Eindpot|pot [€$£]?\d|Ik win de pot \(|Ik verlies — pot|Chop — pot/.test(x)?x.replace(/\s*[—(].*?(?:\)|$)/,'') : x);lines.push('');lines.push('⚠ Pot niet betrouwbaar berekend door onbekende all-inomvang.');}return lines.join('\n')}
+function getSafetyBackup(){
+  try{const raw=localStorage.getItem(SAFETY_KEY);if(!raw)return null;const b=JSON.parse(raw);validateBackup(b,true);return b}catch(e){return null}
+}
+function safetySummary(b){
+  if(!b)return '';
+  const d=b.metadata&&b.metadata.exportDate?new Date(b.metadata.exportDate):null;
+  const date=d&&!Number.isNaN(d.getTime())?d.toLocaleString('nl-NL'):'datum onbekend';
+  return date+' · '+(b.data.players||[]).length+' spelers · '+(b.data.sessions||[]).length+' sessies';
+}
+function downloadSafetyBackup(){
+  const b=getSafetyBackup();if(!b)return toast('Er is geen bruikbare veiligheidskopie.');
+  downloadJson(b,'Live_Poker_Handlog_veiligheidskopie_'+new Date().toISOString().slice(0,10)+'.json');
+}
+function restoreSafetyBackup(){
+  const b=getSafetyBackup();if(!b)return alert('Er is geen bruikbare veiligheidskopie beschikbaar.');
+  if(!confirm('Wil je de vorige gegevens herstellen? De app maakt eerst een nieuwe veiligheidskopie van je huidige gegevens.'))return;
+  try{
+    const stage=buildImportedDatabase(b,'replace',{players:true,sessions:true,settings:true});
+    promoteStaging(stage,true);
+    alert('De vorige gegevens zijn hersteld.');
+    go('home');
+  }catch(e){alert('Herstel niet uitgevoerd: '+e.message+' De actieve gegevens zijn niet gewijzigd.')}
+}
+function rSettings(){
+  const c=UI.backupSelection||{},info=UI.importInfo,safety=getSafetyBackup();
+  return`<div class="top"><button class="back" data-go="home">←</button><h1>Instellingen</h1></div>
+  <div class="panel"><h2 style="margin-top:0">Gegevensbeheer — export</h2>
+    <div class="checklist"><label><input type="checkbox" data-backup-cat="players" ${c.players?'checked':''}> Spelers</label><label><input type="checkbox" data-backup-cat="sessions" ${c.sessions?'checked':''}> Sessies en handen</label><label><input type="checkbox" data-backup-cat="settings" ${c.settings?'checked':''}> Instellingen</label></div>
+    <div class="grid2"><button class="btn sub" data-backup-all="1">Alles selecteren</button><button class="btn sub" data-backup-none="1">Alles deselecteren</button></div>
+    <button class="btn" data-export-backup="1">JSON-back-up maken</button>
+  </div>
+  <div class="panel"><h2 style="margin-top:0">Import</h2><div class="filebox"><input type="file" accept="application/json,.json" data-import-file="1"></div>
+    ${info?`<div class="modal-card"><b>Bestand gecontroleerd</b><div class="note">Appversie: ${esc(info.metadata.appVersion||'onbekend')} · schema: ${esc(info.metadata.schemaVersion||'onbekend')}</div><div class="note">Aanwezig: ${info.metadata.categories.map(esc).join(', ')}</div>
+      <label>Importmodus</label><div class="seg"><button class="${UI.importMode==='merge'?'on':''}" data-import-mode="merge">Samenvoegen</button><button class="${UI.importMode==='replace'?'on':''}" data-import-mode="replace">Vervangen</button></div>
+      <label>Te importeren categorieën</label><div class="import-checklist">${info.metadata.categories.map(x=>`<label><input type="checkbox" data-import-cat="${x}" ${UI.importSelection[x]?'checked':''}> ${x==='players'?'Spelers':x==='sessions'?'Sessies en handen':'Instellingen'}</label>`).join('')}</div>
+      <button class="btn gold" data-run-import="1">Import uitvoeren</button>
+    </div>`:''}
+  </div>
+  <div class="panel"><h2 style="margin-top:0">Interne veiligheidskopie</h2>
+    ${safety?`<div class="safety-meta"><b>Laatste kopie</b><div class="note">${esc(safetySummary(safety))}</div></div><button class="btn sub" data-download-safety="1">Veiligheidskopie downloaden</button><button class="btn gold" data-restore-safety="1">Vorige gegevens herstellen</button>`:`<div class="note">Er is nog geen interne veiligheidskopie. Die wordt automatisch gemaakt voordat je gegevens vervangt of herstelt.</div>`}
+  </div>
+  <div class="panel"><div class="note">Bij <b>Vervangen</b> maakt de app eerst een veiligheidskopie van je huidige gegevens. Daarna controleert de app het importbestand volledig. Je gegevens worden pas aangepast als die controle is geslaagd.</div></div>`;
+}
+function rRecovery(){return`<div class="recovery"><div class="top"><h1>Herstelmodus</h1></div><div class="panel"><div class="status-error"><b>De normale gegevens konden niet worden geopend.</b></div><div class="note">${esc(RECOVERY_REASON)}</div><button class="btn sub" data-download-corrupt="1">Beschadigde gegevens downloaden</button><label>Volledige back-up herstellen</label><input type="file" accept="application/json,.json" data-recovery-file="1"><button class="btn sub" data-retry-load="1">Opnieuw proberen</button><button class="btn gold" data-emergency="1">Emergency Mode starten</button><div class="note">Emergency Mode gebruikt een afzonderlijke tijdelijke dataset en overschrijft de beschadigde database niet.</div></div></div>`}
+function render(){if(UI.screen==='settings'){$('app').innerHTML=rSettings();return}if(UI.screen==='recovery'){$('app').innerHTML=rRecovery();return}renderV24()}
+function rHome(){let h=rHomeV24();const marker='<button class="btn sub" disabled>Instellingen (volgt)</button>';h=h.replace(marker,'<button class="btn sub" data-go="settings">Instellingen</button>');if(!DB.sessions.length)h=h.replace('<button class="btn sub" data-go="library">Naar spelersbibliotheek</button>','<button class="btn sub" data-go="library">Naar spelersbibliotheek</button><button class="btn sub" data-go="settings">Instellingen</button>');if(EMERGENCY_MODE)h='<div class="warn">Emergency Mode actief. Deze dataset staat los van de beschadigde actieve database.'+(STORAGE_AVAILABLE?'':' Gegevens gaan verloren bij sluiten of verversen.')+'</div>'+h;return h}
+document.addEventListener('change',async e=>{const t=e.target;if(t.dataset.backupCat){UI.backupSelection[t.dataset.backupCat]=t.checked}if(t.dataset.importCat){UI.importSelection[t.dataset.importCat]=t.checked}if(t.dataset.importFile!==undefined&&t.files&&t.files[0]){try{const b=JSON.parse(await t.files[0].text());validateBackup(b);UI.importFile=b;UI.importInfo=b;UI.importSelection={players:b.metadata.categories.includes('players'),sessions:b.metadata.categories.includes('sessions'),settings:b.metadata.categories.includes('settings')};render()}catch(err){alert('Bestand niet geaccepteerd: '+err.message)}}if(t.dataset.recoveryFile!==undefined&&t.files&&t.files[0]){try{const b=JSON.parse(await t.files[0].text());validateBackup(b,true);UI.importFile=b;UI.importSelection={players:true,sessions:true,settings:true};performImport(true)}catch(err){alert('Herstel niet uitgevoerd: '+err.message)}}});
+document.addEventListener('click',e=>{const t=e.target.closest('button');if(!t)return;if(t.dataset.backupAll){UI.backupSelection={players:true,sessions:true,settings:true};render()}if(t.dataset.backupNone){UI.backupSelection={players:false,sessions:false,settings:false};render()}if(t.dataset.exportBackup)exportSelected();if(t.dataset.downloadSafety)downloadSafetyBackup();if(t.dataset.restoreSafety)restoreSafetyBackup();if(t.dataset.importMode){UI.importMode=t.dataset.importMode;render()}if(t.dataset.runImport)performImport(false);if(t.dataset.downloadCorrupt)downloadJson({metadata:{appVersion:APP_VERSION,downloadDate:new Date().toISOString(),reason:RECOVERY_REASON},raw:RECOVERY_RAW},'Live_Poker_Handlog_beschadigde_data.json');if(t.dataset.retryLoad)load();if(t.dataset.emergency){EMERGENCY_MODE=true;DB={schemaVersion:SCHEMA_VERSION,sessions:[],playerLibrary:[],prefs:{verbosity:'full'}};const raw=(()=>{try{return localStorage.getItem(EMERGENCY_KEY)}catch(e){return null}})();if(raw)try{DB=JSON.parse(raw)}catch(e){}migrate();go('home')}});
 
-</body>
-</html>
+load();
+</script></body></html>
