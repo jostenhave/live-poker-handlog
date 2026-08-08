@@ -1,5 +1,5 @@
-/* WIJZIGING v2.6 RC9 Build 4 – 2026-08-08: dit is de vaste baseline/gate voor de strikte PWA-updateflow. Navigaties blijven op de gecachete actieve appversie; update-metadata wordt apart online opgehaald. */
-const CACHE_NAME = 'live-poker-handlog-v2.6-rc9-pwa-3';
+/* WIJZIGING v2.6 RC9 Build 5 – 2026-08-08: kandidaat-service-worker voor de fysieke acceptatietest van de strikte updateflow. Activeert uitsluitend na expliciet 'Nu bijwerken'. */
+const CACHE_NAME = 'live-poker-handlog-v2.6-rc9-pwa-4';
 
 const APP_SHELL = [
   './',
@@ -17,18 +17,9 @@ self.addEventListener('install', event => {
   event.waitUntil((async()=>{
     const cache=await caches.open(CACHE_NAME);
     await cache.addAll(APP_SHELL);
-
-    /* AANDACHTSPUNT: Build 4 is een eenmalige architectuurmigratie vanuit de
-       eerder gepubliceerde RC9 Build 3-worker. Build 3 gebruikt nog network-first
-       navigatie en kan de strikte updatebarrière daarom zelf niet garanderen.
-       Alleen deze overgang activeert Build 4 automatisch. Vanaf Build 4 worden
-       toekomstige kandidaat-workers pas geregistreerd na 'Nu bijwerken'. */
-    const names=await caches.keys();
-    const migratingFromPreStrictRC9=names.some(name=>
-      name==='live-poker-handlog-v2.6-rc9-pwa-1' ||
-      name==='live-poker-handlog-v2.6-rc9-pwa-2'
-    );
-    if(migratingFromPreStrictRC9)self.skipWaiting();
+    /* WIJZIGING v2.6 RC9 Build 5 – 2026-08-08: bewust geen skipWaiting tijdens install.
+       De kandidaat blijft waiting totdat de actieve Build 4-app na 'Nu bijwerken'
+       expliciet {type:'SKIP_WAITING'} verstuurt. */
   })());
 });
 

@@ -1,5 +1,5 @@
 {
-  "versionId": "rc9-build4",
-  "versionLabel": "v2.6 RC9 Build 4",
-  "worker": "./service-worker.js"
+  "versionId": "rc9-build5",
+  "versionLabel": "v2.6 RC9 Build 5",
+  "worker": "./service-worker-rc9-build5.js"
 }
