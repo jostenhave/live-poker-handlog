@@ -1,0 +1,21 @@
+{
+  "build": "v2.6 RC9 Build 4",
+  "schemaVersion": 12,
+  "pokerLogicChanged": false,
+  "manifestChanged": false,
+  "strictUpdateArchitecture": {
+    "metadataDetection": "pwa-update.json",
+    "candidateWorkerRegisteredOnDetection": false,
+    "candidateWorkerRegisteredOnlyOnNowUpdate": true,
+    "navigationStrategy": "active-version cache-first",
+    "laterSurvivesRestartByDesign": true
+  },
+  "migration": {
+    "from": [
+      "rc9-pwa-1",
+      "rc9-pwa-2"
+    ],
+    "automaticActivation": true,
+    "reason": "one-time transition from pre-strict RC9 architecture"
+  }
+}

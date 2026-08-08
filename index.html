@@ -66,10 +66,11 @@
 </head>
 <body><div id="app"></div><script>
 'use strict';
-/* WIJZIGING v2.6 RC9 Build 3 – 2026-08-08: alleen de zichtbare buildidentiteit verhoogd om de PWA-updateflow vanuit Build 2 fysiek te kunnen testen; pokerfunctionaliteit en dataschema blijven ongewijzigd. */
-const APP_VERSION='v2.6 RC9 Build 3 — PWA updateflow test';
+/* WIJZIGING v2.6 RC9 Build 4 – 2026-08-08: strikte PWA-updatearchitectuur toegevoegd. Nieuwe versies worden voortaan eerst via een los metadata-bestand gedetecteerd; de nieuwe service worker wordt pas geregistreerd nadat de gebruiker expliciet 'Nu bijwerken' kiest. */
+const APP_VERSION='v2.6 RC9 Build 4 — Strikte PWA-updatearchitectuur';
 const SCHEMA_VERSION=12;
-const VERSION='v2.6 RC9 Build 3 · 2026-08-08';
+const VERSION='v2.6 RC9 Build 4 · 2026-08-08';
+const PWA_VERSION_ID='rc9-build4';
 const KEY='hhl:v12:data';
 const OLDKEYS=['hhl:v11:data','hhl:v10:data','hhl:v9:data','hhl:v8:data','hhl:v7:data','hhl:v6:data'];
 const $=id=>document.getElementById(id);
@@ -9225,8 +9226,9 @@ RELEASE_NOTES.unshift({version:'v2.6 RC9',date:'07-08-2026',changes:[
  {type:'Scope',text:'Pokerlogica en overige Build-14-functionaliteit zijn inhoudelijk niet gewijzigd.'}
 ]});
 
-/* ===== v2.6 RC9 Build 2 — zichtbare PWA-updateflow ===== */
-let livePokerWaitingWorker=null;
+/* ===== v2.6 RC9 Build 4 — strikte, expliciete PWA-updateflow ===== */
+/* WIJZIGING v2.6 RC9 Build 4 – 2026-08-08: 'Later' registreert geen kandidaat-worker. Daardoor kan een aangeboden update niet zelfstandig activeren nadat de app wordt gesloten. Alleen 'Nu bijwerken' registreert en activeert de kandidaatversie. */
+let livePokerUpdateCandidate=null;
 let livePokerUpdateRequested=false;
 
 function hideLivePokerUpdateNotice(){
@@ -9234,9 +9236,9 @@ function hideLivePokerUpdateNotice(){
   if(notice)notice.hidden=true;
 }
 
-function showLivePokerUpdateNotice(worker){
-  if(!worker)return;
-  livePokerWaitingWorker=worker;
+function showLivePokerUpdateNotice(candidate){
+  if(!candidate||!candidate.worker)return;
+  livePokerUpdateCandidate=candidate;
 
   let notice=document.getElementById('pwaUpdateNotice');
   if(!notice){
@@ -9247,39 +9249,94 @@ function showLivePokerUpdateNotice(worker){
     notice.setAttribute('aria-live','polite');
     notice.innerHTML=`
       <div class="pwaUpdateTitle">Nieuwe versie beschikbaar</div>
-      <div class="pwaUpdateText">Live Poker Handlog kan worden bijgewerkt. Je huidige lokale pokerdata blijft staan.</div>
+      <div class="pwaUpdateText">Live Poker Handlog kan worden bijgewerkt. Je huidige lokale pokerdata blijft staan. De update wordt pas uitgevoerd nadat je op Nu bijwerken tikt.</div>
       <div class="pwaUpdateActions">
-        <button type="button" class="pwaUpdateLater" id="pwaUpdateLater">Later</button>
+        <button type="button" class="pwaUpdateLater" id="pwaUpdateLater">Later bijwerken</button>
         <button type="button" class="pwaUpdateNow" id="pwaUpdateNow">Nu bijwerken</button>
       </div>`;
     document.body.appendChild(notice);
     notice.querySelector('#pwaUpdateLater').addEventListener('click',hideLivePokerUpdateNotice);
-    notice.querySelector('#pwaUpdateNow').addEventListener('click',()=>{
-      const waiting=livePokerWaitingWorker;
-      if(!waiting)return;
-      livePokerUpdateRequested=true;
-      notice.querySelector('#pwaUpdateNow').disabled=true;
-      notice.querySelector('#pwaUpdateNow').textContent='Bijwerken…';
-      waiting.postMessage({type:'SKIP_WAITING'});
-    });
+    notice.querySelector('#pwaUpdateNow').addEventListener('click',installLivePokerUpdate);
   }
   notice.hidden=false;
 }
 
-function watchLivePokerRegistration(registration){
-  if(registration.waiting&&navigator.serviceWorker.controller){
-    showLivePokerUpdateNotice(registration.waiting);
+async function fetchLivePokerUpdateMetadata(){
+  try{
+    const response=await fetch('./pwa-update.json?ts='+Date.now(),{cache:'no-store'});
+    if(!response.ok)return null;
+    const data=await response.json();
+    if(!data||typeof data.versionId!=='string'||typeof data.worker!=='string')return null;
+    return data;
+  }catch(e){
+    return null;
+  }
+}
+
+async function checkLivePokerUpdate(){
+  const candidate=await fetchLivePokerUpdateMetadata();
+  if(!candidate||candidate.versionId===PWA_VERSION_ID)return;
+  showLivePokerUpdateNotice(candidate);
+}
+
+function activateWaitingLivePokerWorker(registration,button){
+  const waiting=registration.waiting;
+  if(!waiting)return false;
+  livePokerUpdateRequested=true;
+  if(button){
+    button.disabled=true;
+    button.textContent='Bijwerken…';
+  }
+  waiting.postMessage({type:'SKIP_WAITING'});
+  return true;
+}
+
+async function installLivePokerUpdate(){
+  const candidate=livePokerUpdateCandidate;
+  if(!candidate||!candidate.worker)return;
+
+  const notice=document.getElementById('pwaUpdateNotice');
+  const button=notice&&notice.querySelector('#pwaUpdateNow');
+  if(button){
+    button.disabled=true;
+    button.textContent='Voorbereiden…';
   }
 
-  registration.addEventListener('updatefound',()=>{
+  try{
+    /* De kandidaat-service-worker wordt bewust pas hier geregistreerd.
+       Zolang de gebruiker 'Later bijwerken' kiest, bestaat er dus geen
+       nieuwe waiting worker die na het sluiten van de app vanzelf kan activeren. */
+    const registration=await navigator.serviceWorker.register(candidate.worker,{
+      scope:'./',
+      updateViaCache:'none'
+    });
+
+    if(activateWaitingLivePokerWorker(registration,button))return;
+
     const installing=registration.installing;
-    if(!installing)return;
+    if(!installing){
+      if(button){
+        button.disabled=false;
+        button.textContent='Nu bijwerken';
+      }
+      return;
+    }
+
     installing.addEventListener('statechange',()=>{
-      if(installing.state==='installed'&&navigator.serviceWorker.controller){
-        showLivePokerUpdateNotice(registration.waiting||installing);
+      if(installing.state==='installed'){
+        activateWaitingLivePokerWorker(registration,button);
+      }else if(installing.state==='redundant'&&button){
+        button.disabled=false;
+        button.textContent='Nu bijwerken';
       }
     });
-  });
+  }catch(e){
+    console.warn('PWA-update installeren mislukt:',e);
+    if(button){
+      button.disabled=false;
+      button.textContent='Nu bijwerken';
+    }
+  }
 }
 
 function registerLivePokerHandlogServiceWorker(){
@@ -9295,11 +9352,16 @@ function registerLivePokerHandlogServiceWorker(){
 
   window.addEventListener('load',async()=>{
     try{
-      const registration=await navigator.serviceWorker.register('./service-worker.js',{updateViaCache:'none'});
-      watchLivePokerRegistration(registration);
-      registration.update().catch(()=>{});
+      /* service-worker.js is vanaf Build 4 de vaste baseline/gate.
+         Toekomstige kandidaat-workers krijgen een eigen bestandsnaam en worden
+         uitsluitend via 'Nu bijwerken' geregistreerd. */
+      await navigator.serviceWorker.register('./service-worker.js',{
+        scope:'./',
+        updateViaCache:'none'
+      });
+      await checkLivePokerUpdate();
     }catch(e){
-      console.warn('Service worker registratie mislukt:',e);
+      console.warn('Service worker registratie/updatecontrole mislukt:',e);
     }
   },{once:true});
 }

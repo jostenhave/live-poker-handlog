@@ -1,0 +1,12 @@
+{
+  "html_has_build4_version": true,
+  "html_has_pwa_version_id": true,
+  "old_registration_update_removed": true,
+  "metadata_fetch_present": true,
+  "candidate_registered_only_in_install_function": true,
+  "later_label_strict": true,
+  "sw_navigation_cache_first": true,
+  "sw_metadata_network_no_store": true,
+  "sw_has_migration_attention_marker": true,
+  "schema_unchanged": true
+}
