@@ -1,0 +1,82 @@
+{
+  "insertion_only_comment_integrity": true,
+  "html_js_syntax": "PASS",
+  "service_worker_syntax": "PASS",
+  "pokerregressie_functioneel": "PASS",
+  "totaal_definities": 676,
+  "unieke_functienamen": 482,
+  "meervoudige_functienamen": 83,
+  "review_controle": {
+    "wzSave": {
+      "functie": "wzSave",
+      "totaal": 9,
+      "declaraties": 3,
+      "toewijzingen": 6,
+      "actieve_bronregel_functioneel": 6655,
+      "actieve_regel_met_commentaar": 8554
+    },
+    "wzAction": {
+      "functie": "wzAction",
+      "totaal": 8,
+      "declaraties": 4,
+      "toewijzingen": 4,
+      "actieve_bronregel_functioneel": 6237,
+      "actieve_regel_met_commentaar": 8048
+    },
+    "rHand": {
+      "functie": "rHand",
+      "totaal": 13,
+      "declaraties": 3,
+      "toewijzingen": 10,
+      "actieve_bronregel_functioneel": 7553,
+      "actieve_regel_met_commentaar": 9570
+    },
+    "editHand": {
+      "functie": "editHand",
+      "totaal": 8,
+      "declaraties": 2,
+      "toewijzingen": 6,
+      "actieve_bronregel_functioneel": 8891,
+      "actieve_regel_met_commentaar": 11147
+    },
+    "wzTable": {
+      "functie": "wzTable",
+      "totaal": 7,
+      "declaraties": 3,
+      "toewijzingen": 4,
+      "actieve_bronregel_functioneel": 8959,
+      "actieve_regel_met_commentaar": 11233
+    },
+    "wzPlayers": {
+      "functie": "wzPlayers",
+      "totaal": 7,
+      "declaraties": 2,
+      "toewijzingen": 5,
+      "actieve_bronregel_functioneel": 7118,
+      "actieve_regel_met_commentaar": 9078
+    },
+    "shareText": {
+      "functie": "shareText",
+      "totaal": 10,
+      "declaraties": 1,
+      "toewijzingen": 9,
+      "actieve_bronregel_functioneel": 8018,
+      "actieve_regel_met_commentaar": 10103
+    },
+    "d26InlineAHistoryBody": {
+      "functie": "d26InlineAHistoryBody",
+      "totaal": 9,
+      "declaraties": 1,
+      "toewijzingen": 8,
+      "actieve_bronregel_functioneel": 7457,
+      "actieve_regel_met_commentaar": 9459
+    }
+  },
+  "meta_document_1_aanwezig": false,
+  "letterlijke_inhoudelijke_commentaarregels_5x_of_meer": [],
+  "pokerregressie_functionele_build": "PASS",
+  "pokerregressie_score": "19/19",
+  "opmerking_regressiesuite": "De vaste extractor is gemaakt voor productie-HTML zonder uitgebreid blokcommentaar. Daarom draait de pokerfixture-suite op de functioneel identieke Build2-bron; de becommentarieerde HTML krijgt aanvullend syntax- en executable-equivalence-controle.",
+  "functionele_bron_is_ongewijzigde_subsequentie_van_commentaarbuild": true,
+  "integriteitsuitleg": "De becommentarieerde build is geconstrueerd door uitsluitend tekst toe te voegen aan de functionele Build2. De volledige functionele bron is karakter-voor-karakter, in dezelfde volgorde en ongewijzigd teruggevonden in de commentaarbuild."
+}

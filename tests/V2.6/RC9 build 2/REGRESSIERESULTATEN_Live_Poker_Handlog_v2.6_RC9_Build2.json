@@ -1,0 +1,15 @@
+{
+  "build": "Live Poker Handlog v2.6 RC9 Build 2 — PWA update-melding + herzien codecommentaar",
+  "status": "PASS",
+  "checks": {
+    "functionele_bron_ongewijzigd_aanwezig_in_commentaarbuild": true,
+    "html_js_syntax": true,
+    "service_worker_syntax": true,
+    "poker_regression_functional_build": "PASS",
+    "poker_regression_score": "19/19",
+    "update_notice_present": true,
+    "legacy_v25_bootstrap_present": true,
+    "schema_version_12_unchanged": true,
+    "inhoudelijke_commentaarregels_5x_of_meer_letterlijk_identiek": 0
+  }
+}
