@@ -1,0 +1,63 @@
+{
+  "build": "Live Poker Handlog v2.6 RC8 Build 14",
+  "focus": "Reviewpunt 2 — voorkomen van incomplete acties in geleide flow en historische correcties",
+  "overall": "PASS",
+  "tests": [
+    {
+      "test": "Geleide flow: raise houdt responders pending",
+      "result": "PASS",
+      "detail": "Na een raise blijven nog actieve spelers die moeten reageren in de pending-queue; review is niet bereikbaar zolang pending niet leeg is."
+    },
+    {
+      "test": "Geleide flow: één reactie is onvoldoende",
+      "result": "PASS",
+      "detail": "Na één fold/call resteert iedere nog te handelen speler pending."
+    },
+    {
+      "test": "Geleide flow: review pas na laatste reactie",
+      "result": "PASS",
+      "detail": "De straat gaat pas naar review wanneer pending leeg is."
+    },
+    {
+      "test": "Lege postflopstraat sluit niet vanzelf",
+      "result": "PASS",
+      "detail": "Bij start van een postflopstraat staan alle actieve spelers pending; zonder acties kan de straat niet sluiten."
+    },
+    {
+      "test": "Gedeeltelijke checks sluiten straat niet",
+      "result": "PASS",
+      "detail": "Na checks van slechts een deel van de actieve spelers resteert de volgende actor pending."
+    },
+    {
+      "test": "Checked-around pas na alle checks",
+      "result": "PASS",
+      "detail": "Pas nadat alle actieve spelers hebben gecheckt is de pending-queue leeg."
+    },
+    {
+      "test": "Historische structurele edit verwijdert downstream-acties",
+      "result": "PASS",
+      "detail": "wzResumeAfterStructuralEdit() kapt de straat af vanaf het wijzigingspunt."
+    },
+    {
+      "test": "Historische structurele edit hervat geleide actie",
+      "result": "PASS",
+      "detail": "Na een structurele edit wordt de betrokken actor opnieuw pending gemaakt en gaat de wizard naar action-mode."
+    },
+    {
+      "test": "Cross-streetvalidatie na fold/all-in",
+      "result": "PASS",
+      "detail": "validateHandFlow() signaleert latere acties van een speler die eerder foldde of all-in ging."
+    },
+    {
+      "test": "Onbekende all-inomvang blokkeert volgende straat",
+      "result": "PASS",
+      "detail": "De Build-14 eventroute blokkeert Volgende straat zolang wzUnknownAllins(review) niet leeg is."
+    }
+  ],
+  "conclusion": [
+    "De normale geleide flow kan geen straat afronden zolang een responder nog pending is.",
+    "Een lege postflopstraat wordt niet stilzwijgend als checked-around behandeld; alle actieve spelers moeten door de actie-invoer.",
+    "Historische structurele edits openen de geleide actieflow opnieuw vanaf het wijzigingspunt.",
+    "Voor v2.6 is daarom geen impliciete-call- of automatische checked-aroundlogica nodig."
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "html": "/mnt/data/Live_Poker_Handlog_v2.6_RC8_Build14_Cashgame_BB_Unit_Potengine.html",
+  "appVersion": "v2.6 RC8 Build 14 — Cashgame BB-unit potengine",
+  "total": 19,
+  "passed": 19,
+  "failed": 0,
+  "overall": "PASS",
+  "tests": [
+    {
+      "name": "A1 €1/€1 raise 6 → 3bet 20 → fold = 13",
+      "pass": true,
+      "detail": "pot 13"
+    },
+    {
+      "name": "A2 €1/€1 raise 6 → call → 3bet 20 → folds = 19",
+      "pass": true,
+      "detail": "pot 19"
+    },
+    {
+      "name": "A3 €1/€1 raise 6 → call → 3bet 20 → call/fold = 47",
+      "pass": true,
+      "detail": "pot 47"
+    },
+    {
+      "name": "B1 €1/€2: raise 3BB → BB call → SB fold = 13",
+      "pass": true,
+      "detail": "pot 13"
+    },
+    {
+      "name": "B2 €2/€5: raise 3BB → BB call → SB fold = 32",
+      "pass": true,
+      "detail": "pot 32"
+    },
+    {
+      "name": "B3 postflop €1/€2: 2BB bet + call = 11",
+      "pass": true,
+      "detail": "pot 11"
+    },
+    {
+      "name": "C1 blind call wordt niet dubbel geteld",
+      "pass": true,
+      "detail": "pot 13"
+    },
+    {
+      "name": "C2 short-stack call wordt begrensd",
+      "pass": true,
+      "detail": "pot 21"
+    },
+    {
+      "name": "C3 uncalled bet wordt teruggegeven",
+      "pass": true,
+      "detail": "pot 3"
+    },
+    {
+      "name": "D1 cash regular straddle blijft forced contribution",
+      "pass": true,
+      "detail": "pot 7"
+    },
+    {
+      "name": "E1 BBA wordt éénmaal als BB-forced contribution geteld",
+      "pass": true,
+      "detail": "pot 2.5 BB"
+    },
+    {
+      "name": "E2 toernooi chips-input converteert via actuele BB",
+      "pass": true,
+      "detail": "pot 7.5 BB"
+    },
+    {
+      "name": "F 100,25K → 100250 → 100,25K",
+      "pass": true,
+      "detail": "100250 → 100,25K"
+    },
+    {
+      "name": "F 100,25M → 100250000 → 100,25M",
+      "pass": true,
+      "detail": "100250000 → 100,25M"
+    },
+    {
+      "name": "F 100,25B → 100250000000 → 100,25B",
+      "pass": true,
+      "detail": "100250000000 → 100,25B"
+    },
+    {
+      "name": "F 200,55b → 200550000000 → 200,55B",
+      "pass": true,
+      "detail": "200550000000 → 200,55B"
+    },
+    {
+      "name": "G1 guided flow bevat pending-gate vóór review",
+      "pass": true,
+      "detail": "review alleen bij lege pending-queue"
+    },
+    {
+      "name": "G2 replay-state definieert closed alleen bij lege pending",
+      "pass": true,
+      "detail": "state.closed gekoppeld aan lege pending"
+    },
+    {
+      "name": "G3 structurele edit hervat action-mode",
+      "pass": true,
+      "detail": "downstream acties worden verwijderd en action-mode hervat"
+    }
+  ]
+}
