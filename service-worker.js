@@ -1,4 +1,5 @@
-const CACHE_NAME = 'live-poker-handlog-v2.6-rc9-pwa-1';
+/* WIJZIGING v2.6 RC9 Build 3 – 2026-08-08: cache-identiteit verhoogd van rc9-pwa-1 naar rc9-pwa-2 zodat Build 2 een nieuwe wachtende service worker detecteert en de zichtbare updateflow kan tonen. */
+const CACHE_NAME = 'live-poker-handlog-v2.6-rc9-pwa-2';
 
 const APP_SHELL = [
   './',
