@@ -1,5 +1,5 @@
 {
-  "versionId": "v2.6-rc9-baseline",
-  "versionLabel": "v2.6 RC9 PWA Baseline",
-  "worker": "./service-worker-v2.6-rc9-baseline.js"
+  "versionId": "v2.6",
+  "versionLabel": "v2.6",
+  "worker": "./service-worker-v2.6.js"
 }

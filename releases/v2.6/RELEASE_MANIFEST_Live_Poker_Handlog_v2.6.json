@@ -1,0 +1,21 @@
+{
+  "release": "v2.6",
+  "release_date": "2026-08-09",
+  "runtime_files": [
+    "index.html",
+    "app-v2.6.html",
+    "service-worker-v2.6.js",
+    "pwa-update.json"
+  ],
+  "support_files": [
+    "RELEASE_NOTES_Live_Poker_Handlog_v2.6.md",
+    "CHANGELOG_Live_Poker_Handlog_v2.6.md",
+    "TESTINSTRUCTIES_RELEASE_Live_Poker_Handlog_v2.6.md",
+    "PUBLICATIEPLAN_Live_Poker_Handlog_v2.6.md",
+    "OPSCHONINGSRAPPORT_Live_Poker_Handlog_v2.6.md",
+    "STATIC_CHECKS_Live_Poker_Handlog_v2.6.json",
+    "REGRESSIERESULTATEN_Live_Poker_Handlog_v2.6.txt"
+  ],
+  "physical_pwa_acceptance_required": true,
+  "automated_status": "PASS"
+}
