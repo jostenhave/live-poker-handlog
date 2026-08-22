@@ -1,4 +1,4 @@
-const CACHE_NAME = 'live-poker-handlog-v2.7-pwa-2';
+const CACHE_NAME = 'live-poker-handlog-v2.7-pwa-3';
 const APP_ENTRY = './app-v2.7.html';
 
 const APP_SHELL = [
@@ -69,7 +69,7 @@ self.addEventListener('fetch', event => {
 
   // De gebruikershandleiding is een echte statische PDF-resource en mag niet
   // door de generieke documentnavigatie naar APP_ENTRY worden vervangen.
-  if (url.pathname.endsWith('/docs/Gebruikershandleiding Live Poker Handlog.pdf')) {
+  if (decodeURIComponent(url.pathname).endsWith('/docs/Gebruikershandleiding Live Poker Handlog.pdf')) {
     event.respondWith(cacheFirstStatic(event.request));
     return;
   }
