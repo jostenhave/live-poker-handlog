@@ -102,7 +102,7 @@ html[data-theme="light"] .cs{color:var(--suit-spade)}html[data-theme="light"] .c
 const APP_VERSION='v2.7';
 const SCHEMA_VERSION=12;
 const VERSION='v2.7 · 2026-08-22';
-const PWA_VERSION_ID='v2.7';
+const PWA_VERSION_ID='v2.7-pwa-2';
 const KEY='hhl:v12:data';
 const OLDKEYS=['hhl:v11:data','hhl:v10:data','hhl:v9:data','hhl:v8:data','hhl:v7:data','hhl:v6:data'];
 const $=id=>document.getElementById(id);
@@ -153,29 +153,53 @@ function reportThemeStyle(key=reportThemeKey()){
   `--report-hero:${accents.hero}`,`--report-position:${accents.position}`
  ].join(';');
 }
-const RELEASE_NOTES=[{version:'v2.7',date:'22-08-2026',changes:[{type:"Nieuwe functionaliteit",text:"Nieuwe mobile-first sessie- en handsetup voor cashgames en toernooien, met directe tafelkeuzes voor dealer, eigen seat, villains en eerste vrijwillige actor."},{type:"Nieuwe functionaliteit",text:"Dark en Light Mode zijn volledig beschikbaar en kunnen vanuit de app worden gewisseld."},{type:"Verbeterd",text:"Bedraginvoer op mobiel is versneld met numerieke invoer en K/M-snelknoppen waar die relevant zijn voor cashgames en toernooien."},{type:"Verbeterd",text:"De kaartpicker en 4-color kaartweergave zijn vernieuwd en ondersteunen ook onbekende kaarten."},{type:"Nieuwe functionaliteit",text:"Het handverslag en de gedeelde afbeelding zijn volledig vernieuwd met duidelijke secties, kaartvisuals, streetinformatie, showdown en een compacter resultaatblok."},{type:"Verbeterd",text:"Resultaten, potten en inzetten worden in reports consistenter weergegeven, inclusief bedragen in chips/valuta en big blinds waar passend."},{type:"Verbeterd",text:"De spelersbibliotheek en Villain-selectie zijn vernieuwd met een zoekbare mobiele picker en betere bescherming tegen dubbele spelerskoppelingen."},{type:"Nieuwe functionaliteit",text:"Opgeslagen handen kunnen uitgebreider achteraf worden bekeken en bewerkt, met directe bewerking van veilige velden en gecontroleerde bewerking vanaf eerdere stappen."},{type:"Verbeterd",text:"Minimumraises, minimum-bets, all-ins, resterende stacks en raise-rechten worden nauwkeuriger gecontroleerd tijdens het registreren van een hand."},{type:"Opgelost",text:"Diverse problemen rond short all-ins, stackberekeningen, actorvolgorde en uncalled bets zijn gecorrigeerd en opnieuw regressiegetest."},{type:"Interface",text:"De tafelvisual is verder geoptimaliseerd voor mobiel gebruik en toont spelers, posities en actuele handcontext duidelijker."},{type:"Opgelost",text:"De bediening met het Android-softwarekeyboard is sterk verbeterd: actieve invoervelden, bijbehorende controls en de wizardnavigatie blijven beter bereikbaar en zichtbaar."},{type:"Nieuwe functionaliteit",text:"De gebruikershandleiding is rechtstreeks vanuit het hoofdscherm te openen en blijft na installatie ook offline beschikbaar."}]},{version:'v2.6',date:'09-08-2026',changes:[
-    {type:'Nieuwe functionaliteit',text:'De geleide handregistratie is uitgebreid met een centrale betting state die actievolgorde, calls, raises, all-ins en raise-rechten per straat bewaakt.'},
-    {type:'Verbeterd',text:'Hero-positie en startstack worden expliciet vastgelegd en de app begeleidt preflop en postflop consequenter langs de nog actieve spelers.'},
-    {type:'Interface',text:'De pokertafel heeft een vernieuwde verticale tafelvisual met duidelijke actieve en inactieve seats en consistente positieaanduiding voor verschillende tafelgroottes.'},
-    {type:'Interface',text:'Blinds, straddles, toernooichips en Big Blind Ante worden compact en herkenbaar op de tafel weergegeven.'},
-    {type:'Verbeterd',text:'Toernooichips ondersteunen K-, M- en B-notatie met Nederlandse decimale komma, inclusief grote blind- en BBA-bedragen.'},
-    {type:'Opgelost',text:'Cashgamebedragen die in big blinds worden ingevoerd, worden ook bij een big blind groter dan 1 correct naar de potengine omgerekend.'},
-    {type:'Opgelost',text:'Ongecallde inzetten en hogere raises worden generiek teruggegeven zonder verplichte blinds, antes of straddles ten onrechte uit de pot te verwijderen.'},
-    {type:'Verbeterd',text:'Historische handen kunnen gerichter worden bewerkt; structurele wijzigingen hervatten de geleide invoer vanaf het relevante wijzigingspunt.'},
-    {type:'Verbeterd',text:'All-inwaarschuwingen, onbekende all-inomvang en snelle runout zijn beter afgestemd op de resterende actie in de hand.'},
-    {type:'Verbeterd',text:'Rapportage verwerkt afgeleide preflopfolds, winnaarselectie, chops, villainholecards en handnotities consistenter.'},
-    {type:'PWA',text:'Nieuwe appversies worden zichtbaar aangeboden en pas na expliciete keuze voor Nu bijwerken geactiveerd; Later bijwerken laat de actieve versie ongewijzigd.'}
-  ]},{version:'v2.5',date:'27-07-2026',changes:[
-    {type:'Opgelost',text:'De pot-engine verwerkt ongecallde raises, 3-bets, squeezes, 4-bets en hogere raises generiek voor cashgames en toernooien.'},
-    {type:'Opgelost',text:'Blinds, Big Blind Ante en straddles worden positiegebonden verwerkt en blijven correct in de pot zonder vrijwillige raises kunstmatig te matchen.'},
-    {type:'Verbeterd',text:'Dezelfde potlogica wordt gebruikt voor cashgames en Regular MTT, PKO, KO en Mystery Bounty, met invoer in geld, chips of big blinds.'},
-    {type:'Nieuwe functionaliteit',text:'Gegevensbeheer ondersteunt selectieve JSON-export, samenvoegen, vervangen en een automatische veiligheidskopie vóór destructieve importacties.'},
-    {type:'Nieuwe functionaliteit',text:'Een interne veiligheidskopie kan worden gedownload of hersteld en Recovery/Emergency Mode houdt beschadigde normale opslag gescheiden van tijdelijke nooddata.'},
-    {type:'Verbeterd',text:'Importbestanden, sessiereferenties en villainverwijzingen worden strenger gevalideerd en sessieconflicten worden op ID en inhoud beoordeeld.'},
-    {type:'Verbeterd',text:'Spelers uit de spelersbibliotheek kunnen rechtstreeks aan villains en sessies worden gekoppeld.'},
-    {type:'Verbeterd',text:'Cross-street-validatie, impliciete folds en waarschuwingen bij onbekende all-inomvang maken de handregistratie robuuster.'},
-    {type:'Opgelost',text:'Startstacks van villains worden in cashgames en toernooien centraal en consistent weergegeven.'},
-    {type:'Technisch',text:'De gegevensstructuur is gecontroleerd gemigreerd naar schema 12 voor import, herstel en normale opslag.'}
+const RELEASE_NOTES=[{version:'v2.7',date:'22-08-2026',changes:[{type:"Nieuwe functionaliteit",text:"Nieuwe mobile-first sessie- en handsetup voor cashgames en toernooien, met directe tafelkeuzes voor dealer, eigen seat, villains en eerste vrijwillige actor."},{type:"Nieuwe functionaliteit",text:"Dark en Light Mode zijn volledig beschikbaar en kunnen vanuit de app worden gewisseld."},{type:"Verbeterd",text:"Bedraginvoer op mobiel is versneld met numerieke invoer en K/M-snelknoppen waar die relevant zijn voor cashgames en toernooien."},{type:"Verbeterd",text:"De kaartpicker en 4-color kaartweergave zijn vernieuwd en ondersteunen ook onbekende kaarten."},{type:"Nieuwe functionaliteit",text:"Het handverslag en de gedeelde afbeelding zijn volledig vernieuwd met duidelijke secties, kaartvisuals, streetinformatie, showdown en een compacter resultaatblok."},{type:"Verbeterd",text:"Resultaten, potten en inzetten worden in reports consistenter weergegeven, inclusief bedragen in chips/valuta en big blinds waar passend."},{type:"Verbeterd",text:"De spelersbibliotheek en Villain-selectie zijn vernieuwd met een zoekbare mobiele picker en betere bescherming tegen dubbele spelerskoppelingen."},{type:"Nieuwe functionaliteit",text:"Opgeslagen handen kunnen uitgebreider achteraf worden bekeken en bewerkt, met directe bewerking van veilige velden en gecontroleerde bewerking vanaf eerdere stappen."},{type:"Verbeterd",text:"Minimumraises, minimum-bets, all-ins, resterende stacks en raise-rechten worden nauwkeuriger gecontroleerd tijdens het registreren van een hand."},{type:"Opgelost",text:"Diverse problemen rond short all-ins, stackberekeningen, actorvolgorde en uncalled bets zijn gecorrigeerd en opnieuw regressiegetest."},{type:"Interface",text:"De tafelvisual is verder geoptimaliseerd voor mobiel gebruik en toont spelers, posities en actuele handcontext duidelijker."},{type:"Opgelost",text:"De bediening met het Android-softwarekeyboard is sterk verbeterd: actieve invoervelden, bijbehorende controls en de wizardnavigatie blijven beter bereikbaar en zichtbaar."},{type:"Nieuwe functionaliteit",text:"De gebruikershandleiding is rechtstreeks vanuit het hoofdscherm te openen en blijft na installatie ook offline beschikbaar."}]},{version:'v2.6 RC4a',date:'29-07-2026',changes:[
+    {type:'Technisch herstel',text:'Zelf-refererende function-overrides uit RC4 vervangen door veilige functie-expressies zonder hoistingrecursie.'},
+    {type:'Opgelost',text:'De applicatie start weer zonder Maximum call stack exceeded en de RC4-functionaliteit blijft behouden.'},
+    {type:'Testbaarheid',text:'Startup-smoketest toegevoegd voor zichtbare startinterface en afwezigheid van uncaught JavaScript-fouten.'}
+  ]},{version:'v2.6 RC3',date:'28-07-2026',changes:[
+    {type:'Opgelost',text:'De gekozen eerste vrijwillige preflopactor wordt nu daadwerkelijk als eerste actor gebruikt; voorafgaande posities keren niet terug in de queue.'},
+    {type:'Opgelost',text:'Een geldige minimumraise wordt vergeleken met de laatste volledige raisegrootte en niet met de totale actuele inzet.'},
+    {type:'Verbeterd',text:'Short all-ins verhogen de inzet zonder ten onrechte de raise-rechten van reeds handelende spelers te heropenen.'},
+    {type:'Opgelost',text:'Het verwijderen of structureel wijzigen van een actie hervat de geleide invoer vanaf het wijzigingspunt.'},
+    {type:'Dataveiligheid',text:'Bestaande handen laden actieve straat, resultaat en winnaarselectie in de wizardstate en blijven bij ongewijzigd opslaan semantisch behouden.'},
+    {type:'Verbeterd',text:'Een aangevulde all-inomvang ververst direct de waarschuwing en potpreview; doorgaan wordt geblokkeerd zolang een onbekende omvang niet bewust is afgehandeld.'},
+    {type:'Scope',text:'Uitgebreide straddleconfiguratie blijft gepland voor een latere RC; RC3 test alleen reeds bereikbare straddlevarianten.'}
+  ]},{version:'v2.6 RC2',date:'28-07-2026',changes:[
+    {type:'Opgelost',text:'All-in spelers worden niet opnieuw in de actiewachtrij geplaatst na een latere bet, raise of re-raise.'},
+    {type:'Nieuwe kernlogica',text:'De geleide invoer gebruikt per straat een centrale betting state met bijdragen, amount-to-call, actieve status, all-instatus en raise-rechten.'},
+    {type:'Verbeterd',text:'Beschikbare actieknoppen volgen uit de actuele betting state; check, call, bet, raise en fold worden alleen getoond wanneer ze pokertechnisch van toepassing zijn.'},
+    {type:'Verbeterd',text:'De eerste vrijwillige actor wordt dynamisch bepaald. Bij een volledige straddleketen start de actie automatisch bij SB, of bij BB als SB n.v.t. is.'},
+    {type:'Opgelost',text:'Folds vóór de eerste vrijwillige actor worden apart opgeslagen en verschijnen niet in het uiteindelijke handreport.'},
+    {type:'Verbeterd',text:'Structurele correcties in de straatcontrole hervatten de geleide invoer vanaf het wijzigingspunt; waardecorrecties behouden de sequence.'},
+    {type:'Verbeterd',text:'Onbekende all-inomvang wordt al vóór het verlaten van de straat gemeld en kan per speler worden aangevuld.'},
+    {type:'Veiligheid',text:'Dubbele bekende kaarten worden ook bij opslaan defensief gevalideerd.'}
+  ]},{version:'v2.5 RC6',date:'27-07-2026',changes:[
+    {type:'Opgelost',text:'Forced blinds worden altijd direct aan de betreffende positie gekoppeld, zodat een raise vanuit SB of BB via de zichtbare interface niet bovenop de blind wordt geteld.'},
+    {type:'Opgelost',text:'Toernooipotten met en zonder big blind ante gebruiken dezelfde positiegebonden forced-contributionlogica bij invoer in big blinds en chips.'},
+    {type:'Veiligheid',text:'Importeren met Vervangen vraagt vóór de destructieve actie expliciet om bevestiging en meldt dat eerst een veiligheidskopie wordt gemaakt.'},
+    {type:'Testbaarheid',text:'De sessieconflicttest op ID is expliciet toegevoegd: dezelfde naam met een andere ID is geen conflict; dezelfde ID met andere inhoud wel.'}
+  ]},{version:'v2.5 RC5',date:'26-07-2026',changes:[
+    {type:'Opgelost',text:'De pot-engine verwerkt ongecallde 3-bets, squeezes, 4-bets en hogere raises generiek voor cashgames en alle toernooivarianten.'},
+    {type:'Technisch',text:'Forced contributions en vrijwillig bereikte actieniveaus worden per street afzonderlijk bijgehouden.'},
+    {type:'Opgelost',text:'Blinds, big blind ante en straddles blijven volledig in de pot, maar matchen zonder vrijwillige actie geen deel van een raise.'},
+    {type:'Verbeterd',text:'Dezelfde potlogica wordt gebruikt voor cash, Regular MTT, PKO, KO en Mystery Bounty, met invoer in geld, chips of big blinds.'}
+  ]},{version:'v2.5 RC4',date:'26-07-2026',changes:[
+    {type:'Opgelost',text:'Ongecallde raises worden nu correct teruggegeven, met behoud van de eigen verplichte blind- of straddlebijdage.'},
+    {type:'Verbeterd',text:'Villainverwijzingen worden bij iedere sessie-import gecontroleerd tegen de spelerslijst van diezelfde sessie.'},
+    {type:'Verbeterd',text:'Een hand met een afwijkende sessiereferentie wordt afgewezen; een overeenkomende overbodige referentie wordt tijdens migratie verwijderd.'}
+  ]},{version:'v2.5 RC3',date:'26-07-2026',changes:[
+    {type:'Opgelost',text:'Emergency Mode gebruikt nu volledig gescheiden opslag en laat de normale database ongemoeid.'},
+    {type:'Verbeterd',text:'Importbestanden worden strenger gecontroleerd voordat gegevens worden gewijzigd.'},
+    {type:'Nieuwe functionaliteit',text:'De interne veiligheidskopie is zichtbaar, downloadbaar en herstelbaar via Gegevensbeheer.'},
+    {type:'Verbeterd',text:'Spelers uit de spelersbibliotheek kunnen direct bij een villain worden geselecteerd en aan de sessie worden toegevoegd.'},
+    {type:'Interface',text:'Import- en exportkeuzes zijn beter uitgelijnd en teksten zijn vereenvoudigd.'},
+    {type:'Naamgeving',text:'De appnaam is overal gewijzigd naar Live Poker Handlog.'},
+    {type:'Nieuwe functionaliteit',text:'Gegevensbeheer met selectieve JSON-export, samenvoegen, vervangen en automatische veiligheidsback-up.'},
+    {type:'Nieuwe functionaliteit',text:'Recovery-scherm en afzonderlijke Emergency Mode bij beschadigde opslag.'},
+    {type:'Verbeterd',text:'Cross-street-validatie, impliciete folds na raises en waarschuwingen bij onbekende all-inomvang.'},
+    {type:'Opgelost',text:'Startstacks van villains worden centraal en consistent in cashgames en toernooien weergegeven.'},
+    {type:'Technisch',text:'Datamigratie naar schema 12 en gecontroleerde tijdelijke verwerking voor import en herstel.'}
   ]},{version:'v2.4',date:'21-07-2026',changes:[
     {type:'Nieuwe functionaliteit',text:'Ondersteuning voor reguliere straddles, re-straddles en BTN-straddles bij cashgames.'},
     {type:'Verbeterd',text:'Pot-engine verbeterd voor cashgames en toernooien.'},
@@ -199,6 +223,9 @@ const RELEASE_NOTES=[{version:'v2.7',date:'22-08-2026',changes:[{type:"Nieuwe fu
     {type:'Opgelost',text:'Blinds en big-blind ante worden correct verwerkt in de eindpot.'},
     {type:'Interface',text:'Stackvelden zijn verbreed en de showdownweergave is compacter gemaakt.'}
   ]}];
+RELEASE_NOTES.unshift({version:'v2.7 Build 5.6',date:'16-08-2026',changes:[
+ {type:'Correctie',text:'De "Concept"-badge op de sessiepagina kon bij twee handen met identieke positie en kaarten dubbel op de verkeerde hand terechtkomen. Elke concepthand toont nu altijd precies zijn eigen badge.'}
+]});
 let DB={schemaVersion:SCHEMA_VERSION,sessions:[],playerLibrary:[],prefs:{verbosity:'full'}};
 let UI={screen:'home',sid:null,hid:null,draft:null,picker:null,pickRank:null,confirm:null,activeStreet:'pf',flashAction:null,flashQuick:null,selectMode:false,selectedSessions:[],releaseNotes:false,playerSearch:'',newPlayerName:'',newPlayerNotes:'',newPlayerLibraryNotes:'',saveNewToLibrary:false,librarySearch:'',editingSessionId:null,showNewPlayerForm:false,libraryNewName:'',libraryNewNotes:'',focusPlayerSearch:false,focusLibrarySearch:false,actionEdit:null,sessionError:''};
 let saveTimer=null;
@@ -2244,6 +2271,17 @@ document.addEventListener('change',e=>{
 
 
 /* ===== v2.6 RC4 acceptance fixes and UX ===== */
+RELEASE_NOTES.unshift({version:'v2.6 RC4',date:'29-07-2026',changes:[
+  {type:'Opgelost',text:'Impliciete preflopfolds begrenzen de actiequeue en blijven ook postflop uitgesloten.'},
+  {type:'Opgelost',text:'De postflopvolgorde gebruikt uitsluitend nog actieve spelers en start links van de button.'},
+  {type:'Nieuwe functionaliteit',text:'Lopende handregistraties worden automatisch als concept bewaard en kunnen vanuit de sessie worden hervat.'},
+  {type:'Interface',text:'De wizard gebruikt Vorige stap, Vorige actie en een afzonderlijke sluitknop rechtsboven.'},
+  {type:'Interface',text:'De actiekaart bevat een niet-interactieve Toon tafel-overlay voor visuele context.'},
+  {type:'Verbeterd',text:'Acties aanpassen opent dezelfde actiekaart, inclusief waardetype en k-notatie.'},
+  {type:'Verbeterd',text:'Kaarten worden in controles en reports als gekleurde tekstsymbolen weergegeven.'},
+  {type:'Uitgebreid',text:'10-, 9-, 8- en 6-handed zijn beschikbaar als standaard tafelgrootte en in de geleide invoer.'},
+  {type:'Interface',text:'Tafelvisual is links uitgelijnd, dealer wordt letter voor letter verticaal getoond en SB n.v.t. reageert direct.'}
+]});
 
 /* table geometry and positions */
 function wzCoords(n){return({
@@ -2393,6 +2431,17 @@ document.addEventListener('click',e=>{const t=e.target.closest('button,[data-ope
 
 
 /* ===== v2.6 RC5 – consolidated acceptance implementation ===== */
+RELEASE_NOTES.unshift({version:'v2.6 RC5',date:'29-07-2026',changes:[
+  {type:'Wizard',text:'De geleide registratie gebruikt vijf herkenbare hoofdstappen, automatische voortgang en voorwaartse correctienavigatie tot de verst bereikte stap.'},
+  {type:'Concepten',text:'Sluiten vraagt of het concept moet worden bewaard of verwijderd en hervatten opent op de opgeslagen wizardstap.'},
+  {type:'Toernooi-engine',text:'Impliciete folds worden direct in de preflopstate verwerkt; gefolde en all-in spelers keren niet terug in latere actiewachtrijen.'},
+  {type:'Runout',text:'Na een gecallde all-in zonder resterende beslissingen worden de ontbrekende community cards via een runout vastgelegd.'},
+  {type:'Cashgame',text:'De straddle-invoer uit v2.5 is opgenomen in de basisgegevens van iedere hand en volgt de sessie-instellingen.'},
+  {type:'Kaartselectie',text:'Holecards en flopkaarten worden binnen één doorlopende kaartselector gekozen.'},
+  {type:'Tafel',text:'De tafeloverlay toont de actuele handstatus en verplichte inzetten als chipmarkers op het vilt.'},
+  {type:'Resultaat',text:'Automatische winnaar, winnaarselectie en chop gebruiken uitsluitend spelers die nog in de hand zitten.'},
+  {type:'Notatie',text:'Chipaantallen gebruiken centraal K- en M-notatie met maximaal twee decimalen.'}
+]});
 
 const rc5Style=document.createElement('style');rc5Style.textContent=`
 .wz-table{left:48%;width:56%}.wz-tablebox{overflow:visible}
@@ -2551,6 +2600,12 @@ document.addEventListener('click',e=>{const t=e.target.closest('button');if(!t||
 },true);
 
 /* ===== v2.6 RC5a – herstel primaire wizardnavigatie ===== */
+RELEASE_NOTES.unshift({version:'v2.6 RC5a',date:'29-07-2026',changes:[
+  {type:'Kritiek herstel',text:'Volgende stap in Basisgegevens heeft één geconsolideerde click-handler en opent Stap 2 na geldige invoer.'},
+  {type:'UX',text:'De status van Volgende stap wordt direct bijgewerkt na invoer van SB en BB, zonder volledige rerender en zonder focusverlies.'},
+  {type:'UX',text:'Lege blindvelden blijven leeg en worden niet meer als 0 weergegeven.'},
+  {type:'Cashgame',text:'De handconfiguratie toont de door de sessie toegestane straddlevarianten en verwerkt reguliere, vervolg- en BTN-straddles in de tafelstate.'}
+]});
 function rc5aRefreshForwardButton(){
   if(!UI.wz)return;
   const btn=document.querySelector('[data-wz-next]');
@@ -2571,6 +2626,16 @@ document.addEventListener('change',e=>{
 
 
 /* ===== v2.6 RC6 – geconsolideerd herstel na RC5a-acceptatie ===== */
+RELEASE_NOTES.unshift({version:'v2.6 RC6',date:'30-07-2026',changes:[
+ {type:'Engine',text:'Impliciete folds sluiten SB, BB en actieve straddlers uit; forced-betspelers blijven expliciet in de preflopactiewachtrij.'},
+ {type:'Engine',text:'Postflopwachtrijen worden uitsluitend opgebouwd uit spelers die niet eerder hebben gefold en niet all-in zijn.'},
+ {type:'Cashgame',text:'Bij een BTN-straddle wordt de keuze van de eerste vrijwillige actor overgeslagen en start de actie direct bij SB, of BB als SB n.v.t. is.'},
+ {type:'Concepten',text:'Het sluitkruis toont altijd de keuzes Concept bewaren, Concept verwijderen en Doorgaan met registreren.'},
+ {type:'Navigatie',text:'De dubbele knop Vorige stap in de header is verwijderd; één klik op Volgende stap verwerkt actuele straddle- en formulierwaarden.'},
+ {type:'Validatie',text:'Een ontbrekende Hero-startstack geeft een rode veldmelding en focus op het verplichte veld.'},
+ {type:'Tafelvisual',text:'SB-, BB-, BBA- en straddlemarkers staan gescheiden aan de binnenzijde van de tafel en overlappen niet.'},
+ {type:'Afronding',text:'Uitkomst gebruikt de opties 1 winnaar en Chop, met een afzonderlijke sectie Selecteer winnaar(s).'}
+]});
 
 function rc6ForcedActors(){
  const d=UI.draft,s=currentSession(),set=new Set();
@@ -2757,6 +2822,11 @@ wzAction=function(){
  return h;
 };
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde A',date:'31-07-2026',changes:[
+ {type:'Validatie',text:'Hero-startstack en BTN-straddlebedrag geven bereikbare foutfeedback met markering, focus en scroll.'},
+ {type:'Tafelvisual',text:'BB- en BBA-markers zijn verder uit elkaar geplaatst.'},
+ {type:'Legenda',text:'De tafeloverlay toont compact dat groen de speler markeert bij wie de actie is.'}
+]});
 
 
 /* ===== v2.6 RC7 Ronde A2 – handmatige acceptatiecorrecties ===== */
@@ -2830,6 +2900,11 @@ rc7RoundAHandleNext=function(){
  return rc5ForwardStep();
 };
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde A2',date:'31-07-2026',changes:[
+ {type:'Validatie',text:'Ontbrekende Hero-startstack en holecards worden gelijktijdig en veldgericht gemeld; verouderde foutmeldingen verdwijnen bij een nieuwe validatiepoging.'},
+ {type:'Tekst',text:'De BTN-straddlevalidatie vermeldt expliciet dat het bedrag groter dan nul moet zijn.'},
+ {type:'UX',text:'Een ontbrekend vast BTN-straddlebedrag blijft leeg en wordt niet meer als 0 in het invoerveld teruggeschreven.'}
+]});
 
 
 
@@ -2947,6 +3022,10 @@ rc7RoundAHandleNext=function(){
  return rc5ForwardStep();
 };
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde A3',date:'31-07-2026',changes:[
+ {type:'UX',text:'Een ontbrekend vast BTN-straddlebedrag wordt nu blijvend in rood onder het sessieveld gemeld, zonder vluchtige toast.'},
+ {type:'Validatie',text:'Ook tijdens handregistratie staat de BTN-straddlefout direct in rood onder het relevante bedragveld.'}
+]});
 
 
 /* ===== v2.6 RC7 Ronde B – gecombineerd informatieonderdeel ===== */
@@ -3062,6 +3141,12 @@ wzAction=function(){
  return html;
 };
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde B',date:'31-07-2026',changes:[
+ {type:'UX',text:'De actieregistratie heeft één gecombineerd informatieonderdeel met een brede pot-/boardbalk en daaronder drie informatiekaartjes.'},
+ {type:'Interface',text:'De informatiekaartjes staan voortaan in de volgorde Al ingelegd, Hoogste inzet en Nog te callen.'},
+ {type:'Interface',text:'Postflop worden de actuele boardkaarten in kleur vóór de totale pot weergegeven.'},
+ {type:'Logica',text:'De totale pot toont de situatie direct vóór de actie van de huidige speler en wordt na iedere bevestigde actie opnieuw opgebouwd.'}
+]});
 
 
 /* ===== v2.6 RC7 Ronde B2 – herstelpunten informatieblok ===== */
@@ -3094,6 +3179,10 @@ wzAction=function(){
  return html;
 };
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde B2',date:'31-07-2026',changes:[
+ {type:'Opgelost',text:'De boardkaarten in de brede informatiebalk gebruiken nu daadwerkelijk dezelfde suitkleuren als elders in de app.'},
+ {type:'UX',text:'Bij Raise met waardetype Chips of BB staat nu dat het ingevoerde bedrag de totale raise is, inclusief wat al is ingelegd.'}
+]});
 
 
 /* ===== v2.6 RC7 Ronde C – rapportage en controleweergave ===== */
@@ -3156,6 +3245,12 @@ shareText=function(s,h){
  return lines.join('\n');
 };
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde C',date:'31-07-2026',changes:[
+ {type:'Rapportage',text:'Bij SB n.v.t. vermeldt het eindreport achter de blinds dat de small blind afwezig was.'},
+ {type:'Controle',text:'In chips ingevoerde toernooi-acties tonen in het straatcontroleoverzicht ook het BB-equivalent tussen haakjes.'},
+ {type:'Rapportage',text:'Het uiteindelijke toernooireport toont acties altijd in BB, ongeacht invoer in chips of BB.'},
+ {type:'Rapportage',text:'Vroege impliciete preflopfolds blijven buiten de normale actieregels; latere expliciete folds blijven zichtbaar.'}
+]});
 
 
 /* ===== v2.6 RC7 Ronde C2 – alle preflopfolds uit normale reportactieregels ===== */
@@ -3172,6 +3267,10 @@ shareText=function(s,h){
  return shareTextRC7RoundC2Base(s,reportHand);
 };
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde C2',date:'01-08-2026',changes:[
+ {type:'Rapportage',text:'Alle preflopfolds blijven in de handstate en straatcontrole behouden, maar worden niet meer als normale actieregels in het eindreport getoond.'},
+ {type:'Rapportage',text:'De regel geldt zowel voor vroege impliciete folds als voor later expliciet geregistreerde preflopfolds; postflopfolds blijven zichtbaar.'}
+]});
 
 
 /* ===== v2.6 RC7 Ronde C3 – conditionele preflopfoldrapportage ===== */
@@ -3206,6 +3305,11 @@ shareText=function(s,h){
  return shareTextRC7RoundC3Base(s,reportHand);
 };
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde C3',date:'01-08-2026',changes:[
+ {type:'Rapportage',text:'Een preflopfold wordt alleen in het eindreport getoond wanneer die speler eerder in dezelfde preflopstraat al vrijwillig heeft gecalld, gebet, geraiset of all-in is gegaan.'},
+ {type:'Rapportage',text:'Folds zonder eerdere vrijwillige inzetactie blijven uit het report; blinds, antes, BBA en straddles tellen hiervoor niet als vrijwillige actie.'},
+ {type:'Rapportage',text:'De volledige actiestate en alle straatcontroles blijven ongewijzigd.'}
+]});
 
 
 /* ===== v2.6 RC7 Ronde C4 – centrale finale preflopreportfilter ===== */
@@ -3227,6 +3331,11 @@ shareText=function(s,h){
  return shareTextRC7RoundC2Base(s,reportHand);
 };
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde C4',date:'01-08-2026',changes:[
+ {type:'Opgelost',text:'De oude C2-wrapper wordt in de finale reportpipeline omzeild, zodat conditioneel behouden preflopfolds niet meer alsnog worden verwijderd.'},
+ {type:'Rapportage',text:'Call, bet, raise of all-in gevolgd door een latere fold van dezelfde speler blijft nu zichtbaar in het eindreport.'},
+ {type:'Rapportage',text:'Preflopfolds zonder eerdere vrijwillige inzetactie blijven verborgen; postflopfolds blijven zichtbaar.'}
+]});
 
 
 /* ===== v2.6 RC7 Ronde C5 – volledige all-in runout in één scherm ===== */
@@ -3486,9 +3595,23 @@ document.addEventListener('click',e=>{
  }
 },true);
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde C5',date:'01-08-2026',changes:[
+ {type:'Nieuwe functionaliteit',text:'Bij definitief gesloten all-inbetting kunnen alle ontbrekende boardkaarten in één keer worden geregistreerd.'},
+ {type:'Pokerlogica',text:'De versnelde runout activeert alleen na straatcontrole en niet wanneer twee of meer spelers nog tegen elkaar kunnen inzetten.'},
+ {type:'Veiligheid',text:'Onbekende all-inomvang en twijfel over resterende stacks houden de bestaande straatflow actief.'},
+ {type:'Dataveiligheid',text:'Boardkaarten worden pas na volledige validatie vanuit een tijdelijke draft naar de bestaande boardstructuur geschreven.'},
+ {type:'Concepten',text:'De runoutstep wordt opgeslagen; bij hervatten wordt de gesloten all-instate opnieuw gecontroleerd.'},
+ {type:'Scope',text:'Algemene navigatie, herbewerkbaarheid en undo blijven gereserveerd voor Ronde D.'}
+]});
 
 
 /* ===== v2.6 RC7 Ronde C6 – transactionele runoutstart ===== */
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde C6',date:'01-08-2026',changes:[
+ {type:'Kritiek herstel',text:'Het openen van het runoutscherm schrijft runoutFrom niet langer voortijdig naar de originele handstate.'},
+ {type:'Dataveiligheid',text:'runoutFrom wordt uitsluitend gecommit in commitRunoutBoard() nadat alle boardvalidatie is geslaagd.'},
+ {type:'Dataveiligheid',text:'Mislukte validatie, Terug naar straatcontrole en conceptautosave zonder bevestiging laten hand.board en hand.runoutFrom ongemuteerd.'},
+ {type:'Scope',text:'De centrale C5-detectie, runout-UI en afbakening richting Ronde D blijven ongewijzigd.'}
+]});
 
 
 /* ===== v2.6 RC7 Ronde C7 – SB n.v.t. volledig uit actorlogica ===== */
@@ -3532,9 +3655,23 @@ wzInitialStreetState=function(st){
  return state;
 };
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde C7',date:'01-08-2026',changes:[
+ {type:'Kritiek herstel',text:'Bij SB n.v.t. wordt de niet-bestaande Small Blind volledig verwijderd uit flop-, turn- en riverwachtrijen.'},
+ {type:'Preflop',text:'SB n.v.t. kan niet als eerste vrijwillige actor worden geselecteerd, ongeacht de gekozen startpositie.'},
+ {type:'Engine',text:'De afwezige SB wordt defensief verwijderd uit acting order, replaystate, pending actors en live-/winnaarspool.'},
+ {type:'Pot',text:'De bestaande regel blijft behouden dat bij SB n.v.t. geen small-blindbijdrage aan de pot wordt toegevoegd.'},
+ {type:'Heads-up',text:'BTN/SB in heads-up blijft expliciet buiten deze filtering en functioneert ongewijzigd.'},
+ {type:'Scope',text:'C6-runout, potengine, reportpipeline en Ronde D-functionaliteit zijn niet gewijzigd.'}
+]});
 
 
 /* ===== v2.6 RC7 Ronde C8 – SB n.v.t. ook financieel uitsluiten ===== */
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde C8',date:'01-08-2026',changes:[
+ {type:'Kritiek herstel',text:'De centrale potengine plaatst geen small blind meer wanneer SB n.v.t. is gemarkeerd.'},
+ {type:'Potengine',text:'Informatiebalk, straatcontrole, % Pot en eindreport gebruiken daardoor dezelfde correcte forced contributions.'},
+ {type:'Regressie',text:'Normale handen met aanwezige SB, BBA, straddles en heads-up BTN/SB blijven ongewijzigd.'},
+ {type:'Scope',text:'C7-actorfiltering, C6-runout en Ronde D-functionaliteit zijn niet gewijzigd.'}
+]});
 
 
 /* ===== v2.6 RC7 Ronde D1 – checkpointnavigatie en replay-undo ===== */
@@ -3902,15 +4039,46 @@ document.addEventListener('input',e=>{
  }
 },true);
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D1',date:'01-08-2026',changes:[
+ {type:'Navigatie',text:'Vorige stap en Volgende stap zijn beschikbaar gedurende de volledige geleide handregistratie.'},
+ {type:'Architectuur',text:'Compacte checkpoints bevatten alleen navigatiemetadata; replay blijft de enige bron van pokerstate.'},
+ {type:'Undo',text:'Vorige actie verwijdert exact de laatst bevestigde actie en bouwt actor, pending, to-call en raise-rechten opnieuw op via replay.'},
+ {type:'Veiligheid',text:'Historische checkpoints zijn read-only; navigeren muteert geen handdata.'},
+ {type:'Invalidatie',text:'Structurele wijzigingen verhogen een generation-ID en maken oudere forwardcheckpoints ongeldig.'},
+ {type:'Concepten',text:'Trail, cursor en generation worden zonder volledige handsnapshots in wizardState opgeslagen.'},
+ {type:'Scope',text:'Transactioneel bewerken van afgeronde handen en volledige downstream rebuild blijven gereserveerd voor D2.'}
+]});
 
 
 /* ===== v2.6 RC7 Ronde D1.1 – echte read-only historische checkpoints ===== */
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D1.1',date:'01-08-2026',changes:[
+ {type:'Kritiek herstel',text:'Historische checkpoints blokkeren muterende click-, input-, change-, keydown- en submit-events centraal in de capturefase.'},
+ {type:'Veiligheid',text:'Programmatisch verzonden events kunnen de handstate of generation niet meer wijzigen vanuit een historisch checkpoint.'},
+ {type:'Toegankelijkheid',text:'Historische controls worden daarnaast semantisch disabled/readonly en krijgen aria-disabled.'},
+ {type:'Navigatie',text:'Vorige stap, Volgende stap en sluiten blijven vanuit historische checkpoints toegestaan.'},
+ {type:'Scope',text:'Checkpointmodel, replay-undo, potengine, reportformatter en C-functionaliteit zijn niet inhoudelijk gewijzigd.'}
+]});
 
 
 /* ===== v2.6 RC7 Ronde D1.2 – nieuwe stappen en trailnavigatie scheiden ===== */
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D1.2',date:'01-08-2026',changes:[
+ {type:'Kritiek herstel',text:'Volgende stap maakt op het hoogste checkpoint nu een nieuwe wizardstap aan via de bestaande validatie- en vervolglogica.'},
+ {type:'Navigatie',text:'Alleen bij teruggelopen historische checkpoints navigeert Volgende stap door de bestaande checkpointtrail.'},
+ {type:'Validatie',text:'Basisgegevens, Button, Hero, Spelers en eerste vrijwillige actor gebruiken opnieuw de bestaande verplichte-veldenvalidatie.'},
+ {type:'Acties',text:'Op een actuele actiekaart blijft Volgende stap uitgeschakeld; de gebruiker moet eerst de vereiste pokeractie registreren.'},
+ {type:'Integratie',text:'Straatcontrole, board, runout en finish sturen via hun bestaande primaire actieknoppen door.'},
+ {type:'Scope',text:'Read-onlyhardening, replay-undo, potengine, reportformatter en C-functionaliteit zijn niet gewijzigd.'}
+]});
 
 
 /* ===== v2.6 RC7 Ronde D1.3 – All-in volgt raise-rechten ===== */
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D1.3',date:'01-08-2026',changes:[
+ {type:'Pokerlogica',text:'All-in wordt niet meer aangeboden wanneer raise-rechten gesloten zijn en de resterende stack groter is dan het callbedrag.'},
+ {type:'Pokerlogica',text:'All-in blijft beschikbaar wanneer de resterende stack geheel nodig is om te callen.'},
+ {type:'Pokerlogica',text:'All-in blijft beschikbaar als volledige raise wanneer raise-rechten open zijn.'},
+ {type:'Veiligheid',text:'Bij onbekende resterende stack en gesloten raise-rechten wordt All-in verborgen om een mogelijk illegale raise te voorkomen.'},
+ {type:'Scope',text:'Checkpointnavigatie, read-onlyhardening, replay-undo, potengine, reportformatter en C-functionaliteit zijn niet gewijzigd.'}
+]});
 
 
 /* ========================================================================
@@ -4343,18 +4511,58 @@ document.addEventListener('click',e=>{
  }
 },true);
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.1',date:'01-08-2026',changes:[
+ {type:'Transactie',text:'Afgeronde handen worden geopend als geïsoleerde working copy; het originele sessierecord blijft ongewijzigd tot definitief opslaan.'},
+ {type:'Bewerken',text:'Afgeronde handen openen vanaf Basisgegevens en kunnen via de volledige wizard worden gecontroleerd.'},
+ {type:'Invalidatie',text:'Bewerken vanaf een historisch checkpoint toont eerst welke acties, boards, runout en resultaat opnieuw worden opgebouwd.'},
+ {type:'Rebuild',text:'Een expliciet bevestigde branch verwijdert uitsluitend afhankelijke downstreamstate vanaf het gekozen checkpoint.'},
+ {type:'Annuleren',text:'Wijzigingen verwerpen sluit de working copy zonder write naar de oorspronkelijke hand.'},
+ {type:'Autosave',text:'Transactionele edits worden niet automatisch over het originele handrecord opgeslagen.'},
+ {type:'Scope',text:'D2.1 legt het transactionele fundament en de veilige branch/rebuildroute; fijnmazige niet-structurele veldclassificatie volgt in een latere D2-ronde.'}
+]});
 
 
 /* ===== v2.6 RC7 Ronde D2.2 – precieze board- en runoutinvalidatie ===== */
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.2',date:'01-08-2026',changes:[
+ {type:'Kritiek herstel',text:'Een actiebranch op flop of turn behoudt nu het reeds bevestigde board van de gekozen straat en verwijdert alleen latere boardkaarten.'},
+ {type:'Kritiek herstel',text:'Een runoutrebuild vanaf preflop verwijdert nu alle vijf runoutkaarten.'},
+ {type:'Runout',text:'Runout vanaf flop verwijdert alleen turn en river; runout vanaf turn verwijdert alleen river; runout vanaf river verwijdert geen eerdere boardkaart.'},
+ {type:'Consistentie',text:'De werkelijke destructieve rebuild sluit nu aan op de vooraf getoonde invalidatiemelding.'},
+ {type:'Scope',text:'Transactionele working copy, autosave-isolatie, commitgrens, D1-navigatie, read-onlyhardening, replay-undo, potengine en reportformatter zijn niet inhoudelijk gewijzigd.'}
+]});
 
 
 /* ===== v2.6 RC7 Ronde D2.3 – bewezen commit en stabiele normalisatie ===== */
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.3',date:'01-08-2026',changes:[
+ {type:'Kritiek herstel',text:'Een mislukte save beëindigt de transactionele editmodus niet meer alleen omdat het originele record met dezelfde hand-ID al bestaat.'},
+ {type:'Commitbewijs',text:'De edittransactie eindigt uitsluitend wanneer exact hetzelfde recordslot is bijgewerkt, het record overeenkomt met de working copy, het aantal handen gelijk blijft en de wizard de editor heeft verlaten.'},
+ {type:'Rollback',text:'Bij ontbrekende winnaar, incomplete boardstate of andere validatiefout blijven UI.editTx, working copy, dirty-status en discard/continue actief.'},
+ {type:'Normalisatie',text:'Oudere handen worden eerst defensief genormaliseerd en pas daarna als original en working copy gekopieerd, zodat openen niet direct een valse dirty-status veroorzaakt.'},
+ {type:'Scope',text:'D2.2-rebuildgrenzen, autosave-isolatie, D1-navigatie, read-onlyhardening, replay-undo, potengine en reportformatter zijn niet inhoudelijk gewijzigd.'}
+]});
 
 
 /* ===== v2.6 RC7 Ronde D2.4 – volledige seat-/positienormalisatie ===== */
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.4',date:'02-08-2026',changes:[
+ {type:'Kritiek herstel',text:'Een oudere hand met bestaande positionBySeat maar ontbrekende buttonSeat krijgt nu zelfstandig een geldige buttonSeat.'},
+ {type:'Normalisatie',text:'buttonSeat en positionBySeat worden onafhankelijk gecontroleerd en vervolgens canoniek op elkaar afgestemd.'},
+ {type:'Heads-up',text:'BTN/SB wordt bij heads-up correct herkend als buttonpositie.'},
+ {type:'Consistentie',text:'Incomplete of tegenstrijdige positionBySeat-data wordt idempotent opnieuw opgebouwd vanuit players en de geldige buttonSeat.'},
+ {type:'Invariant',text:'Na normalisatie moet de postflopvolgorde compleet, uniek en vrij van undefined-posities zijn; anders opent de hand niet transactioneel.'},
+ {type:'Dirty-status',text:'Normalisatie vindt vóór de original/working-splitsing plaats en veroorzaakt daardoor geen valse niet-opgeslagen wijziging.'},
+ {type:'Scope',text:'d23CommitProof, D2.2-rebuildgrenzen, autosave-isolatie, D1-functionaliteit, potengine en reportformatter zijn niet inhoudelijk gewijzigd.'}
+]});
 
 
 /* ===== v2.6 RC7 Ronde D2.5 – eenduidige Hero-seat en Hero-positie ===== */
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.5',date:'02-08-2026',changes:[
+ {type:'Kritiek herstel',text:'heroSeat en heroPos worden na seat-/positienormalisatie altijd naar dezelfde fysieke speler geharmoniseerd.'},
+ {type:'Legacyregel',text:'Een geldige heroSeat is leidend; heroPos wordt daaruit opnieuw afgeleid via de canonieke positionBySeat-map.'},
+ {type:'Fallback',text:'Wanneer heroSeat ontbreekt maar heroPos geldig is, wordt heroSeat uit de canonieke positiekaart afgeleid.'},
+ {type:'Veiligheid',text:'Wanneer beide ontbreken blijft Hero leeg; tegenstrijdige of niet-eenduidige Hero-identiteit blokkeert transactioneel openen.'},
+ {type:'Invariant',text:'Na normalisatie moeten positionBySeat[heroSeat] en de seat van heroPos exact overeenkomen met heroSeat.'},
+ {type:'Scope',text:'d23CommitProof, D2.2-rebuildgrenzen, dirty-status, autosave-isolatie, D1-functionaliteit, potengine en reportformatter zijn inhoudelijk behouden.'}
+]});
 
 
 /* ========================================================================
@@ -9056,56 +9264,368 @@ shareText=function(session,hand){
  return lines.join('\n');
 };
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 6.7',date:'06-08-2026',changes:[
+ {type:'Datum',text:'De historische datumprikker levert de actuele Android-pickerwaarde rechtstreeks aan de Class A-mutatie, dirty-state en centrale save.'},
+ {type:'Kaarten',text:'Na bevestiging van een historische Villainholecard sluiten controlescherm, kaartkiezer en kaartgroep volledig.'},
+ {type:'Rapportage',text:'Bij één niet-Hero-winnaar toont het rapport nu: positie (spelersnaam) - wint pot bedrag; zonder naam wordt de positie gebruikt.'},
+ {type:'Scope',text:'Potengine, resultaatmutator, chopformatter, spelerkoppeling, actie-invoer en D2-rebuildgrenzen zijn niet gewijzigd.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 6.6',date:'06-08-2026',changes:[
+ {type:'Kritiek herstel',text:'Choprapportage is volledig onafhankelijk gemaakt van UI.draft, UI.wz, wzActor en wzPosOf.'},
+ {type:'Leesweergave',text:'Een opgeslagen chop opent via de volledige handkaart met uitsluitend gegevens uit het meegegeven handobject.'},
+ {type:'Compatibiliteit',text:'Chopdeelnemers worden herkend via hero/ik, Villain-id, playerId, positie en pos:<positie>.'},
+ {type:'Dataveiligheid',text:'De Fase 6.5-openroute en tijdelijke rapportprojectie blijven ongewijzigd.'},
+ {type:'Scope',text:'Geen wijziging aan historische save, resultaatmutator, potengine, kaartmutator, spelerlogica of rebuildgrenzen.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 6.5',date:'06-08-2026',changes:[
+ {type:'Acceptatieherstel',text:'De volledige handkaart opent na historische winnaar- of chopwijziging weer via een zelfstandige finale clickroute.'},
+ {type:'Dataveiligheid',text:'De lees-/deelweergave gebruikt een tijdelijke projectie; het opgeslagen handrecord, hand-ID en canonieke winners worden niet gemuteerd.'},
+ {type:'Robuustheid',text:'De openroute controleert hand- en sessie-ID, ruimt historische editorstate op en herstelt de vorige UI-state bij een renderfout.'},
+ {type:'Toegankelijkheid',text:'Opgeslagen handkaarten zijn ook via Enter en spatie te openen.'},
+ {type:'Scope',text:'Historische save, resultaatmutator, potengine, kaartmutator, spelerlogica en rebuildgrenzen zijn niet gewijzigd.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 6.4',date:'06-08-2026',changes:[
+ {type:'Uitkomstsamenvatting',text:'Opgeslagen canonieke winnaar-ID’s worden nu terugvertaald naar dezelfde zichtbare labels als in de resultaatbewerker.'},
+ {type:'Compatibiliteit',text:'De resolver ondersteunt hero, actorcode, Villain-id, playerId, positie en pos:<positie>.'},
+ {type:'Privacy/UX',text:'Interne identifiers worden nooit meer als zichtbare spelernaam gebruikt; onoplosbare legacywaarden tonen Onbekende speler.'},
+ {type:'Scope',text:'Resultaatopslag, resultaatmutator, potengine, kaartmutator, spelerlogica en rebuildgrenzen zijn niet gewijzigd.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 6.3',date:'06-08-2026',changes:[
+ {type:'Uitkomst',text:'De gesloten historische weergave toont nu de actuele winnaar of chop direct onder UITKOMST.'},
+ {type:'Spelerselectie',text:'Historische spelerkoppeling gebruikt voortaan dezelfde compacte dropdownbenadering als de normale registratie.'},
+ {type:'Datum',text:'Historische handdatum gebruikt voortaan een mobiele datumprikker in plaats van handmatige tekstinvoer.'},
+ {type:'Scope',text:'Potengine, commitproof, resultaatmutator, kaartmutator, bountylogica en rebuildgrenzen zijn niet gewijzigd.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 6.2',date:'06-08-2026',changes:[
+ {type:'Acceptatieherstel',text:'D2.6-F6-001 wordt nu hersteld op de finale rHand-outputgrens, direct vóór plaatsing van de HTML in de app.'},
+ {type:'Historisch',text:'Op Hand afronden wordt exact één blok UITKOMST met rechtstreeks potlood in de zichtbare d1-historical-container geplaatst.'},
+ {type:'Bewerking',text:'Het potlood blijft de bestaande Klasse B-resultaathandlers, validatie, bevestiging en rollback gebruiken.'},
+ {type:'Borging',text:'Eventuele oudere of dubbele resultaatmarkup wordt vóór invoeging verwijderd.'},
+ {type:'Scope',text:'Geen wijziging aan potengine, commitproof, resultaatmutator, kaartmutator, spelerlogica, bountylogica of rebuildgrenzen.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 6.1',date:'06-08-2026',changes:[
+ {type:'Acceptatieherstel',text:'Op de historische stap Hand afronden is het rechtstreekse potlood bij UITKOMST opnieuw gegarandeerd zichtbaar.'},
+ {type:'Bewerking',text:'Het bestaande Klasse B-resultaatscherm wordt hergebruikt voor één winnaar en chop, inclusief live-actorfilter en foldcontrole.'},
+ {type:'Borging',text:'De renderer voegt het resultaatblok idempotent toe: nooit dubbel en alleen wanneer het na latere wrappers ontbreekt.'},
+ {type:'Scope',text:'Geen wijziging aan potengine, commitproof, resultaatmutator, kaartmutator, spelerlogica, bountylogica of rebuildgrenzen.'},
+ {type:'UX',text:'De niet-blokkerende wensen voor compacte historische spelerselectie en datumprikker blijven bewust buiten deze gerichte herstelbuild.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 6',date:'05-08-2026',changes:[
+ {type:'Resultaat',text:'Live Villains zonder bibliotheekidentiteit blijven geldige winnaar- en chopkandidaten via een canonieke positiefallback.'},
+ {type:'Resultaat',text:'Historische save synchroniseert de actuele winnaarstate vóór de centrale savegrens en voorkomt verouderde gefolde winnaars.'},
+ {type:'Villains',text:'Holecards en Villainnotitie zijn nu beschikbaar tijdens de eerste registratie voor cash en alle toernooivarianten.'},
+ {type:'Spelers',text:'Nieuwe / onbekende wist koppeling en naam; een andere bestaande speler synchroniseert de naam.'},
+ {type:'Spelersbibliotheek',text:'Een nieuwe speler kan vanuit Tafel & spelers worden toegevoegd en direct gekoppeld.'},
+ {type:'Historisch',text:'Handdatum, handnote, Villainnaam, koppeling en Villainnotitie gebruiken zelfstandige mobiele editors met werkende Backspace en Delete.'},
+ {type:'Scope',text:'Potengine, commitproof, raiseberekening, potoverride en D2-rebuildgrenzen zijn niet gewijzigd.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 5',date:'05-08-2026',changes:[
+ {type:'Integratie',text:'Fase 4.4 is vastgelegd als functionele referentiebasis voor de afrondende RC7-regressie.'},
+ {type:'Acceptatie',text:'Deze build bevat geen nieuwe pokerlogica; doel is volledige eindintegratie, regressie en releasevoorbereiding.'},
+ {type:'Scope',text:'Alle D1-, D2-, bounty-, chop-, pot-, kaart-, runout-, save- en historische bewerkingsroutes worden als één geheel herbeoordeeld.'},
+ {type:'Release',text:'Dit is nog niet de definitieve RC7-releasebuild en bevat nog geen PWA-cacheverhoging of deploywijzigingen.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 4.4',date:'05-08-2026',changes:[
+ {type:'Kritiek herstel',text:'De historische bounty-editor gebruikt nu contenteditable in plaats van input/textarea en activeert daardoor niet langer de oude D1-structuurinvalidatie.'},
+ {type:'Toetsenbord',text:'Backspace, Delete, selectie vervangen en mobiel soft-keyboard bewerken werken op de actieve teksteditor zonder automatische rerender.'},
+ {type:'Navigatie',text:'Openen, annuleren en bevestigen bewaren generation, cursor en trail exact; Volgende stap blijft na een bountywijziging bruikbaar.'},
+ {type:'Transactie',text:'De working copy verandert pas bij bevestigen; annuleren blijft mutatievrij.'},
+ {type:'Borging',text:'De historische Volgende stap-knop blijft expliciet op de historical-commandwhitelist en wordt niet door bounty-editstate uitgeschakeld.'},
+ {type:'Scope',text:'Chopfunctionaliteit, potengine, commitproof, kaartmutators, resultaatmutators en D2-rebuildgrenzen zijn ongewijzigd.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 4.3',date:'05-08-2026',changes:[
+ {type:'Kritiek herstel',text:'Historische bountyvelden gebruiken nu zelfstandige editorblokken die na de read-onlytransformatie worden ingevoegd.'},
+ {type:'Bewerken',text:'Backspace, alles selecteren, vervangen, bevestigen en annuleren werken zonder terugval naar de oude waarde.'},
+ {type:'Hand afronden',text:'PKO, KO en Mystery Bounty hebben in historische modus een zichtbaar potlood direct bij het bountyveld.'},
+ {type:'Transactie',text:'De working copy verandert pas bij ✓; ✕ sluit de editor zonder mutatie.'},
+ {type:'Validatie',text:'KO behoudt niet-negatieve numerieke invoer met maximaal twee decimalen.'},
+ {type:'Scope',text:'Chopintegratie uit Fase 4.2, potengine, commitproof, kaartmutators en rebuildgrenzen blijven ongewijzigd.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 4.2',date:'05-08-2026',changes:[
+ {type:'Herstel',text:'Historische bountyvelden houden de mobiele invoer nu rechtstreeks bij in de transactionele editorstate; wissen, vervangen en bevestigen herstellen niet langer de oude waarde.'},
+ {type:'Isolatie',text:'Historische bountyvelden zijn losgekoppeld van de normale wizardinputlistener, zodat de working copy pas na expliciete bevestiging wijzigt.'},
+ {type:'Chop',text:'Hand afronden toont welke geselecteerde spelers de pot delen, met Villainnaam wanneer bekend en anders positie.'},
+ {type:'Rapport',text:'De chopregel vermeldt deelnemers en totale pot, bijvoorbeeld Chop: Ik, Henk en Bastiaan — pot 19 bb.'},
+ {type:'Bewerkmodus',text:'De historische winnaarselectie gebruikt dezelfde labels als de normale Hand afronden-weergave, inclusief Villainnamen.'},
+ {type:'Persistentie',text:'Bij normale chopopslag worden de geselecteerde deelnemers canoniek in winners vastgelegd.'},
+ {type:'Scope',text:'Potengine, commitproof, kaartmutators, potoverride en D2-rebuildgrenzen zijn niet gewijzigd.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 4.1',date:'05-08-2026',changes:[
+ {type:'Herstel',text:'De toernooipot in de actie-infobalk gebruikt nu minimaal één decimaal, hoofdletters BB en volledige chipnotatie zonder K-compressie.'},
+ {type:'Voorbeeld',text:'Een pot van 11 BB bij blinds 50/100 wordt getoond als 11,0 BB en 1.100 chips.'},
+ {type:'PKO-rapport',text:'Eigen bounty vóór hand en Bounty op villain worden als vrije tekst letterlijk weergegeven, zonder money()-formattering.'},
+ {type:'PKO-rapport',text:'Waarden zoals €75, Ticket en Ticket + €50 blijven exact behouden en krijgen geen extra valutateken.'},
+ {type:'Scope',text:'Potengine, bountyopslag, Klasse A-mutators, saveflow en overige Fase 4-functionaliteit zijn niet inhoudelijk gewijzigd.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 4',date:'05-08-2026',changes:[
+ {type:'Infobalk',text:'De totale pot wordt tijdens actieregistratie gelijktijdig in BB en chips getoond; cashgames tonen geld en BB.'},
+ {type:'Spelers',text:'Geregistreerde Villainnamen worden naast de positie getoond bij preflop, postflop, vorige acties en winnaarselectie.'},
+ {type:'PKO',text:'Tafel & spelers bevat Eigen bounty vóór hand en Bounty op villain; Hand afronden bevat een vrij tekstveld Bounty gewonnen.'},
+ {type:'KO',text:'Hand afronden bevat Aantal gewonnen bounties met niet-negatieve invoer, maximaal twee decimalen en ondersteuning voor komma en punt.'},
+ {type:'Mystery Bounty',text:'Hand afronden bevat hetzelfde vrije tekstveld Bounty gewonnen als PKO.'},
+ {type:'Classificatie',text:'Alle toegevoegde bountyvelden zijn als Klasse A-metadata geïntegreerd en blijven buiten pot-, betting- en winstberekeningen.'},
+ {type:'Rapport',text:'PKO- en Mystery Bounty-winst wordt letterlijk als vrije tekst weergegeven; KO behoudt de numerieke rapportage.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 3G.6',date:'05-08-2026',changes:[
+ {type:'Kritiek herstel',text:'Wijzigingen opslaan initialiseert nu altijd de bestaande-handcontext, zodat een lokale Klasse A-wijziging niet opnieuw om een winnaar vraagt.'},
+ {type:'Afsluiten',text:'Na aantoonbaar geslaagde commit worden wizard, working copy en hand-id expliciet opgeruimd en keert de gebruiker terug naar de sessie.'},
+ {type:'Rollback',text:'Bij een mislukte save worden straat, review, closePrompt, navigatiecursor, trail en activeStreet exact hersteld.'},
+ {type:'Regressie',text:'De fix geldt voor zowel opslaan via het kruis als opslaan op Hand afronden en behoudt d23CommitProof als commitgrens.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 3G.5',date:'05-08-2026',changes:[
+ {type:'Opslaan',text:'De finishnavigatie gebruikt nu Wijzigingen opslaan en verwijdert Opslaan & delen uit historische bewerkmodus.'},
+ {type:'Snelle route',text:'De sluitmodal biedt bij niet-opgeslagen wijzigingen ook Wijzigingen opslaan, zodat lokaal bewerken niet door alle checkpoints hoeft.'},
+ {type:'Modal',text:'Zonder wijzigingen toont de sluitmodal alleen Bewerken verlaten en Doorgaan met bewerken.'},
+ {type:'Finish',text:'Het tweede resultaatpotlood bij Selecteer winnaar(s) is verwijderd; het potlood bij Uitkomst opent de gecombineerde editor.'},
+ {type:'Architectuur',text:'Beide opslagknoppen gebruiken één centrale route via de bestaande wzSave- en d23CommitProof-commitgrens.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 3G.4',date:'04-08-2026',changes:[
+ {type:'Kritiek herstel',text:'De exitmodal in historische bewerkmodus laat Wijzigingen verwerpen en Doorgaan met bewerken weer door de commandowhitelist.'},
+ {type:'UI',text:'Bevestigen en annuleren van Geschat/Exact blijven gecentreerd boven de toggle, op dezelfde plek als het potlood.'},
+ {type:'Finish',text:'Het losse gesloten blok Uitkomst en winnaar(s) is verwijderd; potloden staan nu bij Uitkomst en Selecteer winnaar(s).'},
+ {type:'Scope',text:'Historische straatnavigatie, potoverride, potengine, kaartmutator, resultaatmutator, save/discard en PWA-bestanden blijven verder ongewijzigd.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 3G.3',date:'04-08-2026',changes:[
+ {type:'Navigatie',text:'Historische opgeslagen handen doorlopen nu relevante Preflop-, Flop-, Turn- en Rivercheckpoints vóór Afronden.'},
+ {type:'UI',text:'Hero-kaartenpotlood staat naast Mijn kaarten; Exact/Geschat-potlood staat gecentreerd boven de toggle.'},
+ {type:'Finish',text:'Potloden en sluitkruisen staan direct naast hun titel; de branchknop ontbreekt op Afronden.'},
+ {type:'Uitleg',text:'Het historische informatieblok past zijn tekst dynamisch aan op aanwezigheid van potloodvelden en de finishstap.'},
+ {type:'Scope',text:'Potoverridevalidatie, parser, potengine, kaartmutator, resultaatmutator, save/discard en PWA-bestanden blijven ongewijzigd.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 3G.2',date:'04-08-2026',changes:[
+ {type:'Kritiek herstel',text:'Historische previewnavigatie bevat nu ook het checkpoint Afronden, zodat Volgende stap niet meer blokkeert bij Eerste vrijwillige actor.'},
+ {type:'UI',text:'Het potlood voor Hero-kaarten staat direct naast Mijn kaarten; het potlood voor Exact/Geschat blijft gekoppeld aan Startstack.'},
+ {type:'Scope',text:'Potoverridevalidatie, parser, potengine, kaartmutator, resultaatmutator, save en PWA-bestanden blijven ongewijzigd.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 3G.1',date:'04-08-2026',changes:[
+ {type:'Herstel',text:'Historische potoverride accepteert nu het werkelijke toernooidatamodel session.type=mtt.'},
+ {type:'Parser',text:'De lokale potoverrideparser accepteert nu zowel 1,5K als 1.5K zonder de algemene chipparser te wijzigen.'},
+ {type:'Scope',text:'Cashroute, potveldsemantiek, protected-state, confirmatie, rollback, report/share, kaartlogica, resultaatlogica en potengine blijven verder ongewijzigd.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 3G',date:'04-08-2026',changes:[
+ {type:'Klasse B-special',text:'Historische handmatige potoverride toegevoegd op het finishcheckpoint met zware validatie en expliciete confirmatie.'},
+ {type:'Eenheid',text:'Bestaande conventie behouden: cashgame in geld via potBB, toernooi in BB via potBB; potChips blijft ongewijzigd en niet-leidend.'},
+ {type:'Veiligheid',text:'Onbetrouwbare berekende potten worden geblokkeerd; bettingacties, resultaat, kaarten, stacks en generation blijven beschermd.'},
+ {type:'Transactie',text:'Override blijft tot definitieve save alleen in de working copy en ondersteunt rollback, no-change en opeenvolgende wijzigingen.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 3F.3',date:'04-08-2026',changes:[
+ {type:'Herstel',text:'Villain-id en playerId worden nu afzonderlijk getrimd voordat de canonieke resultaatidentiteit wordt gekozen.'},
+ {type:'Fallback',text:'Een whitespace-id blokkeert een geldige playerId niet langer; canonical gebruikt id na trim, anders playerId na trim.'},
+ {type:'Ambiguïteit',text:'Dubbele id en dubbele playerId worden onafhankelijk gedetecteerd, ook wanneer canonieke id-waarden verschillend zijn.'},
+ {type:'Scope',text:'Pure resultaatmutator, finish-UI, confirmatie, rollback, kaartbewerking, potengine, runoutconfirm, potoverride en Klasse C blijven verder ongewijzigd.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 3F.2',date:'04-08-2026',changes:[
+ {type:'Herstel',text:'Een live Villain zonder geldige positie maakt de resultaatkandidaatset nu ongeldig in plaats van stil te worden overgeslagen.'},
+ {type:'Identiteit',text:'Een live Villain zonder id of playerId wordt nu geweigerd; de fallback pos:<positie> is verwijderd.'},
+ {type:'Foutsemantiek',text:'Beide situaties leiden tot invalid-live-candidates zonder handmutatie of confirmatiemodal.'},
+ {type:'Scope',text:'Duplicaatvalidatie, purity, finish-UI, confirmatie, rollback, kaartbewerking, potengine, runoutconfirm, potoverride en Klasse C blijven verder ongewijzigd.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 3F.1',date:'04-08-2026',changes:[
+ {type:'Herstel',text:'Dubbele winnaarselecties worden vóór deduplicatie expliciet geweigerd met duplicate-result-player.'},
+ {type:'Purity',text:'Resultaatkandidaten worden uitsluitend uit het meegegeven handobject afgeleid; wzActor en globale UI.draft.heroPos zijn uit de pure resultaatlaag verwijderd.'},
+ {type:'Ambiguïteit',text:'Dubbele actor-, positie- of canonieke kandidaatidentiteit wordt als invalid-live-candidates geweigerd in plaats van stil samengevoegd.'},
+ {type:'Scope',text:'Finish-UI, confirmatie, rollback, kaartbewerking, potengine, runoutconfirm, potoverride en Klasse C blijven verder ongewijzigd.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 3F',date:'04-08-2026',changes:[
+ {type:'Klasse B',text:'Historische uitkomst en winnaar(s) zijn op de finishstap gecontroleerd bewerkbaar met behoud van bettingacties.'},
+ {type:'Validatie',text:'Alleen live spelers kunnen worden gekozen; één winnaar vereist exact één selectie en chop minimaal twee unieke selecties.'},
+ {type:'Bevestiging',text:'Resultaatwijzigingen gebruiken een eigen confirmatie- en rollbackgrens en blijven tot definitieve save alleen in de working copy.'},
+ {type:'Scope',text:'Handmatige potoverride, runoutconfirm en Klasse C blijven buiten deze subbuild.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 3E.6',date:'04-08-2026',changes:[
+ {type:'Herstel',text:'d26ValidCardPath wordt nu vóór zowel clear als displacement toegepast en is daarmee de eerste uniforme mutatiegrens.'},
+ {type:'Foutsemantiek',text:'Alle ongeldige clear- en plaatsingspaden retourneren nu allowed=false en action=invalid-target.'},
+ {type:'Veiligheid',text:'decideCardDisplacement wordt alleen nog aangeroepen nadat het doelpad volledig geldig is verklaard.'},
+ {type:'Scope',text:'Validator, clear-, picker-, displacement-, confirmatie-, rollback-, potengine-, rebuild- en Klasse C-logica blijven verder ongewijzigd.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 3E.5',date:'04-08-2026',changes:[
+ {type:'Herstel',text:'Een centrale pure kaartpadvalidator controleert nu volledige padstructuur, slotindex en bestaande arraygrenzen.'},
+ {type:'Veiligheid',text:'Hero accepteert uitsluitend slots 0/1, Villains uitsluitend bestaande index plus slots 0/1, en board uitsluitend slots 0 t/m 4.'},
+ {type:'Consistentie',text:'Dezelfde validator wordt gebruikt voor wissen én echte kaartplaatsing via d26SetCardOnHand.'},
+ {type:'Scope',text:'Clear-, picker-, displacement-, confirmatie-, rollback-, potengine-, rebuild- en Klasse C-logica blijven verder ongewijzigd.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 3E.4',date:'04-08-2026',changes:[
+ {type:'Herstel',text:'Historisch Wis kaart behandelt card=null nu als expliciete clear-mutatie vóór de displacementbeslissing.'},
+ {type:'Validatie',text:'Clear gebruikt dezelfde Klasse B-validatie-, confirmatie-, rollback- en transactionele grens.'},
+ {type:'Veiligheid',text:'decideCardDisplacement blijft ongewijzigd en wordt niet gebruikt voor wissen.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 3E.3',date:'04-08-2026',changes:[
+ {type:'Herstel',text:'Rank-, suit-, onbekende-kaart-, wis- en sluitcommando’s krijgen uitsluitend in actieve historische Klasse B-pickermodus data-historical-command.'},
+ {type:'Eventrouting',text:'De centrale historische mutation guard laat de bestaande pickerhandlers daardoor door zonder generieke versoepeling.'},
+ {type:'Wis kaart',text:'Historisch kaart wissen loopt nu via d26ApplyClassBCardEdit en dezelfde validatie-, confirmatie- en rollbackgrens.'},
+ {type:'Scope',text:'Kaartmutator, kaartgroepbereikbaarheid, resultaat-UI, potoverride, Klasse C, potengine en rebuildgrenzen blijven verder ongewijzigd.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 3E.2',date:'04-08-2026',changes:[
+ {type:'UI',text:'Villain-holecards worden expliciet in het historische spelerscheckpoint gerenderd met eigen kaartgroepmetadata en potloodroute.'},
+ {type:'Board',text:'Flop-, Turn- en Rivergroepen gebruiken expliciete kaartgroepmetadata en krijgen ook bij h2-koppen een potlood.'},
+ {type:'Robuustheid',text:'De enhancer gebruikt expliciete metadata en ondersteunt label-, h2- en fallbackkoppen.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 3E.1',date:'04-08-2026',changes:[
+ {type:'Herstel',text:'De recursieve kaartwrapper is verwijderd: voorspelling en working-copytoepassing gebruiken nu één pure kaartmutator op een expliciet handobject.'},
+ {type:'Validatie',text:'Toegestane kaartverdringing wordt eerst op de voorspelde after-state toegepast en daarna pas door assessClassBEdit gevalideerd.'},
+ {type:'UX',text:'Historische kaartgroepen krijgen een potloodicoon; alleen de gekozen kaartgroep wordt vrijgegeven en op de historische commandowhitelist geplaatst.'},
+ {type:'Bevestiging',text:'De kaartconfirmatiemodal wordt nu daadwerkelijk aan de handweergave toegevoegd en ondersteunt bevestigen of volledige rollback per wijziging.'},
+ {type:'Scope',text:'Winnaar, uitkomst, runoutconfirm, potoverride en Klasse C blijven buiten deze UI-route.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 3E',date:'04-08-2026',changes:[
+ {type:'Klasse B',text:'Historische Hero-, Villain- en boardkaarten gebruiken nu de gevalideerde Klasse B-route met behoud van bettingacties.'},
+ {type:'Bevestiging',text:'Na een geldige kaartwijziging verschijnt een bevestigingsvenster met keuze Bevestigen of Terugdraaien.'},
+ {type:'Veiligheid',text:'Acties, niet-kaartstate en generation worden voor en na de kaartmutatie vergeleken; bij afwijking wordt de working copy volledig teruggezet.'},
+ {type:'Scope',text:'Resultaat, winnaar, runoutconfirm en handmatige potoverride zijn nog niet via Klasse B-UI bekabeld; Klasse C blijft buiten scope.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 3D.1',date:'04-08-2026',changes:[
+ {type:'Herstel',text:'Klasse B-resultaatvalidatie herkent bij verlies live Villain-ID, playerId, positie en de ondersteunde legacyvorm pos:<positie>.'},
+ {type:'Chop',text:'Een chop is alleen geldig bij winner=chop of een unieke lijst met minimaal twee geldige live winnaars.'},
+ {type:'Veiligheid',text:'Gefolde en onbekende winnaars blijven geweigerd; shadow mode, purity en bettingactiebehoud blijven ongewijzigd.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 3D',date:'04-08-2026',changes:[
+ {type:'Klasse B',text:'Een pure shadow-mode validatielaag beoordeelt kaart-, board-, uitkomst-, winnaar- en potoverridebewerkingen zonder UI-wiring of draftmutatie.'},
+ {type:'Veiligheid',text:'Klasse B behoudt altijd bettingacties en controleert fysieke kaartduplicaten, boardvorm en resultaatconsistentie.'},
+ {type:'Pot',text:'Handmatige potoverride blijft B-special en wordt zonder expliciet geslaagde zware validatie geweigerd.'},
+ {type:'Scope',text:'Nog geen Klasse B-potloodiconen, confirmflow of opslagroute; Klasse C en rebuildlogica blijven buiten scope.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 3C.3',date:'04-08-2026',changes:[
+ {type:'Herstel',text:'De inline knoppen Geschat en Exact krijgen nu expliciet data-historical-command, zodat de centrale historische mutation guard normale clicks en taps doorlaat.'},
+ {type:'Veiligheid',text:'Alleen de qualifierknoppen worden aan de whitelist toegevoegd; stackwaarde en overige Klasse B/C-controls blijven disabled/read-only.'},
+ {type:'Scope',text:'Classifier, protected-statecontrole, generationguard, kaartlogica, potengine en rebuildgrenzen blijven ongewijzigd.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 3C.2',date:'04-08-2026',changes:[
+ {type:'Herstel',text:'De generieke pointerblokkade op historische stapblokken is voor de inline bewerklaag opgeheven, zodat potlood-, vinkje- en kruisjeknoppen normaal klikbaar zijn.'},
+ {type:'Veiligheid',text:'De read-onlybeveiliging blijft berusten op disabled/readonly/aria-disabled/tabindex en de centrale historical-commandguard; Klasse B/C-controls blijven vergrendeld.'},
+ {type:'Scope',text:'Geen wijziging aan classifier, protected-statecontrole, generationguard, kaartlogica, potengine of rebuildgrenzen.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 3C.1',date:'03-08-2026',changes:[
+ {type:'UX',text:'De aparte knop en modal voor impactvrije gegevens zijn verwijderd. Klasse A-velden worden nu op hun bestaande plek met een potloodicoon bewerkt.'},
+ {type:'Inline',text:'Handdatum, Exact/Geschat, Villainnaam en gekoppelde speler zijn inline beschikbaar in de historische stappen; handnotitie wordt inline ondersteund zodra de finishstap historisch bereikbaar is.'},
+ {type:'Veiligheid',text:'Bevestigen gebruikt ongewijzigd de centrale Klasse A-classifier, protected-statecontrole en generationguard. Annuleren sluit de inline editor zonder mutatie.'},
+ {type:'Scope',text:'Klasse B/C, startstackwaarde, kaarten, pot en bettingrebuild blijven buiten deze route.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 3C',date:'03-08-2026',changes:[
+ {type:'Bewerken',text:'Impactvrije Klasse A-gegevens kunnen vanuit de historische preview direct in een afzonderlijk venster worden aangepast zonder branchmodal of rebuild.'},
+ {type:'Velden',text:'Ondersteund: handdatum, Exact/Geschat, Villainnaam, spelerkoppeling, Villainnotitie, handnotitie en bountyvelden.'},
+ {type:'Veiligheid',text:'Iedere wijziging wordt vooraf door classifyHistoricalEdit gecontroleerd; pokerstate en generation worden na toepassing opnieuw bewaakt.'},
+ {type:'Identiteit',text:'Een bibliotheekspeler koppelt uitsluitend id en naam. Seat, positie, stack, kaarten en notities worden niet stil overgenomen.'},
+ {type:'Scope',text:'Klasse B en C, startstackimpact, potoverride en verdere kaartlogica zijn niet bekabeld.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 3B.1',date:'03-08-2026',changes:[
+ {type:'Herstel',text:'Onbekende kaarten met ? worden in de centrale pure beslislaag als niet-fysiek geaccepteerd en niet meer op duplicaten gecontroleerd.'},
+ {type:'Consistentie',text:'Picker-disabled state en daadwerkelijke kaarttoepassing gebruiken nu dezelfde accept-nonphysical-semantiek voor Hero, Villains, board en runoutdraft.'},
+ {type:'Scope',text:'Bekende-kaartprioriteit, passieve no-oproutes, potengine en algemene Klasse A/B/C-uitrol blijven ongewijzigd.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 3B',date:'03-08-2026',changes:[
+ {type:'Kaarten',text:'De pure Fase 3A-beslislaag is gekoppeld aan expliciete kaartkeuzes in de normale kaartpicker en all-in-runoutpicker.'},
+ {type:'Kaarten',text:'Latere groepen kunnen kaarten uit eerdere groepen niet kiezen; eerdere groepen maken dezelfde kaart op latere locaties vrij en tonen exact waar deze is verwijderd.'},
+ {type:'Veiligheid',text:'Openen, renderen, navigeren, importeren, migreren en replay blijven buiten de mutatieroute; legacyduplicaten worden niet stil hersteld.'},
+ {type:'Scope',text:'Algemene Klasse A/B/C-uitrol is nog niet gestart; potengine en bettingrebuild zijn niet gewijzigd.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 3A',date:'03-08-2026',changes:[
+ {type:'Architectuur',text:'Pure decideCardDisplacement(input)-beslislaag toegevoegd met vaste kaartgroepsprioriteit Hero → Villain 1 → Villain 2 → overige Villains → Flop → Turn → River.'},
+ {type:'Veiligheid',text:'De kaartlaag werkt uitsluitend bij expliciete gebruikersbewerking en blijft no-op bij openen, renderen, navigeren, importeren, migreren en replay.'},
+ {type:'Scope',text:'Alleen shadow-modebeslissingen; er worden nog geen kaarten uit UI.draft verwijderd, geen pickerregels bekabeld en geen meldingen getoond.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 2.1',date:'03-08-2026',changes:[
+ {type:'Documentatie',text:'Het definitieve aantal centrale D26_FIELD_RULES is vastgesteld op 50. De eerdere vermelding van 51 telde ten onrechte ook de conservatieve unknown-field fallback mee.'},
+ {type:'Traceerbaarheid',text:'De 50 canonieke regels zijn expliciet genummerd en gekoppeld aan de goedgekeurde veld→klasse-tabel.'},
+ {type:'Scope',text:'De classifiercode en shadow-modewerking zijn inhoudelijk ongewijzigd; Klasse A/B/C-mutaties blijven niet bekabeld.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 2',date:'03-08-2026',changes:[
+ {type:'Architectuur',text:'Pure centrale classifyHistoricalEdit(field, before, after, handState) toegevoegd in shadow mode op basis van de goedgekeurde veld→klasse-tabel.'},
+ {type:'Veiligheid',text:'De classifier leest niet uit UI.draft, UI.wz of currentSession() en voert geen wijzigingen, rebuilds of validaties uit.'},
+ {type:'Scope',text:'Fase 2 classificeert uitsluitend; Klasse A/B/C-gedrag, kaartverdringing en echte mutaties zijn nog niet bekabeld.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 1.7',date:'03-08-2026',changes:[
+ {type:'UI',text:'Het volledige technische checkpointmetaveld is uit de normale eindgebruikersinterface verwijderd; labels zoals Basisgegevens, Button, Hero, Spelers en Eerste vrijwillige actor worden niet meer onderaan apart getoond.'},
+ {type:'Scope',text:'Navigatielogica, checkpointdata en generationstate blijven intern ongewijzigd; fase 2 is niet gestart.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 1.6',date:'03-08-2026',changes:[
+ {type:'UI',text:'Het bovenste historische infoblok toont alleen Eerdere stap bekijken; de volledige toelichting staat nu gecombineerd in het onderste bewerkblok.'},
+ {type:'UI',text:'Technische generationlabels zijn uit de normale eindgebruikersinterface verwijderd.'},
+ {type:'Navigatie',text:'Op het laatste read-only previewcheckpoint is Volgende stap nu correct uitgeschakeld.'},
+ {type:'Scope',text:'Geen classificatie, shadow mode, kaartverdringing of Klasse A/B/C-mutaties toegevoegd; fase 2 is niet gestart.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 1.5',date:'03-08-2026',changes:[
+ {type:'Herstel',text:'Read-only previewnavigatie muteert de working copy niet langer; heroSeat en heroPos worden niet meer tijdens navigeren genormaliseerd of herschreven.'},
+ {type:'Integriteit',text:'Historische selectieherstelcode schrijft uitsluitend naar wizard-/presentatiestate en laat UI.draft byte-identiek tot een bewuste branch of echte wijziging.'},
+ {type:'Scope',text:'Geen classificatie, shadow mode, kaartverdringing of Klasse A/B/C-mutaties toegevoegd; fase 2 is niet gestart.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 1.4',date:'03-08-2026',changes:[
+ {type:'Herstel',text:'Bij openen van een opgeslagen hand wordt nu een compacte, deterministische read-only previewtrail opgebouwd voor Basisgegevens, Button, Hero, Spelers en Eerste vrijwillige actor.'},
+ {type:'Navigatie',text:'Vorige/Volgende doorloopt alle vijf setupstappen zonder validatie, herinvoer, generationwijziging of handmutatie.'},
+ {type:'Scope',text:'Geen classificatie, shadow mode, kaartverdringing of Klasse A/B/C-mutaties toegevoegd; fase 2 is niet gestart.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 1.3',date:'03-08-2026',changes:[
+ {type:'Herstel',text:'Een opgeslagen hand blijft tijdens alleen Vorige/Volgende volledig in historische weergave, ook wanneer de cursor op het laatste bestaande checkpoint staat.'},
+ {type:'Navigatie',text:'Vooruitnavigeren zonder Bewerken vanaf deze stap vraagt geen verplichte herinvoer en houdt de bewerkknop zichtbaar.'},
+ {type:'Scope',text:'Geen classificatie, shadow mode, kaartverdringing of Klasse A/B/C-mutaties toegevoegd; fase 2 is niet gestart.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 1.2',date:'02-08-2026',changes:[
+ {type:'Herstel',text:'De historische read-onlyguard laat nu ook de confirm- en cancelcommando’s van de branchmodal door.'},
+ {type:'Borging',text:'Alle historische D2-commando’s dragen centraal data-historical-command om toekomstige whitelistfouten te voorkomen.'},
+ {type:'Scope',text:'Geen classificatie, shadow mode, kaartverdringing of Klasse A/B/C-mutaties toegevoegd; fase 2 is niet gestart.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 1.1',date:'02-08-2026',changes:[
+ {type:'Herstel',text:'De historische read-onlyguard laat Bewerken vanaf deze stap nu expliciet door.'},
+ {type:'Eventrouting',text:'Een klik op data-d2-edit-here bereikt daardoor de bestaande D2-branchhandler exact via de bedoelde capture-route.'},
+ {type:'Scope',text:'Geen classificatie, kaartverdringing of Klasse A/B/C-mutaties toegevoegd; fase 2 is niet gestart.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC7 Ronde D2.6 Fase 1',date:'02-08-2026',changes:[
+ {type:'Navigatie',text:'Teruggaan toont bestaande basiskeuzes opnieuw vanuit de handstate; BTN, Hero-seat en eerste vrijwillige actor blijven herkenbaar geselecteerd.'},
+ {type:'Historie',text:'Historische stappen tonen de eindgebruikerstekst Eerdere stap bekijken en blijven zonder bewuste bewerkkeuze alleen-lezen.'},
+ {type:'Bewerken',text:'Bewerken vanaf deze stap is nu ook zichtbaar tijdens de eerste registratie en gebruikt de bestaande checkpoint-rebuildroute.'},
+ {type:'Mobiel',text:'De bewerkknop staat in de normale contentflow en blijft bereikbaar op smalle schermen.'},
+ {type:'Terminologie',text:'Transactionele bewerkmodus is vervangen door Opgeslagen hand bewerken.'},
+ {type:'Scope',text:'Deze fase bevat nog geen classifyHistoricalEdit, veldklassen of kaartverdringing.'}
+]});
 
 
 /* ===== v2.6 RC8 Build 4 — compactere seat-baan ===== */
@@ -9229,7 +9749,21 @@ if(window.visualViewport){
 
 
 
+RELEASE_NOTES.unshift({version:'v2.6 RC8 Build 4',date:'06-08-2026',changes:[
+ {type:'Interface',text:'De constante afstand tussen tafelcontour en seat-baan is verkleind van 58 naar 48 ontwerppixels.'},
+ {type:'Terminologie',text:'Visuele controles en technische toelichting gebruiken seatnummers vanaf de dealer: Seat 1 tot en met Seat 10.'},
+ {type:'Geometrie',text:'De volledige racetrack-seatbaan is uniform naar de tafel verplaatst; er zijn geen individuele seat-offsets toegevoegd.'},
+ {type:'Validatie',text:'10-handed is als grensgeval gecontroleerd op onderlinge overlap van de vaste seatknoppen.'},
+ {type:'Scope',text:'Tafelvorm, seatvolgorde, seat→positie-toewijzing, markers en niet-visuele logica zijn ongewijzigd.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.6 RC8 Build 3',date:'06-08-2026',changes:[
+ {type:'Interface',text:'De horizontale ellips is vervangen door een eenvoudige verticale racetrack-pokertafel voor portraitgebruik.'},
+ {type:'Geometrie',text:'De seat-baan volgt dezelfde racetrack-contour als de tafel met een constante gap; seats worden over gelijke booglengtes verdeeld.'},
+ {type:'Interface',text:'De dealerzone is visueel geïntegreerd links-midden en blijft geometrisch uitsluitend een cosmetisch element.'},
+ {type:'Responsive',text:'Wizard en modal gebruiken dezelfde renderfunctie en één scale-to-fit-berekening op basis van hun eigen container.'},
+ {type:'Scope',text:'Seat→positie-toewijzing, wizardlogica, potengine, mutators, rapportage en handrecords zijn ongewijzigd.'}
+]});
 
 
 /* ===== v2.6 RC8 Build 5 — cashgamechips op het felt ===== */
@@ -9320,6 +9854,13 @@ wzTags=function(){
  return lines+chips;
 };
 
+RELEASE_NOTES.unshift({version:'v2.6 RC8 Build 5',date:'06-08-2026',changes:[
+ {type:'Interface',text:'Cashgameblinds en straddles worden als inzetmarkers op het groene felt geplaatst.'},
+ {type:'Koppeling',text:'Iedere cashgame-inzetmarker is met een subtiele stippellijn gekoppeld aan de bijbehorende seat; lijnkruisingen zijn toegestaan.'},
+ {type:'Notatie',text:'Cashgamebedragen van 1 tot en met 99.999 gebruiken een compacte markerweergave met maximaal 99,99K, zonder de opgeslagen waarde te wijzigen.'},
+ {type:'Geometrie',text:'Een generieke botsingscontrole voorkomt overlap tussen cashgame-inzetmarkers en houdt markers volledig binnen het felt.'},
+ {type:'Scope',text:'Seatpositionering, tafelvorm, inzetwaarden, straddlelogica en overige niet-visuele functionaliteit zijn ongewijzigd.'}
+]});
 
 
 /* ===== v2.6 RC8 Build 6 — symmetrische cashgamechipplaatsing ===== */
@@ -9375,6 +9916,13 @@ function rc8CashChipLine(item){
  const x1=sq.x+dx*(seatExtent+4),y1=sq.y+dy*(seatExtent+4),x2=item.x-dx*(chipExtent+3),y2=item.y-dy*(chipExtent+3);
  return '<line class="wz-chip-link" x1="'+x1.toFixed(1)+'" y1="'+y1.toFixed(1)+'" x2="'+x2.toFixed(1)+'" y2="'+y2.toFixed(1)+'"></line>';
 }
+RELEASE_NOTES.unshift({version:'v2.6 RC8 Build 6',date:'06-08-2026',changes:[
+ {type:'Geometrie',text:'Cashgamechips gebruiken nu een vaste symmetrische markerbaan binnen het felt, in plaats van losse seat-voor-seat plaatsing.'},
+ {type:'Consistentie',text:'De chipplaatsing volgt per seat dezelfde racetrack-logica, zodat spiegelparen rond de horizontale middenas visueel rustiger ogen.'},
+ {type:'Koppeling',text:'Stippellijnen worden nu berekend op basis van de werkelijke richting tussen seat en chip, waardoor koppelingen netter op de chiprand eindigen.'},
+ {type:'Veiligheid',text:'Een compacte fallback zoekt alleen bij noodzaak een alternatieve plek binnen het felt om overlap tussen chipmarkers te voorkomen.'},
+ {type:'Scope',text:'Tafelvorm, seatpositionering, straddlelogica, opslag en overige niet-visuele functionaliteit zijn ongewijzigd.'}
+]});
 
 
 
@@ -9398,6 +9946,13 @@ function wzOrder(st){
  for(let i=1;i<=d.players;i++)order.push(d.positionBySeat[((d.buttonSeat-1+i)%d.players)+1]);
  return order.filter(Boolean).map(wzActor);
 }
+RELEASE_NOTES.unshift({version:'v2.6 RC8 Build 7',date:'06-08-2026',changes:[
+ {type:'Herstel',text:'De wizard, straddlelogica en actorvolgorde gebruiken nu één canonieke positiebron voor alle tafelgroottes.'},
+ {type:'Herstel',text:'6-handed gebruikt voortaan LJ in plaats van het onjuiste UTG; de reguliere straddle op LJ wordt daardoor weer aan de juiste seat gekoppeld en zichtbaar.'},
+ {type:'Consistentie',text:'Ook 4-handed en 5-handed gebruiken de correcte short-handed labels CO respectievelijk HJ/CO, zonder onjuiste UTG-labels.'},
+ {type:'Toernooien',text:'Dezelfde canonieke positielogica geldt voor cash, Regular MTT, PKO, KO en Mystery Bounty.'},
+ {type:'Scope',text:'Tafelvorm, seatgeometrie, chipdesign, inzetwaarden, potengine, handrecords en rapportage zijn ongewijzigd.'}
+]});
 
 
 /* ===== v2.6 RC8 Build 8 — toernooichips en gestapelde BBA ===== */
@@ -9492,6 +10047,13 @@ wzTags=function(){
  return lines+chips;
 };
 
+RELEASE_NOTES.unshift({version:'v2.6 RC8 Build 8',date:'07-08-2026',changes:[
+ {type:'Interface',text:'Toernooiblinds worden met dezelfde symmetrische felt-markers en seatkoppeling weergegeven als cashgameblinds.'},
+ {type:'BBA',text:'Een actieve Big Blind Ante wordt als afzonderlijke marker direct onder de BB-marker geplaatst; alleen de BB-marker krijgt een stippellijn naar de BB-seat.'},
+ {type:'Notatie',text:'Toernooichips gebruiken compacte K- en M-notatie met maximaal twee decimalen, bijvoorbeeld 12,5K en 100,25M, zonder de opgeslagen waarde te wijzigen.'},
+ {type:'Varianten',text:'De weergave geldt voor Regular MTT, PKO, KO en Mystery Bounty en voor 6-, 8-, 9- en 10-handed tafels.'},
+ {type:'Scope',text:'Potberekening, forced-contributionlogica, seatposities, handrecords en rapportage zijn ongewijzigd.'}
+]});
 
 
 /* ===== v2.6 RC8 Build 9 — K/M/B-invoer en 10-handed BB/BBA-polish ===== */
@@ -9560,6 +10122,13 @@ function rc8TournamentMarkerLayout(){
  return layout;
 }
 
+RELEASE_NOTES.unshift({version:'v2.6 RC8 Build 9',date:'07-08-2026',changes:[
+ {type:'Invoer',text:'Chipvelden accepteren nu gewone getallen en K-, M- en B-notatie, hoofdletterongevoelig en met komma of punt als decimaalteken.'},
+ {type:'Notatie',text:'Compacte chipweergave ondersteunt K, M en B met maximaal twee decimalen, bijvoorbeeld 1,5K, 100,25M en 1B.'},
+ {type:'Interface',text:'Bij 10-handed wordt een brede BB/BBA-groep extra naar binnen geplaatst, zodat lange labels meer ruimte houden tot de bovenbocht van het felt.'},
+ {type:'Behoud',text:'De 6-, 8- en 9-handed plaatsingsgeometrie en de enkele stippellijn naar uitsluitend de BB-marker blijven ongewijzigd.'},
+ {type:'Scope',text:'Potberekening, forced-contributionlogica, seatposities, handrecords en rapportage zijn niet gewijzigd.'}
+]});
 
 
 /* ===== v2.6 RC8 Build 10 — K/M/B end-to-end + actieve/inactieve seats ===== */
@@ -9726,6 +10295,14 @@ function rc8FitTableVisual(box){
  stage.dataset.rc8Scale=String(safe);stage.dataset.rc8TableWidth=String((g.tableRadius*2*safe).toFixed(2));
 }
 
+RELEASE_NOTES.unshift({version:'v2.6 RC8 Build 10',date:'07-08-2026',changes:[
+ {type:'Herstel',text:'K-, M- en B-invoer wordt bij commit één keer naar de exacte chipwaarde genormaliseerd; 100,25B blijft 100,25B in de compacte weergave en vertegenwoordigt exact 100.250.000.000 chips.'},
+ {type:'Consistentie',text:'Dezelfde K/M/B-parser wordt ook gebruikt voor handmatige potinvoer.'},
+ {type:'Interface',text:'Als het actuele spelersaantal lager is dan de sessietafel, blijven alle fysieke seats zichtbaar. Alleen Seat 1 t/m N zijn actief; hogere seatnummers worden uitgegrijsd en tonen uitsluitend Seat X.'},
+ {type:'Interactie',text:'Inactieve seats zijn niet selecteerbaar, krijgen geen Hero-status, pokerpositie, blind-, straddle- of BBA-marker en doen niet mee aan de actorlogica.'},
+ {type:'Geometrie',text:'Chipmarkers en stippellijnen gebruiken bij gedeeltelijk bezette tafels de vaste fysieke seatlocaties van de sessietafel. De geaccepteerde racetrack- en markergeometrie is niet gewijzigd.'},
+ {type:'Behoud',text:'Wanneer spelersaantal en tafelformaat gelijk zijn, rendert de tafel identiek aan Build 9.'}
+]});
 
 
 
@@ -9756,6 +10333,12 @@ chipDisplay=function(v){return rc8Build11FormatChip(v,2)};
 rc8CompactChipValue=function(v,maxDecimals=2){return rc8Build11FormatChip(v,maxDecimals)};
 rc8TournamentChipDisplay=function(v){return rc8Build11FormatChip(Math.max(0,Math.floor(rc8Build10ParseChip(v).value)),2)};
 
+RELEASE_NOTES.unshift({version:'v2.6 RC8 Build 11',date:'07-08-2026',changes:[
+ {type:'Herstel',text:'De resterende M-only formatterroute is verwijderd uit de runtimeketen. Alle historische formatteraliassen wijzen nu naar één K/M/B-formatter.'},
+ {type:'Invoer',text:'B-invoer blijft end-to-end behouden: 100,25B wordt opgeslagen als 100.250.000.000 chips en opnieuw weergegeven als 100,25B.'},
+ {type:'Consistentie',text:'formatChipsRC5, compactK, fmtChips, chipDisplay, rc8CompactChipValue en de toernooiformatter gebruiken dezelfde suffixgrenzen voor K, M en B.'},
+ {type:'Behoud',text:'Tafelgeometrie, actieve/inactieve seats, chipplaatsing, BB/BBA-groepering en overige RC8-functionaliteit zijn ongewijzigd ten opzichte van Build 10.'}
+]});
 
 
 /* ===== v2.6 RC8 Build 12 — exclusieve K/M/B-invoerroute voor toernooiblinds ===== */
@@ -9870,10 +10453,36 @@ document.addEventListener('change',e=>{
  save();
 },true);
 
+RELEASE_NOTES.unshift({version:'v2.6 RC8 Build 12',date:'07-08-2026',changes:[
+ {type:'Herstel',text:'Toernooi-SB, BB en BBA gebruiken één exclusieve K/M/B-invoerroute en zijn losgekoppeld van oudere generieke chiphandlers.'},
+ {type:'Invoer',text:'K, M en B worden end-to-end met respectievelijk 10^3, 10^6 en 10^9 verwerkt; komma en punt zijn toegestaan als decimaalteken.'},
+ {type:'Integriteit',text:'De exacte numerieke chipwaarde wordt in het handmodel opgeslagen; compacte formattering gebeurt uitsluitend voor presentatie.'},
+ {type:'BBA',text:'Bij actieve Big Blind Ante blijft BBA exact gekoppeld aan de numerieke BB-waarde zonder tweede normalisatieronde.'},
+ {type:'Behoud',text:'Tafelgeometrie, actieve/inactieve seats, cashgame-invoer, chipplaatsing en BB/BBA-visual zijn ongewijzigd ten opzichte van Build 11.'}
+]});
+
+RELEASE_NOTES.unshift({version:'v2.6 RC8 Build 13',date:'07-08-2026',changes:[
+ {type:'Mobiele invoer',text:'Toernooi-SB, BB en BBA gebruiken tekstinvoer in plaats van een numeriek mobiel toetsenbord, zodat K/M/B rechtstreeks typbaar zijn.'},
+ {type:'Gebruiksgemak',text:'K, M en B blijven hoofdletterongevoelig; komma en punt blijven toegestaan als decimaalteken.'},
+ {type:'BBA',text:'Bij actieve BBA wordt de zichtbare BBA-waarde direct bijgewerkt wanneer BB wijzigt, naast de bestaande exacte modelsynchronisatie.'},
+ {type:'Diagnose',text:'De Build-12D-debugweergave is niet opgenomen in deze functionele build.'},
+ {type:'Behoud',text:'Tafelgeometrie, actieve/inactieve seats, chipplaatsing en overige RC8-functionaliteit zijn niet gewijzigd.'}
+]});
+
+RELEASE_NOTES.unshift({version:'v2.6 RC8 Build 14',date:'07-08-2026',changes:[
+ {type:'Pokerlogica',text:'Cashgameacties met waardetype BB worden in de pot-engine nu omgerekend naar valuta via bedrag × big blind, gelijk aan de reeds correcte wizard/replay-conversie.'},
+ {type:'Regressie',text:'Bestaande uncalled-bet/raise-fixtures en nieuwe €1/€2- en €2/€5-BB-unitfixtures zijn gecontroleerd.'},
+ {type:'Scope',text:'Geen wijziging aan toernooilogica, K/M/B, BBA, tafelvisual, actieve/inactieve seats of PWA.'}
+]});
 
 
-
-
+RELEASE_NOTES.unshift({version:'v2.6 RC9',date:'07-08-2026',changes:[
+ {type:'PWA',text:'Manifest, app-iconen en service worker zijn expliciet aan de app gekoppeld.'},
+ {type:'Updates',text:'De app controleert bij iedere online start op een nieuwe service worker en neemt een geactiveerde update automatisch over.'},
+ {type:'Offline',text:'Navigaties gebruiken network-first met offline fallback; statische app-assets blijven gecachet.'},
+ {type:'Release',text:'De cache-identiteit volgt live-poker-handlog-v2.6-pwa-1.'},
+ {type:'Scope',text:'Pokerlogica en overige Build-14-functionaliteit zijn inhoudelijk niet gewijzigd.'}
+]});
 
 
 
@@ -10341,8 +10950,33 @@ v27TableScreen=function(question,mode,subtitle=''){return`<div class="panel v27-
 /* Theme meta volgt dezelfde centrale app-achtergrondkleur. */
 v27ApplyTheme=function(){document.documentElement.dataset.theme=v27Theme();const meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.content=v27Theme()==='dark'?(getComputedStyle(document.documentElement).getPropertyValue('--bg-app').trim()||meta.content):'#eef2f6'}
 
+RELEASE_NOTES.unshift({version:'v2.7 Build 1.2',date:'12-08-2026',changes:[
+ {type:'UI',text:'Dark Mode gebruikt de vastgelegde centrale navy/blauwe design tokens voor app, controls, CTA, progress, tafel en seatstates.'},
+ {type:'UX',text:'Cashgameblinds worden alleen bij sessiestart ingevoerd en in nieuwe handen uitsluitend read-only als context getoond; toernooiblinds blijven per hand leeg invoerbaar.'},
+ {type:'Correctie',text:'Vaste eerste straddle is toegevoegd aan de sessieconfiguratie en wordt zonder dubbele handinvoer door de bestaande straddlelogica gebruikt.'},
+ {type:'UX',text:'Inactive seats blijven fysiek zichtbaar, zijn nooit selecteerbaar en krijgen een neutrale disabled state plus korte contextuitleg.'},
+ {type:'UX',text:'De overlay Actuele tafelsituatie toont expliciet Actie bij: <positie> en markeert de current actor in blauw.'},
+ {type:'Behoud',text:'Potengine, actionengine, schema 12, K/M/B-parser, PWA-architectuur, racetrackgeometry en seat hit areas zijn niet gerefactord.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.7 Build 1.1',date:'12-08-2026',changes:[
+ {type:'Correctie',text:'Nieuwe cashgamesessies en nieuwe handen starten met lege SB/BB-velden; toernooihanden starten ook met lege BBA.'},
+ {type:'Correctie',text:'Inactieve seats en de SB-seat bij SB n.v.t. zijn op Hero-, villain- en first-actorselectie zichtbaar maar niet selecteerbaar.'},
+ {type:'UX',text:'Villain toevoegen aan de spelersbibliotheek hergebruikt de reeds ingevulde villainnaam en behoudt seat, positie en overige villaininformatie.'},
+ {type:'UX',text:'Cashgame-straddle-instellingen onderscheiden prominente hoofdvragen van compacte afhankelijke subvragen; de handbasis toont een vereenvoudigde concrete straddlekeuze.'},
+ {type:'UI',text:'Dark Mode gebruikt app-breed een coherente navy/blauwe visuele taal met blauw voor primaire CTA, progress en selection states; tafelrail en felt zijn hierop afgestemd.'},
+ {type:'Behoud',text:'Potengine, actionengine, schema 12, K/M/B-parser, PWA-architectuur en tafelgeometry zijn niet inhoudelijk gewijzigd.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.7 Build 1',date:'11-08-2026',changes:[
+ {type:'Nieuw',text:'Dark Mode UX-fundament met centrale themavariabelen en een altijd bereikbare Dark/Light-switch; Dark is standaard.'},
+ {type:'Nieuw',text:'Sessiestart is mobile-first heringericht met Cashgame/Toernooi als hoofdkeuze, nieuwe straddledefaults en zonder Buy-in.'},
+ {type:'Nieuw',text:'Nieuwe setupflow: dealer → Hero → Hero-info → optionele villain(s) → eerste vrijwillige actor.'},
+ {type:'UX',text:'Alle tafelschermen tonen cumulatief dealer, pokerposities, Hero, villains, blinds, BBA, straddles en actieve/inactieve seats.'},
+ {type:'Gewijzigd',text:'Hero- en villainposities worden uit de tafelkeuze afgeleid; dubbele handmatige positie-invoer is uit de nieuwe flow verwijderd.'},
+ {type:'Gewijzigd',text:'SB n.v.t. staat bij de blind-/basisgegevens en niet meer op het Hero-tafelscherm.'},
+ {type:'Behoud',text:'Potengine, actionengine, K/M/B-parser, kaartpicker/rendering, report, opslagmodel en PWA-updatearchitectuur zijn niet inhoudelijk gewijzigd.'}
+]});
 
 
 /* ===== Live Poker Handlog v2.7 Build 1.3 – UX/UI-polish, semantische states en resterende Build 1-correcties ===== */
@@ -10455,6 +11089,15 @@ wzTable=function(mode='pos'){
  return html;
 }
 
+RELEASE_NOTES.unshift({version:'v2.7 Build 1.3',date:'12-08-2026',changes:[
+ {type:'UI',text:'Veldlabels, sectiekoppen en placeholders hebben aparte centrale contrasttokens gekregen.'},
+ {type:'UI',text:'Hero gebruikt app-breed een teal identiteitsaccent; current actor, focus, CTA en progress blijven blauw.'},
+ {type:'UX',text:'Cashgame-sessieblinds worden op het sessiescherm als één compacte read-only regel getoond en niet als twee invoercontrols.'},
+ {type:'UX',text:'Vaste en afgeleide blind-/straddlecontext oogt read-only; open waarden blijven herkenbaar invoerbaar.'},
+ {type:'UI',text:'De tafel is visueel rustiger gemaakt zonder geometry, seatgrootte of touch targets te wijzigen.'},
+ {type:'Correctie',text:'De oude dubbele actorregel “Actie is bij” is uit de tafeloverlay verwijderd; alleen “Actie bij: <positie>” blijft.'},
+ {type:'Behoud',text:'Build 1.2-logica voor blinds, BBA, straddles, inactive seats, villain-library, potengine, K/M/B, schema 12 en PWA blijft behouden.'}
+]});
 
 
 
@@ -10649,6 +11292,14 @@ window.addEventListener('change',e=>{if(!UI.wz||!UI.draft)return;const w=UI.wz;i
 const v274NewHandBase=newHand;
 newHand=function(){v274NewHandBase();if(UI.wz){v274EnsureState();UI.wz.v274BbaManualOverride=false;UI.wz.v274ReviewMode=false;UI.wz.v274EditingFrom=''}render()}
 
+RELEASE_NOTES.unshift({version:'v2.7 Build 1.4',date:'12-08-2026',changes:[
+ {type:'Herstel',text:'Voltooide setupstappen kunnen vanuit de actionflow read-only worden teruggekeken zonder bestaande hand- of actionstate te wijzigen.'},
+ {type:'Navigatie',text:'Terugkijkmodus gebruikt Vorige stap, Volgende stap en Bewerken vanaf deze stap; Automatisch verder wordt daar niet gebruikt.'},
+ {type:'Bewerken',text:'Dealer, Hero en eerste vrijwillige actor worden alleen na een bewuste wijziging downstream opnieuw opgebouwd; eerdere setupstate blijft behouden.'},
+ {type:'BBA',text:'BBA uit wist bedrag en tijdelijke override-state volledig; opnieuw aan vult vanuit actuele BB en handmatige BBA-overrides blijven behouden bij latere BB-wijzigingen.'},
+ {type:'UX',text:'Onder Standaard tafelgrootte staat op Cashgame- en Toernooi-sessieschermen: Seat = fysieke stoel. Positie kies je per hand.'},
+ {type:'Behoud',text:'Build 1.3-design, Cashgameblinds/straddles, potengine, actionengine, schema 12, K/M/B, tafelgeometry en PWA-architectuur blijven behouden.'}
+]});
 
 
 /* ===== Live Poker Handlog v2.7 Build 1.5 – herstel v2.6-historische wizardarchitectuur binnen v2.7-flow ===== */
@@ -10875,6 +11526,15 @@ window.addEventListener('click',v275LiveClickGuard,true);
 const rc8SeatMarkerPositionV275Base=rc8SeatMarkerPosition;
 rc8SeatMarkerPosition=function(seatIndex,kind='primary'){if(!UI.draft)return null;return rc8SeatMarkerPositionV275Base(seatIndex,kind)};
 
+RELEASE_NOTES.unshift({version:'v2.7 Build 1.5',date:'12-08-2026',changes:[
+ {type:'Hersteld',text:'Historische read-only terug-/vooruitnavigatie gebruikt opnieuw de D1-checkpointtrail uit de definitieve v2.6-architectuur, inclusief de nieuwe v2.7-setupstappen.'},
+ {type:'Hersteld',text:'Opgeslagen handen openen in de bestaande geïsoleerde D2-working copy met volledige v2.7-setuptrail; verwerpen laat het originele handrecord onaangeroerd.'},
+ {type:'Hersteld',text:'Bewerken vanaf deze stap gebruikt de bestaande branch/rebuildroute en invalideert uitsluitend afhankelijke downstream handstate.'},
+ {type:'Gewijzigd',text:'Bij een volledige reguliere straddleketen wordt de bestaande SB/BB-fallback uit wzEligibleFirstActors direct gebruikt en wordt het first-actor-keuzescherm overgeslagen.'},
+ {type:'Navigatie',text:'Historische stappen tonen Vorige stap en Volgende stap; Automatisch verder wordt uitsluitend in de live setupflow gebruikt.'},
+ {type:'Compatibiliteit',text:'De oude players-stap is compatibility-only en wordt niet als live v2.7-checkpoint in nieuwe trails opgenomen.'},
+ {type:'Behoud',text:'Potengine, betting/action engine, kaartpicker, report, PWA, tafelgeometry, schema 12 en definitieve Light Mode zijn niet gewijzigd.'}
+]});
 
 
 
@@ -10974,6 +11634,13 @@ window.addEventListener('click',e=>{
 const renderV27Build2Base=render;
 render=function(){return renderV27Build2Base()};
 
+RELEASE_NOTES.unshift({version:'v2.7 Build 2',date:'12-08-2026',changes:[
+ {type:'Actionflow',text:'De actuele actor wordt compact en duidelijk weergegeven als Actie bij: <positie/speler> met de bestaande blauwe actorsemantiek.'},
+ {type:'Mobiele invoer',text:'De bedragzone staat alleen in de layout bij Bet, Raise of een relevante expliciete All-inomvang en focust het waardeveld automatisch.'},
+ {type:'Mobiele invoer',text:'Action-bedragvelden gebruiken inputmode decimal; cash toont een K-snelknop en toernooi toont K/M/B bij chipinvoer.'},
+ {type:'Invoer',text:'Een bestaande geldige suffix wordt bij keuze vervangen in plaats van aangeplakt; BB en % Pot tonen geen suffixknoppen.'},
+ {type:'Behoud',text:'Fold, Check en Call blijven één-tapacties; bettingstate, potengine, historische editor, transactionele working copy, tafelgeometry en schema 12 zijn niet gewijzigd.'}
+]});
 
 
 /* ===== Live Poker Handlog v2.7 Build 2.1 — geïntegreerde correctieronde ===== */
@@ -11354,15 +12021,80 @@ render=function(){const result=renderV27Build21Base();v27b21DecorateSuffixFields
 /* WIJZIGING v2.7 Build 5.1 – 2026-08-16: load() verplaatst naar na de laatste render-herdefinitie, zodat de eerste paint al data-theme en de themeswitch bevat. */
 load();
 
+RELEASE_NOTES.unshift({version:'v2.7 Build 5.1',date:'16-08-2026',changes:[
+ {type:'Correctie',text:'De themeswitch en het gekozen thema zijn nu al bij de allereerste opstart zichtbaar, in plaats van pas na de eerste navigatie.'},
+ {type:'Light Mode',text:'Dealer-badge, "aan zet"-indicator op de tafel, en de verwijderknoppen hebben nu voldoende contrast in Light.'},
+ {type:'Correctie',text:'De footerachtergrond tijdens klavierinvoer en in de historische editor volgt nu het gekozen thema in plaats van altijd donker te zijn.'},
+ {type:'Interface',text:'De BBA-chip is helderder gemaakt, in zowel Dark als Light. De boardkaarten in de all-in-runoutflow gebruiken nu dezelfde kaartstijl als Hero/Villain/board elders in de app.'},
+ {type:'Scope',text:'Reportschermvoorbeeld en de native spelersselectie zijn bewust niet meegenomen; die volgen in Build 5.2 en 5.3.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.7 Build 3.1.4',date:'14-08-2026',changes:[
+ {type:'Keyboard/viewport',text:'De centrale keyboard-/viewportcorrectie gebruikt bij Raise, Bet en relevante bedrag-All-in niet alleen het actieve invoerveld, maar de bijbehorende bedrag-editor tot en met Bevestigen als zichtbaarheidsondergrens. Hierdoor blijft de complete invoeractie bereikbaar boven de vaste footer.'},
+ {type:'Behoud',text:'Het bedragveld blijft focus- en bovenkanttarget; de bestaande tijdelijke keyboard-scrollruimte, footerpositionering, unitwissels, K/M-route en pokerlogica zijn niet gewijzigd.'},
+ {type:'Scope',text:'newSession/KO-bounty en overige app-wide keyboardvelden blijven bewust buiten deze gerichte correctieronde.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.7 Build 3.1.3',date:'14-08-2026',changes:[
+ {type:'Keyboard/viewport',text:'De handwizard reserveert tijdens numerieke invoer tijdelijk voldoende scrollruimte zodat de bestaande centrale keyboard-/viewportcorrectie het actieve bedragveld boven de vaste navigatiefooter kan positioneren.'},
+ {type:'Broncorrectie',text:'De extra ruimte wordt vóór de bestaande geometriemeting absoluut berekend uit de stabiele keyboardvrije viewportbaseline en groeit niet cumulatief bij herhaalde viewport-events.'},
+ {type:'Cleanup',text:'De tijdelijke bodempadding wordt zowel bij normale keyboard-/viewportreset als bij het beëindigen van de actieve synccontext teruggezet naar de normale layoutwaarde.'},
+ {type:'Scope',text:'De bestaande scroll-/deltalogica, pokerlogica, kaartfunctionaliteit, suffixlogica en historical editing zijn niet gewijzigd; newSession/KO-bounty blijft bewust buiten deze correctieronde.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.7 Build 3.1.2',date:'13-08-2026',changes:[
+ {type:'Broncorrectie',text:'De oude Build-2 autofocus- en smooth-scrollroute voor actionbedragen is geneutraliseerd; de bestaande Build-3.1-coördinator is nu de enige eigenaar van focus, keyboard, viewport en footer binnen de handwizard.'},
+ {type:'Navigatie',text:'De sticky setupfooter en fixed actionfooter krijgen tijdens keyboardmodus dezelfde fixed visual-viewportpositionering; buiten keyboardmodus blijft hun bestaande layoutgedrag behouden.'},
+ {type:'Mobiele invoer',text:'De keyboardinset wordt afgeleid van de bestaande stabiele keyboardvrije viewportbaseline in plaats van uitsluitend van de op Android mogelijk meekrimpende window.innerHeight.'},
+ {type:'Scope',text:'Numerieke viewportcoördinatie buiten de handwizard, waaronder Nieuwe sessie / KO-bounty, blijft bewust buiten Build 3.1.2 en staat op de technische rest-/polishlijst.'},
+ {type:'Behoud',text:'Kaartfunctionaliteit, historical A/B/C, betting/pot, BBA/straddles, schema 12 en PWA/service-workerarchitectuur zijn niet gewijzigd.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.7 Build 3.1.1',date:'13-08-2026',changes:[
+ {type:'Bronfix',text:'De centrale footerresolver gebruikt nu de werkelijk gerenderde .v27-flow-footer en .d1-nav-footer, zodat Vorige/Volgende boven het Android-keyboard kan worden gepositioneerd.'},
+ {type:'Mobiele invoer',text:'Iedere nieuwe handmatige focus op een relevante numerieke input vernieuwt de bestaande visualViewport-watch, ook wanneer de bedragcontext gelijk bleef.'},
+ {type:'Mobiele invoer',text:'Viewport resize én visualViewport scroll gebruiken dezelfde bestaande synchronisatieroute voor Raise, Bet, bedrag-All-in, unitwissels en K/M.'},
+ {type:'Behoud',text:'Kaartfunctionaliteit, betting/pot, historical A/B/C-scope, schema 12 en PWA/service-workerarchitectuur zijn niet gewijzigd.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.7 Build 3.1',date:'13-08-2026',changes:[
+ {type:'Mobiele invoer',text:'De centrale visualViewport-helper houdt Raise-, Bet- en expliciete All-inbedragen volledig zichtbaar boven het Android-keyboard.'},
+ {type:'Navigatie',text:'De vaste wizardfooter met Vorige/Volgende wordt tijdens numerieke invoer tijdelijk boven het softwarekeyboard geplaatst en herstelt na sluiten.'},
+ {type:'Mobiele invoer',text:'Unitwissels en K/M-invoer hergebruiken dezelfde focus-/viewportcoördinator zonder parallelle eventroute.'},
+ {type:'Behoud',text:'Build-3-kaarten, Build-2.2.1-suffix/BBA, betting/pot, historical transaction, schema 12 en PWA/SW blijven functioneel ongewijzigd.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.7 Build 3',date:'13-08-2026',changes:[
+ {type:'Kaarten',text:'Hero-, board-, villain- en actuele-contextkaarten gebruiken één vaste 4-color kaartcomponent met donkere schoppen, rode harten, blauwe ruiten en groene klaveren.'},
+ {type:'Kaartpicker',text:'De bestaande rank→suit-picker is mobiel herbouwd met prominente 4-color suitbuttons, duidelijke selected/disabled states en behoud van data-rank/data-suit en duplicate-cardlogica.'},
+ {type:'Toegankelijkheid',text:'Kaartslots, ranks en suits hebben duidelijkere aria-labels; kleur blijft altijd gecombineerd met rank en suitsymbool.'},
+ {type:'Interface',text:'De gedeelde toernooi-K/M-control is visueel links uitgelijnd op het BB-invoerveld.'},
+ {type:'Behoud',text:'Kaartopslag, sorting, historical Class-B, saved-hand transaction, report/share, betting/pot, RC8-geometry, schema 12 en PWA/SW zijn functioneel behouden.'}
+]});
 
+RELEASE_NOTES.unshift({version:'v2.7 Build 2.2.1',date:'13-08-2026',changes:[
+ {type:'Opgelost',text:'Lege toernooiblindvelden blijven bij K/M-invoer zowel zichtbaar als intern exact leeg.'},
+ {type:'Opgelost',text:'De gedeelde blind-suffixtarget is contextgebonden en kan niet meer uit een vorige hand of rerender worden hergebruikt.'},
+ {type:'Interface',text:'De gedeelde K/M-bediening staat gecentreerd onder de BB-kolom als gemeenschappelijke bediening voor SB/BB/BBA.'}
+]});
+RELEASE_NOTES.unshift({version:'v2.7 Build 2.2',date:'13-08-2026',changes:[
+ {type:'Mobiele invoer',text:'Toernooiblinds delen één K/M-control onder SB, BB en BBA; alleen het actieve of laatst gefocuste blindveld wordt gewijzigd.'},
+ {type:'UX',text:'De Hero-startstackselector is compacter en het numerieke waardeveld krijgt meer bruikbare breedte op smalle schermen.'},
+ {type:'Mobiele invoer',text:'Actionbedragfocus, visualViewport-scroll, unitwissel en suffixactie gebruiken één centrale synchronisatiehelper.'},
+ {type:'UI',text:'Hoofdstaptitel, deelstap en vijfdelige progressbar zijn subtiel compacter gegroepeerd zonder structuurwijziging.'},
+ {type:'Behoud',text:'Betting/pot, historical/transactionele editing, RC8-geometry, schema 12, parsercompatibiliteit en PWA/SW zijn niet functioneel gewijzigd.'}
+]});
 
-
+RELEASE_NOTES.unshift({version:'v2.7 Build 2.1',date:'13-08-2026',changes:[
+ {type:'Opgelost',text:'Een lege suffixinvoer blijft zichtbaar en intern leeg; generieke chip-blur normaliseert zo’n veld niet meer naar 0.'},
+ {type:'Mobiele invoer',text:'Cash gebruikt K; toernooichips gebruiken K/M. De zichtbare B-knop is verwijderd terwijl B-parsercompatibiliteit behouden blijft.'},
+ {type:'Mobiele invoer',text:'Suffixknoppen zijn uitgerold naar relevante geld- en chipvelden en reserveren structureel ruimte voor een latere derde toernooisuffix.'},
+ {type:'Actionflow',text:'Raise toont opnieuw de uitleg dat het totale raisebedrag inclusief reeds ingelegde chips moet worden ingevoerd.'},
+ {type:'Mobiele invoer',text:'Na Raise/Bet/bedrag-All-in reageert de actionflow op daadwerkelijke visualViewport-krimp van het softwarekeyboard en scrolt het waardeveld in beeld.'},
+ {type:'Wizard',text:'De vijf hoofdstappen, tekstuele deelstappen en completed/current/future-progresssemantiek zijn gecorrigeerd voor alle v2.7-deelstappen.'},
+ {type:'Tafel',text:'Dealer-, Hero-, villainseat- en first-actorselecties krijgen korte visuele bevestiging vóór de bestaande transitionroute verdergaat.'},
+ {type:'Behoud',text:'analyze, wzReplayStreet, wzLegalActions, betting/pot, historische/transactionele editor, RC8-geometry, schema 12 en PWA/SW zijn niet functioneel gewijzigd.'}
+]});
 
 
 /* ===== v2.7 productie-PWA — versiegebonden, gebruiker-gestuurde update-handoff ===== */
