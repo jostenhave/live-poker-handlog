@@ -67,7 +67,14 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // Iedere documentnavigatie binnen scope blijft gekoppeld aan de daadwerkelijk actieve versie.
+  // De gebruikershandleiding is een echte statische PDF-resource en mag niet
+  // door de generieke documentnavigatie naar APP_ENTRY worden vervangen.
+  if (url.pathname.endsWith('/docs/Gebruikershandleiding Live Poker Handlog.pdf')) {
+    event.respondWith(cacheFirstStatic(event.request));
+    return;
+  }
+
+  // Iedere overige documentnavigatie binnen scope blijft gekoppeld aan de daadwerkelijk actieve versie.
   if (event.request.mode === 'navigate') {
     event.respondWith(serveActiveVersion());
     return;
