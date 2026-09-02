@@ -1,0 +1,5 @@
+{
+  "versionId": "v2.8-pwa-2",
+  "versionLabel": "v2.8",
+  "worker": "./service-worker-v2.8-pwa-2.js"
+}
