@@ -1,6 +1,7 @@
 {
   "name": "Live Poker Handlog",
-  "short_name": "Poker Handlog",
+  "short_name": "Live Poker Handlog",
+  "description": "Snel en gestructureerd live gespeelde pokerhanden vastleggen.",
   "start_url": "./app-v2.9.html",
   "scope": "./",
   "display": "standalone",
