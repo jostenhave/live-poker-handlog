@@ -537,21 +537,18 @@ function reportSetFlowCutoff(n){const M=reportState().modules,v=Math.max(0,Math.
 
 function reportRelevantVillains(h,s=currentSession()){
  const acted=new Set();
- /* Gebruik dezelfde effectieve preflop-prefixbron die bepaalt welke standaardfolds
-    niet als expliciete ACTIES in het verslag verschijnen. Alleen werkelijk
-    weergegeven street-acties maken een Villain via criterium 1 relevant. */
- const prefixFolded=new Set((h?.preflopPrefix?.foldedPositions||[]).map(String));
- STREETS.forEach(([k])=>(h?.streets?.[k]||[]).forEach(a=>{
-  const pos=String(a?.pos||'');
-  if(!pos)return;
-  if(k==='pf'&&a?.act==='fold'&&prefixFolded.has(pos))return;
-  acted.add(pos)
- }));
+ STREETS.forEach(([k])=>{
+  const source=h?.streets?.[k]||[];
+  /* Criterium 1 gebruikt exact dezelfde effectieve actielijst als ACTIES:
+     preflop worden standaardfolds verwijderd door rc7RoundC3ReportPreflop(). */
+  const visibleActs=k==='pf'&&typeof rc7RoundC3ReportPreflop==='function'?rc7RoundC3ReportPreflop(source):source;
+  visibleActs.forEach(a=>{const pos=String(a?.pos||'');if(pos)acted.add(pos)})
+ });
  return reportVillains(h).filter((v,i)=>{
-  const pos=resolvedVillainPos(h,v)||v.pos,knownCards=(v.cards||[]).some(Boolean);
+  const pos=String(resolvedVillainPos(h,v)||v.pos||''),knownCards=(v.cards||[]).some(Boolean);
   let resultRelevant=false;
   if(s){const role=reportVillainResultRole(s,h,v,i);resultRelevant=!!(role.win||role.chop||role.showdown||role.end)}
-  return acted.has(String(pos||''))||knownCards||resultRelevant
+  return acted.has(pos)||knownCards||resultRelevant
  })
 }
 function villainLabel(s,v,h=null){const p=(s.players||[]).find(x=>x.id===v.playerId);const name=((p&&p.name)||v.name||'').trim();const vp=h?resolvedVillainPos(h,v):(v.pos||'');const meta=[vp,v.seat?'Seat '+v.seat:''].filter(Boolean).join(' · ');if(name)return meta?`${name} (${meta})`:name;if(h){const n=reportUnknownVillainNumber(h,v);return vp?`Villain ${n} (${vp}${v.seat?' · Seat '+v.seat:''})`:`Villain ${n}`}return meta?`(${meta})`:(vp||'Villain')}

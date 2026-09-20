@@ -536,9 +536,20 @@ function reportFlowCutoff(){const M=reportState().modules;if(M.result!==false)re
 function reportSetFlowCutoff(n){const M=reportState().modules,v=Math.max(0,Math.min(5,Number(n)||0));M.pf=v>=1;M.flop=v>=2;M.turn=v>=3;M.river=v>=4;M.result=v>=5}
 
 function reportRelevantVillains(h,s=currentSession()){
- const acted=new Set(),implicit=new Set((h?.implicitFolds||[]).map(x=>String(x?.street||'')+'|'+String(x?.pos||'')));
- STREETS.forEach(([k])=>(h?.streets?.[k]||[]).forEach(a=>{const pos=String(a?.pos||'');if(pos&&!implicit.has(k+'|'+pos))acted.add(pos)}));
- return reportVillains(h).filter((v,i)=>{const pos=resolvedVillainPos(h,v)||v.pos,knownCards=(v.cards||[]).some(Boolean);let resultRelevant=false;if(s){const role=reportVillainResultRole(s,h,v,i);resultRelevant=!!(role.win||role.chop||role.showdown||role.end)}return acted.has(pos)||knownCards||resultRelevant})
+ const acted=new Set();
+ STREETS.forEach(([k])=>{
+  const source=h?.streets?.[k]||[];
+  /* Criterium 1 gebruikt exact dezelfde effectieve actielijst als ACTIES:
+     preflop worden standaardfolds verwijderd door rc7RoundC3ReportPreflop(). */
+  const visibleActs=k==='pf'&&typeof rc7RoundC3ReportPreflop==='function'?rc7RoundC3ReportPreflop(source):source;
+  visibleActs.forEach(a=>{const pos=String(a?.pos||'');if(pos)acted.add(pos)})
+ });
+ return reportVillains(h).filter((v,i)=>{
+  const pos=String(resolvedVillainPos(h,v)||v.pos||''),knownCards=(v.cards||[]).some(Boolean);
+  let resultRelevant=false;
+  if(s){const role=reportVillainResultRole(s,h,v,i);resultRelevant=!!(role.win||role.chop||role.showdown||role.end)}
+  return acted.has(pos)||knownCards||resultRelevant
+ })
 }
 function villainLabel(s,v,h=null){const p=(s.players||[]).find(x=>x.id===v.playerId);const name=((p&&p.name)||v.name||'').trim();const vp=h?resolvedVillainPos(h,v):(v.pos||'');const meta=[vp,v.seat?'Seat '+v.seat:''].filter(Boolean).join(' · ');if(name)return meta?`${name} (${meta})`:name;if(h){const n=reportUnknownVillainNumber(h,v);return vp?`Villain ${n} (${vp}${v.seat?' · Seat '+v.seat:''})`:`Villain ${n}`}return meta?`(${meta})`:(vp||'Villain')}
 function villainShowdownLabel(s,v,h=null){const p=(s.players||[]).find(x=>x.id===v.playerId);const name=((p&&p.name)||v.name||'').trim();const vp=h?resolvedVillainPos(h,v):(v.pos||'');if(name)return name;if(h)return villainDisplayName(h,v,s);return vp||'Villain'}
