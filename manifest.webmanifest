@@ -1,28 +1,21 @@
 {
   "name": "Live Poker Handlog",
   "short_name": "Poker Handlog",
-  "description": "Snel en gestructureerd live gespeelde pokerhanden vastleggen.",
-  "start_url": "./",
+  "start_url": "./app-v2.9.html",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#0f141b",
+  "background_color": "#11151b",
   "theme_color": "#0f141b",
   "icons": [
     {
-      "src": "./assets/icons/icon-192.png",
-      "sizes": "192x192",
+      "src": "./assets/icons/favicon-32.png",
+      "sizes": "32x32",
       "type": "image/png"
     },
     {
-      "src": "./assets/icons/icon-512.png",
-      "sizes": "512x512",
+      "src": "./assets/icons/apple-touch-icon.png",
+      "sizes": "180x180",
       "type": "image/png"
-    },
-    {
-      "src": "./assets/icons/maskable-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable"
     }
   ]
 }
