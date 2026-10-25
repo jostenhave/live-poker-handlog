@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Live Poker Handlog — ontwikkeld door Jos ten Have. © 2026 Jos ten Have. -->
 <html lang="nl">
 <head>
 <meta charset="UTF-8">
@@ -12,7 +13,7 @@
 <link rel="apple-touch-icon" href="./assets/icons/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="./assets/icons/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="./assets/icons/favicon-16.png">
-<title>Live Poker Handlog v2.9.2</title>
+<title>Live Poker Handlog v2.9.3</title>
 <style>
 :root{--bg:#11151b;--surface:#1b222c;--surface2:#242d39;--surface3:#101820;--line:#34404e;--text:#edf1f6;--muted:#909baa;--felt:#18875c;--felt2:#126746;--gold:#e7b54b;--red:#e75055;--green:#31b873;--blue:#5590f7;--purple:#9b6cf4;--r:14px;--suit-spade:#171b22;--suit-heart:#c63f47;--suit-diamond:#286fd5;--suit-club:#188257;--suit-unknown:#626b78;--suit-card-text:#fff;--suit-spade-text-dark:#e8ebf0;--suit-heart-text-dark:#e2626b;--suit-diamond-text-dark:#5b9bf2;--suit-club-text-dark:#3ecf8e;--suit-unknown-text-dark:#9aa3b0}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:16px}body{max-width:560px;margin:0 auto;padding:12px 12px 108px}button,input,select,textarea{font:inherit}h1{font-size:1.08rem;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}h2{font-size:.75rem;margin:18px 0 8px;color:var(--muted);text-transform:uppercase;letter-spacing:.09em}.top{display:flex;gap:9px;align-items:center;margin-bottom:12px}.back{width:auto;background:var(--surface);border:1px solid var(--line);color:var(--text);border-radius:11px;padding:8px 12px}.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:13px;margin-bottom:11px}.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}label{display:block;font-size:.73rem;color:var(--muted);margin:9px 0 4px;letter-spacing:.025em}input,select,textarea{width:100%;background:var(--surface2);border:1px solid var(--line);color:var(--text);border-radius:10px;padding:11px 10px}textarea{min-height:74px;resize:vertical}input[type=date]{color-scheme:dark}input:focus,select:focus,textarea:focus,button:focus-visible{outline:2px solid var(--felt);outline-offset:1px}.btn{width:100%;border:0;background:var(--felt);color:#fff;border-radius:12px;padding:13px 14px;margin-top:9px;font-weight:700}.btn:active{background:var(--felt2)}.btn.sub{background:var(--surface2);border:1px solid var(--line);color:var(--text);font-weight:600}.manual-link{display:block;text-align:center;text-decoration:none}/* Technische toelichting: knopvulling krijgt eigen --gold-fill-token; --gold blijft uitsluitend de bestaande tekst-/accentrol houden. */
@@ -167,10 +168,13 @@ body.dark .report-modules-entry .report-modules-chevron{color:#5aaeff}
 </head>
 <body><div id="app"></div><script>
 'use strict';
-const APP_VERSION='v2.9.2';
+const APP_VERSION='v2.9.3';
+const APP_BUILD_LABEL='';
+const APP_DISPLAY_VERSION=APP_VERSION;
 const SCHEMA_VERSION=12;
-const VERSION='v2.9.2 · 2026-09-30';
-const PWA_VERSION_ID='v2.9.2-pwa-1';
+const VERSION=`${APP_DISPLAY_VERSION} · 2026-10-24`;
+const PWA_VERSION_ID='v2.9.3-pwa-1';
+document.title=`Live Poker Handlog ${APP_DISPLAY_VERSION}`;
 const KEY='hhl:v12:data';
 const OLDKEYS=['hhl:v11:data','hhl:v10:data','hhl:v9:data','hhl:v8:data','hhl:v7:data','hhl:v6:data'];
 const $=id=>document.getElementById(id);
@@ -221,6 +225,13 @@ function reportThemeStyle(key=reportThemeKey()){
  ].join(';');
 }
 const RELEASE_NOTES=[
+ {version:'v2.9.3',date:'24-10-2026',changes:[
+   {type:"Nieuwe functionaliteit",text:"Verbeterde All-inregistratie. Wanneer de stack van een speler niet bekend is, kun je de totale All-inomvang nu handmatig invoeren en aangeven of het bedrag exact of bij benadering is. Geschatte bedragen worden in het verslag en de gedeelde afbeelding herkenbaar weergegeven met ca."},
+   {type:"Verbeterd",text:"Consistente invoer van bedragen. De app ondersteunt nu de Nederlandse getalnotatie, met punten als duizendtalscheiding en komma's bij K/M-snelinvoer. Zo worden bijvoorbeeld 12.000 en 1,5K correct verwerkt als 12.000 en 1.500."},
+   {type:"Verbeterd",text:"Betere verwerking van All-ins. Automatisch berekende en handmatig ingevoerde All-ins worden correct verwerkt en weergegeven in chips of geldbedragen, zowel tijdens de registratie als in het handverslag."},
+   {type:"Opgelost",text:"Historische handen bewerken. Bij Bewerken vanaf deze stap zijn de actieknoppen direct beschikbaar, zonder eerst naar een vorige actie te hoeven navigeren."},
+   {type:"Opgelost",text:"Handen eerder beëindigen. Een opgeslagen hand die na bewerking eerder eindigt, bijvoorbeeld op de flop in plaats van de river, kan nu correct worden afgerond en opgeslagen zonder dat onnodige boardkaarten worden gevraagd."}
+ ]},
  {version:'v2.9.2',date:'30-09-2026',changes:[
    {type:'Verbeterd',text:'Correcte afronding van % Pot-bedragen. Bedragen die via % Pot worden berekend, worden nu consequent correct afgerond en als berekend actiebedrag vastgelegd.'},
    {type:'Nieuwe functionaliteit',text:'Volledig historisch terug- en vooruitkijken tijdens de handregistratie. Tijdens een lopende hand kun je door eerder vastgelegde stappen en acties terug- en vooruitnavigeren zonder de actieve registratie te wijzigen.'},
@@ -465,7 +476,8 @@ function reportPotValue(s,h,a){
  return reportDualAmount(s,h,a.finalPot);
 }
 function reportFmtPot(x,s,h){return reportDualAmount(s,h,x)}
-function reportAmtTxt(a,s){if(a.amt===''||a.amt==null)return'';if(a.unit==='%')return fmtN(a.amt)+'%';if(a.unit==='chips')return reportChips(a.amt);if(a.unit==='cash')return reportMoney(s,a.amt);return fmtBB(a.amt)}
+function approxAmountPrefix(a,language='nl'){return a?.act==='allin'&&a?.amtApprox===true?(language==='en'?'approx. ':'ca. '):''}
+function reportAmtTxt(a,s){if(a.amt===''||a.amt==null)return'';const value=a.unit==='%'?fmtN(a.amt)+'%':a.unit==='chips'?reportChips(a.amt):a.unit==='cash'?reportMoney(s,a.amt):fmtBB(a.amt);return approxAmountPrefix(a,reportState().language)+value}
 function labelSession(s){if(s.type==='cash')return'Cash';return({regular:'Regular',pko:'PKO',mystery:'Mystery',ko:'KO'}[s.subtype]||'MTT')}
 function playerLabel(s,id){const p=(s.players||[]).find(x=>x.id===id);return p?(p.name||('Seat '+(p.seat||'?'))):''}
 
@@ -520,9 +532,35 @@ function reportUnknownVillainNumber(h,v){const order=wzPos(h?.players||currentSe
 function reportVillainName(s,v){const p=(s?.players||[]).find(x=>String(x.id)===String(v?.playerId));return String((p&&p.name)||v?.name||'').trim()}
 function villainDisplayName(h,v,s=currentSession()){const name=reportVillainName(s,v);return name||`Villain ${reportUnknownVillainNumber(h,v)}`}
 const REPORT_MODULE_KEYS=['nameDate','gameInfo','playerInfoHero','playerInfoVillains','pf','flop','turn','river','result','notes'];
+const REPORT_PERSISTENT_MODULE_KEYS=['nameDate','gameInfo','playerInfoHero','playerInfoVillains','notes'];
+function reportStoredModules(){
+ const raw=DB.prefs?.reportModules;
+ return Object.fromEntries(REPORT_PERSISTENT_MODULE_KEYS.map(k=>[k,raw&&typeof raw[k]==='boolean'?raw[k]:true]));
+}
+function reportStoredFlowCutoff(){const n=Number(DB.prefs?.reportFlowCutoff);return Number.isInteger(n)&&n>=0&&n<=5?n:5}
+function reportMaxStreetCutoff(h){
+ if(!h)return 0;
+ let max=(h.streets?.pf||[]).length?1:0;
+ if((h.streets?.flop||[]).length||(h.board||[]).slice(0,3).some(Boolean))max=2;
+ if((h.streets?.turn||[]).length||!!h.board?.[3])max=3;
+ if((h.streets?.river||[]).length||!!h.board?.[4])max=4;
+ return max;
+}
+function reportEffectiveFlowCutoff(h,preferred=reportStoredFlowCutoff()){
+ const v=Math.max(0,Math.min(5,Number(preferred)||0));if(v===0)return 0;
+ const maxStreet=reportMaxStreetCutoff(h);
+ if(v===5)return h?.outcome?5:maxStreet;
+ return Math.min(v,maxStreet);
+}
+function reportModulesFromPrefs(h){
+ const M={...reportStoredModules(),pf:false,flop:false,turn:false,river:false,result:false};
+ const v=reportEffectiveFlowCutoff(h);M.pf=v>=1;M.flop=v>=2;M.turn=v>=3;M.river=v>=4;M.result=v>=5;return M;
+}
+function reportPersistModules(){const M=reportState().modules;DB.prefs=DB.prefs||{};DB.prefs.reportModules=Object.fromEntries(REPORT_PERSISTENT_MODULE_KEYS.map(k=>[k,M[k]!==false]));save()}
+function reportPersistFlow(){DB.prefs=DB.prefs||{};DB.prefs.reportFlowCutoff=reportFlowCutoff();save()}
 function reportState(){
- const key=String(UI.sid||'')+':'+String(UI.hid||'');
- if(!UI.reportState||UI.reportState.key!==key)UI.reportState={key,verbosity:DB.prefs?.verbosity==='short'?'short':'full',language:DB.prefs?.reportLanguage==='en'?'en':'nl',heroMode:DB.prefs?.reportHeroMode==='hero'?'hero':'self',modules:Object.fromEntries(REPORT_MODULE_KEYS.map(k=>[k,true])),panel:'main'};
+ const key=String(UI.sid||'')+':'+String(UI.hid||''),h=currentSession()?.hands?.find(x=>String(x.id)===String(UI.hid));
+ if(!UI.reportState||UI.reportState.key!==key)UI.reportState={key,verbosity:DB.prefs?.verbosity==='short'?'short':'full',language:DB.prefs?.reportLanguage==='en'?'en':'nl',heroMode:DB.prefs?.reportHeroMode==='hero'?'hero':'self',modules:reportModulesFromPrefs(h),panel:'main'};
  return UI.reportState
 }
 function reportTerm(key){const en=reportState().language==='en',m={playerInfo:['Speler info','Player info'],actions:['Acties','Actions'],result:['Resultaat','Result'],notes:['Opmerkingen','Notes'],players:['spelers','players'],won:['Wint','Wins'],bounty:['Bounty gewonnen','Bounty won'],showed:['liet','showed'],seen:['zien.',''],allCheck:['all check','checks around']};return (m[key]||[key,key])[en?1:0]}
@@ -1163,6 +1201,21 @@ function reportStreetPotText(s,h,streetKey,a){
  const value=ix<3?a.potStart[order[ix+1]]:a.finalPot;
  return value>0?reportFmtPot(value,s,h):'';
 }
+function reviewLastRelevantStreet(h){
+ const order=['pf','flop','turn','river'];let last='pf';
+ order.forEach((st,ix)=>{const board=st==='flop'?(h?.board||[]).slice(0,3):st==='turn'?[h?.board?.[3]]:st==='river'?[h?.board?.[4]]:[];if((h?.streets?.[st]||[]).length||board.some(Boolean))last=st});
+ return last;
+}
+function reviewStreetPotText(s,h,streetKey,a){
+ if(!s||!h)return'';a=a||analyze(s,h);
+ if(a?.unknown===true||h.potReliable===false||(h.unknownAllInPositions||[]).length)return'';
+ const order=['pf','flop','turn','river'],ix=order.indexOf(streetKey);if(ix<0)return'';
+ const last=reviewLastRelevantStreet(h),lastIx=order.indexOf(last);let value;
+ if(ix===lastIx){value=h.potOverride&&h.potBB!==''&&h.potBB!=null?num(h.potBB):a.finalPot}
+ else if(ix<lastIx)value=a.potStart[order[ix+1]];
+ else return'';
+ return Number.isFinite(Number(value))?fmtPot(value,s):'';
+}
 function reportStreetKey(label){
  const k=String(label||'').toLowerCase();
  return k==='preflop'||k==='pf'?'pf':k==='flop'||k==='f'?'flop':k==='turn'||k==='t'?'turn':k==='river'||k==='r'?'river':'';
@@ -1529,9 +1582,9 @@ document.addEventListener('input',e=>{if(e.target.dataset.f6PlayerSearch!==undef
 document.addEventListener('blur',e=>{if(e.target.dataset&&e.target.dataset.chip==='1'){const parsed=parseChipValue(e.target.value);e.target.classList.toggle('input-error',!parsed.valid);if(!parsed.valid){inlineFeedback(e.target,invalidKMessage());return}clearInlineFeedback(e.target);e.target.value=chipDisplay(parsed.value)}if(e.target.dataset&&e.target.dataset.straddleAmt!==undefined){render()}},true);
 document.addEventListener('input',e=>{if(e.target.dataset.reportFlow===undefined)return;const root=e.target.closest('.report-flow-test'),v=Math.max(0,Math.min(5,Number(e.target.value)||0)),labels=['Geen','Preflop','Flop','Turn','River','Resultaat'];if(!root)return;root.style.setProperty('--flow-pct',(v*20)+'%');root.querySelectorAll('.report-flow-dot').forEach((n,i)=>{n.classList.toggle('done',i<v);n.classList.toggle('selected',i===v)});root.querySelectorAll('.report-flow-labels span').forEach((n,i)=>n.classList.toggle('on',i===v));const note=root.querySelector('.report-flow-note');if(note)note.innerHTML='Geselecteerd: <b>'+labels[v]+'</b>'+(v>0?' · eerdere onderdelen worden automatisch meegenomen':'')+'.'})
 
-document.addEventListener('change',e=>{if(e.target.dataset.reportFlow!==undefined){reportSetFlowCutoff(e.target.value);render();return}if(e.target.dataset.reportModule!==undefined){reportState().modules[e.target.dataset.reportModule]=e.target.checked;render();return}if(e.target.dataset.f6SessionNewLibrary!==undefined&&UI.f6PickerTarget?.kind==='sessionTable'){UI.f6PickerTarget.saveLibrary=e.target.checked;return}if(e.target.dataset.b4SessionFilter!==undefined){const f=b4SessionFilters(),k=e.target.dataset.b4SessionFilter;f[k]=e.target.value;if(k==='gameType'&&f.gameType!=='mtt')f.tournamentTypes=['regular','pko','ko','mystery'];if(k==='dateMode'&&!['date','period'].includes(f.dateMode)){f.date='';f.from='';f.to=''}render();return}if(e.target.dataset.backupCat)clearInlineFeedback(e.target.closest('.checklist'));if(e.target.dataset.uiCheck){UI[e.target.dataset.uiCheck]=e.target.checked;render()}if(e.target.dataset.boolPath){setPath(e.target.dataset.boolPath,e.target.checked);save();render()}if(e.target.dataset.libraryName){renameLibraryPlayer(e.target.dataset.libraryName,e.target.value)}if(e.target.dataset.sessionBb){const s=currentSession(),old=s.bb;s.bb=e.target.value;maybeAdjustFixedBtnStraddle(s,old,s.bb);save();render()}if(e.target.dataset.path){setPath(e.target.dataset.path,e.target.value);save()}if(e.target.dataset.pathRender){setPath(e.target.dataset.pathRender,e.target.value);render();save()}});
+document.addEventListener('change',e=>{if(e.target.dataset.reportFlow!==undefined){reportSetFlowCutoff(e.target.value);reportPersistFlow();render();return}if(e.target.dataset.reportModule!==undefined){reportState().modules[e.target.dataset.reportModule]=e.target.checked;reportPersistModules();render();return}if(e.target.dataset.f6SessionNewLibrary!==undefined&&UI.f6PickerTarget?.kind==='sessionTable'){UI.f6PickerTarget.saveLibrary=e.target.checked;return}if(e.target.dataset.b4SessionFilter!==undefined){const f=b4SessionFilters(),k=e.target.dataset.b4SessionFilter;f[k]=e.target.value;if(k==='gameType'&&f.gameType!=='mtt')f.tournamentTypes=['regular','pko','ko','mystery'];if(k==='dateMode'&&!['date','period'].includes(f.dateMode)){f.date='';f.from='';f.to=''}render();return}if(e.target.dataset.backupCat)clearInlineFeedback(e.target.closest('.checklist'));if(e.target.dataset.uiCheck){UI[e.target.dataset.uiCheck]=e.target.checked;render()}if(e.target.dataset.boolPath){setPath(e.target.dataset.boolPath,e.target.checked);save();render()}if(e.target.dataset.libraryName){renameLibraryPlayer(e.target.dataset.libraryName,e.target.value)}if(e.target.dataset.sessionBb){const s=currentSession(),old=s.bb;s.bb=e.target.value;maybeAdjustFixedBtnStraddle(s,old,s.bb);save();render()}if(e.target.dataset.path){setPath(e.target.dataset.path,e.target.value);save()}if(e.target.dataset.pathRender){setPath(e.target.dataset.pathRender,e.target.value);render();save()}});
 document.addEventListener('click',e=>{const t=e.target.closest('button,[data-open-session],[data-open-share],[data-toggle-session],[data-add-library-player]');if(!t)return;
- if(t.dataset.reportLang!==undefined){reportState().language=t.dataset.reportLang;render();return}if(t.dataset.reportHero!==undefined){reportState().heroMode=t.dataset.reportHero;render();return}if(t.dataset.reportPanel!==undefined){reportState().panel=t.dataset.reportPanel;render();return}if(t.dataset.reportModAll!==undefined){const on=t.dataset.reportModAll==='1';['nameDate','gameInfo','playerInfoHero','playerInfoVillains','notes'].forEach(k=>reportState().modules[k]=on);render();return}
+ if(t.dataset.reportLang!==undefined){reportState().language=t.dataset.reportLang;render();return}if(t.dataset.reportHero!==undefined){reportState().heroMode=t.dataset.reportHero;render();return}if(t.dataset.reportPanel!==undefined){reportState().panel=t.dataset.reportPanel;render();return}if(t.dataset.reportModAll!==undefined){const on=t.dataset.reportModAll==='1';['nameDate','gameInfo','playerInfoHero','playerInfoVillains','notes'].forEach(k=>reportState().modules[k]=on);reportPersistModules();render();return}
  if(t.dataset.shareCardKey!==undefined){UI.shareCardVisibility=UI.shareCardVisibility||{};const k=t.dataset.shareCardKey;UI.shareCardVisibility[k]=UI.shareCardVisibility[k]===false;render();return}if(t.dataset.shareAll!==undefined){UI.shareCardVisibility=UI.shareCardVisibility||{};const h=currentSession()?.hands?.find(x=>x.id===UI.hid),show=t.dataset.shareAll==='show';if(h){UI.shareCardVisibility.hero=show;reportRelevantVillains(h).forEach(v=>UI.shareCardVisibility[shareCardKey(v)]=show)}render();return}
  if(t.dataset.b432InfoOpen!==undefined){if(UI.wz){UI.wz.b432InfoTable=true;render()}return}
  if(t.dataset.b432InfoClose!==undefined){if(UI.wz){UI.wz.b432InfoTable=false;render()}return}
@@ -1545,7 +1598,7 @@ document.addEventListener('click',e=>{const t=e.target.closest('button,[data-ope
  if(t.dataset.b432LinkCancel!==undefined)return b432VillainLinkCancel();if(t.dataset.b432LinkConfirm!==undefined)return b432VillainLinkConfirm();
  if(t.dataset.v27Seat!==undefined&&UI.wz?.step==='first'&&!d1Historical()){const d=UI.draft,w=UI.wz,seat=String(t.dataset.v27Seat),a=wzActor(d.positionBySeat?.[seat]);if(t.disabled||!wzEligibleFirstActors().includes(a))return;e.preventDefault();e.stopImmediatePropagation();w.first=a;d.preflopPrefix=rc6BuildPreflopPrefix(a);w.error='';w.b432Restricted=true;return wzStart('pf')}
  if(t.dataset.b43SessionSeat!==undefined)return b43SessionSeatOpen(t.dataset.b43SessionSeat);if(t.dataset.b43TableAction!==undefined)return b43SessionTableAction(t.dataset.b43TableAction);if(t.dataset.b43HandSeat!==undefined)return b43HandSeatOpen(t.dataset.b43HandSeat);if(t.dataset.b43HandAction!==undefined)return b43HandSeatAction(t.dataset.b43HandAction);if(t.dataset.b43UseSessionTable!==undefined)return b43SetUseSessionTable(t.dataset.b43UseSessionTable==='yes');
- if(t.dataset.f6HandlinkRoute!==undefined&&UI.f6PickerTarget?.kind==='handLink'){e.stopImmediatePropagation();const route=t.dataset.f6HandlinkRoute;if(route==='unknown')return f6CommitPlayerPick('unknown');if(route==='new'){UI.f6PickerTarget=null;const l=UI.wz?.b432VillainLink;if(l){l.playerId='';l.name='';l.saveLibrary=false;l.explicitUnknown=false}return render()}UI.f6PickerTarget.route=route;UI.f6PickerTarget.search='';return render()}if(t.dataset.f6HandlinkBack!==undefined&&UI.f6PickerTarget?.kind==='handLink'){e.stopImmediatePropagation();UI.f6PickerTarget.route='';UI.f6PickerTarget.search='';return render()}if(t.dataset.f6SessionNewCancel!==undefined&&UI.f6PickerTarget?.kind==='sessionTable'){e.stopImmediatePropagation();UI.f6PickerTarget.newMode=false;UI.f6PickerTarget.search='';UI.f6PickerTarget.error='';return render()}if(t.dataset.f6SessionNewConfirm!==undefined&&UI.f6PickerTarget?.kind==='sessionTable'){e.stopImmediatePropagation();return f6SessionNewConfirm()}if(t.dataset.f6PlayerPick!==undefined&&UI.f6PickerTarget){e.stopImmediatePropagation();return f6CommitPlayerPick(t.dataset.f6PlayerPick)}if(t.dataset.f6PlayerPickerClose!==undefined&&UI.f6PickerTarget){e.stopImmediatePropagation();if(UI.f6PickerTarget.kind==='handLink'&&UI.wz)UI.wz.b432VillainLink=null;UI.f6PickerTarget=null;return render()}
+ if(t.dataset.f6SessionNew!==undefined&&UI.f6PickerTarget?.kind==='sessionTable'){e.stopImmediatePropagation();UI.f6PickerTarget.newMode=true;UI.f6PickerTarget.saveLibrary=false;UI.f6PickerTarget.search='';UI.f6PickerTarget.error='';return render()}if(t.dataset.f6HandlinkRoute!==undefined&&UI.f6PickerTarget?.kind==='handLink'){e.stopImmediatePropagation();const route=t.dataset.f6HandlinkRoute;if(route==='unknown')return f6CommitPlayerPick('unknown');if(route==='new'){UI.f6PickerTarget=null;const l=UI.wz?.b432VillainLink;if(l){l.playerId='';l.name='';l.saveLibrary=false;l.explicitUnknown=false}return render()}UI.f6PickerTarget.route=route;UI.f6PickerTarget.search='';return render()}if(t.dataset.f6HandlinkBack!==undefined&&UI.f6PickerTarget?.kind==='handLink'){e.stopImmediatePropagation();UI.f6PickerTarget.route='';UI.f6PickerTarget.search='';return render()}if(t.dataset.f6SessionNewCancel!==undefined&&UI.f6PickerTarget?.kind==='sessionTable'){e.stopImmediatePropagation();UI.f6PickerTarget.newMode=false;UI.f6PickerTarget.search='';UI.f6PickerTarget.error='';return render()}if(t.dataset.f6SessionNewConfirm!==undefined&&UI.f6PickerTarget?.kind==='sessionTable'){e.stopImmediatePropagation();return f6SessionNewConfirm()}if(t.dataset.f6PlayerPick!==undefined&&UI.f6PickerTarget){e.stopImmediatePropagation();return f6CommitPlayerPick(t.dataset.f6PlayerPick)}if(t.dataset.f6PlayerPickerClose!==undefined&&UI.f6PickerTarget){e.stopImmediatePropagation();if(UI.f6PickerTarget.kind==='handLink'&&UI.wz)UI.wz.b432VillainLink=null;UI.f6PickerTarget=null;return render()}
 /* Technische toelichting: de runtime-effectieve centrale clickrouter blijft één bron. De specifieke afhandeling vindt vóór de generieke routes plaats; er wordt geen tweede algemene clickrouter toegevoegd. */
 if(t.dataset.b42SelectorOpen!==undefined){b42SelectorOpen(t.dataset.b42SelectorOpen,t.dataset.b42SelectorSid||UI.sid||'');return}
 if(t.dataset.b42SelectorAdd!==undefined){b42SelectorToggle(t.dataset.b42SelectorAdd,true);return}
@@ -1671,19 +1724,39 @@ function reportVillains(h){const groups=[],keyOf=v=>v.playerId?'player:'+v.playe
 function actionAmountKnown(s,h,a,pos){if(a.amt!==''&&a.amt!=null&&num(a.amt)>0)return true;return actorStackBase(s,h,pos)!=null}
 function deriveHandState(s,h){const state={},implicit=[],unknownAllins=[];STREETS.forEach(([k])=>{let current=0,participants=new Set();(h.streets[k]||[]).forEach(a=>{if(!state[a.pos])state[a.pos]={folded:false,allin:false,street:null,implicit:false};if(state[a.pos].folded||state[a.pos].allin)return;participants.add(a.pos);if(a.act==='fold'){state[a.pos].folded=true;state[a.pos].street=k;return}if(a.act==='allin'||a.act==='jam'){if(!actionAmountKnown(s,h,a,a.pos))unknownAllins.push(a.pos);state[a.pos].allin=true;state[a.pos].street=k}if(['bet','raise','allin','jam'].includes(a.act)&&actionAmountKnown(s,h,a,a.pos)){const amt=a.amt!==''&&a.amt!=null?num(a.amt):actorStackBase(s,h,a.pos);if(amt>current)current=amt}});if(current>0&&!unknownAllins.length){const arr=h.streets[k]||[];participants.forEach(pos=>{const acts=arr.filter(a=>a.pos===pos),last=acts[acts.length-1];if(last&&!['fold','allin','jam'].includes(last.act)){const lastAggIndex=arr.map(a=>a.pos===pos&&['bet','raise','allin','jam'].includes(a.act)?0:0);const after=arr.slice(arr.lastIndexOf(last)+1).some(a=>['bet','raise','allin','jam'].includes(a.act)&&actionAmountKnown(s,h,a,a.pos));if(after){state[pos].folded=true;state[pos].street=k;state[pos].implicit=true;implicit.push({pos,street:k})}}})}});return{state,implicit,unknownAllins:[...new Set(unknownAllins)]}}
 
-/* Definitieve boardcontrole onderscheidt de vereiste straten van lege, maar legitiem
-   niet gespeelde straten. Bij een historische transactie is de opgeslagen hand het
-   referentiepunt; bij een nieuwe hand bepaalt de actuele reviewstreet de verwachting. */
+/* BUG-293-03: bronboard blijft maatgevend bij niet-structurele historische edits.
+   Alleen een aantoonbaar opnieuw uitgespeelde, afgeronde branch mag de actuele
+   eindstreet bepalen. Een beëindiging door folds vereist geen latere kaarten;
+   showdown/runout blijft strikt. De wizard-save legt deze eindstreet óók vast. */
+function b15HistoricalCompletedStreet(d,w){
+ if(!UI.editTx||!w?.d2BranchEditable||w.step!=='finish')return null;
+ const street=w.street,stage=({pf:0,flop:3,turn:4,river:5})[street];
+ if(stage===undefined)return null;
+ const idx=({pf:0,flop:1,turn:2,river:3})[street];
+ const downstream=['pf','flop','turn','river'].slice(idx+1);
+ if(downstream.some(st=>(d.streets?.[st]||[]).length))return null;
+ // Stale latere boardkaarten zijn niet legitiem onderdeel van een nieuwe eindstreet.
+ if((d.board||[]).slice(stage).some(Boolean))return null;
+ if(d.runoutFrom)return street==='river'?'river':null;
+ // Alleen einde door folds (één overblijvende speler) of werkelijk bereikte river.
+ if(street!=='river'&&wzAll().length!==1)return null;
+ return street;
+}
 function boardRequiredCardCountForSave(d,w){
+ const cards=({pf:0,flop:3,turn:4,river:5});
  if(UI.editTx){
+  const rebuilt=b15HistoricalCompletedStreet(d,w);
+  if(rebuilt!==null)return cards[rebuilt];
   const original=UI.editTx.original?.board||[];
   if(original[4])return 5;
   if(original[3])return 4;
   if(original.slice(0,3).some(Boolean))return 3;
   return 0;
  }
+ // Een gevalideerde All-in-runout eindigt op river, ook wanneer review op pf/flop stond.
+ if(d?.runoutFrom&&w?.step==='finish')return 5;
  const street=w?.review||w?.street||d?.activeStreet||'pf';
- return({pf:0,flop:3,turn:4,river:5})[street]??0;
+ return cards[street]??0;
 }
 function boardMissingCardsSaveMessage(d,w){
  const b=d?.board||[],required=boardRequiredCardCountForSave(d,w),streets=[];
@@ -1748,6 +1821,7 @@ function rSettings(){
   <div class="panel"><h2 style="margin-top:0">Interne veiligheidskopie</h2>
     ${safety?`<div class="safety-meta"><b>Laatste kopie</b><div class="note">${esc(safetySummary(safety))}</div></div><button class="btn sub" data-download-safety="1">Veiligheidskopie downloaden</button><button class="btn gold" data-restore-safety="1">Vorige gegevens herstellen</button>`:`<div class="note">Er is nog geen interne veiligheidskopie. Die wordt automatisch gemaakt voordat je gegevens vervangt of herstelt.</div>`}
   </div>
+  <div class="panel"><h2 style="margin-top:0">Over deze app</h2><div><b>Live Poker Handlog</b></div><div class="note">Versie ${esc(APP_DISPLAY_VERSION)}</div><div class="note">Ontwikkeld door Jos ten Have</div><div class="note">© 2026 Jos ten Have</div></div>
   <div class="panel"><div class="note">Bij <b>Vervangen</b> maakt de app eerst een veiligheidskopie van je huidige gegevens. Daarna controleert de app het importbestand volledig. Je gegevens worden pas aangepast als die controle is geslaagd.</div></div>`;
 }
 function rRecovery(){return`<div class="recovery"><div class="top"><h1>Herstelmodus</h1></div><div class="panel"><div class="status-error"><b>De normale gegevens konden niet worden geopend.</b></div><div class="note">${esc(RECOVERY_REASON)}</div><button class="btn sub" data-download-corrupt="1">Beschadigde gegevens downloaden</button><label>Volledige back-up herstellen</label><input type="file" accept="application/json,.json" data-recovery-file="1"><button class="btn sub" data-retry-load="1">Opnieuw proberen</button><button class="btn gold" data-emergency="1">Emergency Mode starten</button><div class="note">Emergency Mode gebruikt een afzonderlijke tijdelijke dataset en overschrijft de beschadigde database niet.</div></div></div>`}
@@ -1835,7 +1909,7 @@ var rHand;
 document.addEventListener('input',e=>{if(!UI.wz)return;const d=UI.draft,w=UI.wz;if(e.target.dataset.wzStack!==undefined){d.heroStackChips=e.target.value;syncHeroStack(d)}if(e.target.dataset.wzValue!==undefined)w.value=e.target.value;if(e.target.dataset.wzVname!==undefined)d.villains[+e.target.dataset.wzVname].name=e.target.value;if(e.target.dataset.wzVstack!==undefined){const v=d.villains[+e.target.dataset.wzVstack];v.stackChips=e.target.value;syncVStack(d,v)}if(e.target.dataset.wzEditAmt!==undefined)d.streets[w.review][+e.target.dataset.wzEditAmt].amt=e.target.value;if(e.target.dataset.wzBb!==undefined){d.bb=e.target.value;if(d.bbaEnabled)d.ante=e.target.value}})
 document.addEventListener('change',e=>{if(!UI.wz)return;const d=UI.draft,w=UI.wz;if(e.target.dataset.wzPlayers!==undefined){d.players=+e.target.value;d.buttonSeat='';d.positionBySeat={};d.heroSeat='';d.heroPos='';d.villains=[]}if(e.target.dataset.wzBba!==undefined){d.bbaEnabled=e.target.checked;if(d.bbaEnabled)d.ante=d.bb}if(e.target.dataset.wzSbna!==undefined)d.sbNA=e.target.checked;if(e.target.dataset.wzVplayer!==undefined){const v=d.villains[+e.target.dataset.wzVplayer],p=currentSession().players.find(x=>x.id===e.target.value);if(p){v.playerId=p.id;v.name=p.name}render()}if(e.target.dataset.wzEditAct!==undefined)d.streets[w.review][+e.target.dataset.wzEditAct].act=e.target.value;if(e.target.dataset.wzWinner!==undefined){const a=e.target.dataset.wzWinner;if(e.target.checked&&!w.winners.includes(a))w.winners.push(a);if(!e.target.checked)w.winners=w.winners.filter(x=>x!==a)}})
 document.addEventListener('click',e=>{const t=e.target.closest('button');if(!t||!UI.wz)return;const d=UI.draft,w=UI.wz;w.error='';if(t.dataset.wzSeat){const s=+t.dataset.wzSeat;if(w.step==='button'){d.buttonSeat=s;d.positionBySeat=b43AssignPositionsFromButton(b43HandActiveSeats(d,currentSession()),s);b43SyncHandPositions(d);w.step=b43HeroAuto(d)?'v27HeroInfo':'hero'}else if(w.step==='hero'){d.heroSeat=String(s);d.heroPos=d.positionBySeat[s]}else if(w.step==='players'){const v=d.villains.find(x=>!x.seat);if(v&&String(s)!==String(d.heroSeat)&&!d.villains.some(x=>String(x.seat)===String(s))){v.seat=String(s);v.pos=d.positionBySeat[s]}}else if(w.step==='first'){const a=wzActor(d.positionBySeat[s]);if(wzEligibleFirstActors().includes(a))w.first=a}return render()}if(t.dataset.wzNext!==undefined){if(w.step==='config'){if(!d.sb||!d.bb){w.error='Vul SB en BB in.';return render()}w.step='button'}else if(w.step==='button'){if(!d.buttonSeat){w.error='Kies de button-seat.';return render()}w.step='hero'}else if(w.step==='hero'){if(!d.heroSeat){w.error='Kies jouw seat.';return render()}w.step='players'}else if(w.step==='players'){if(!d.heroCards.every(Boolean)){w.error='Kies beide holecards.';return render()}if(!d.heroStackChips){w.error='Vul de startstack in.';return render()}if(d.villains.some(v=>!v.seat)){w.error='Kies voor iedere villain een seat.';return render()}w.step='first'}else if(w.step==='first'){if(!w.first){w.error='Kies de eerste actor.';return render()}const o=wzOrder('pf'),i=o.indexOf(w.first);d.preflopPrefix={firstActor:w.first,foldedPositions:o.slice(0,i)};wzStart('pf')}return render()}if(t.dataset.wzPrev!==undefined){w.step=({button:'config',hero:'button',players:'hero',first:'players'})[w.step]||w.step;return render()}if(t.dataset.wzExact!==undefined){d.heroStackExact=t.dataset.wzExact==='true';return render()}if(t.dataset.wzAddV!==undefined){d.villains.push({id:uid(),playerId:'',name:'',seat:'',pos:'',stackMode:'chips',stackBB:'',stackChips:'',cards:[null,null],note:''});return render()}if(t.dataset.wzDelV!==undefined){d.villains.splice(+t.dataset.wzDelV,1);return render()}if(t.dataset.wzAction){
- w.selected=t.dataset.wzAction;
+ w.selected=t.dataset.wzAction;w.allinApprox=false;
  if(w.selected==='call'){
   const state=wzReplayStreet(w.street),ps=state.actors[w.actor],toCall=Math.max(0,state.currentBet-(ps?ps.contribution:0)),remaining=wzRemainingStack(w.actor,w.street);
   if(remaining!=null&&remaining+1e-9<toCall){const player=wzPosOf(w.actor)+(w.actor==='ik'?' (Ik)':'');w.error='De stack van '+player+' '+wzDualAmountDisplay(remaining)+', is kleiner dan de omvang van de call. Kies voor de actie "All-in".';return render()}
@@ -1924,16 +1998,18 @@ var wzEligibleFirstActors;
 function wzOpts(){return wzLegalActions()}
 
 
-function wzApply(act,amt='',unit=''){
+function wzApply(act,amt='',unit='',meta=null){
   const d=UI.draft,w=UI.wz,actor=w.actor;
-  d.streets[w.street].push({pos:actor,act,amt,unit:unit||w.unit});
+  const action={pos:actor,act,amt,unit:unit||w.unit};
+  if(act==='allin'&&meta?.amtApprox===true)action.amtApprox=true;
+  d.streets[w.street].push(action);
   const globallyLive=wzAll().filter(a=>!Object.values(d.streets).flat().some(x=>x.pos===a&&x.act==='fold'));
   if(globallyLive.length<=1){w.step='finish';w.actor='';return render()}
   const state=wzReplayStreet(w.street);
   if(state.closed){w.review=w.street;w.step='review';w.actor='';w.pending=[];return render()}
   w.pending=wzNextPendingAfterAction(w.street,actor);
   w.actor=w.pending[0]||state.pending[0]||'';
-  w.selected='';w.value='';render();
+  w.selected='';w.value='';w.allinApprox=false;render();
 }
 function wzUnknownAllins(st){
   const d=UI.draft,state=wzReplayStreet(st),arr=d.streets[st]||[],out=[];
@@ -2141,7 +2217,7 @@ function d26ApplyStartStackDirectEdit(actor,isHero,newValue){
  const d=UI.draft,s=currentSession();
  const v=isHero?null:(d.villains||[]).find(x=>x.pos===actor);
  const mode=s.type==='cash'?'chips':(isHero?(d.stackMode||'chips'):(v?.stackMode||'chips'));
- const parsed=parseChipValue(newValue);
+ const parsed=mode==='bb'?rc8Build10ParseChip(newValue):b13ParseAmount(newValue);
  if(!parsed.valid)return false;
  const base=d26StartStackInputBaseValue(newValue,mode);
  const floor=d26StartStackFloor(actor);
@@ -2273,6 +2349,7 @@ function wzResumeAfterStructuralEdit(st,index,originalAction=null){
   w.actor=actor||w.order[0]||'';
   w.selected=originalAction?originalAction.act:'';
   w.value=originalAction?(originalAction.amt||''):'';
+  w.allinApprox=!!(originalAction?.act==='allin'&&originalAction?.amtApprox===true&&wzAutoAllinStreetTarget(w.actor,st)==null);
   w.unit=originalAction?(originalAction.unit||w.unit):w.unit;
   w.step='action';
   render();
@@ -2338,7 +2415,7 @@ document.addEventListener('click',e=>{
 
   if(t.dataset.wzNextStreet!==undefined&&wzUnknownAllins(w.review).length){
     e.preventDefault();e.stopImmediatePropagation();
-    w.error='Vul eerst de onbekende all-inomvang(en) in voordat je doorgaat.';
+    w.error='Gebruik ‘Bewerken vanaf deze stap’ om de onbekende all-inomvang in te vullen voordat je doorgaat.';
     return render();
   }
 },true);
@@ -2558,7 +2635,7 @@ function wzAutoAllinStreetTarget(actor,street){
  }
  return wzStreetStartStack(actor,street);
 }
-function wzAction(){const w=UI.wz,d=UI.draft,state=wzReplayStreet(w.street),ps=state.actors[w.actor],toCall=ps?Math.max(0,state.currentBet-ps.contribution):0,p=v292PreviousActionForView(w.street),isAllin=w.selected==='allin',known=wzAutoAllinStreetTarget(w.actor,w.street),unit=isAllin?'chips':w.unit;let allinBox='';if(isAllin){if(known!=null){allinBox=`<div class="wz-allin-box">All-inomvang: <b>${esc(rc5DisplayValue(known,'chips',true))}</b><button class="btn" data-wz-confirm>Bevestigen</button></div>`}else{allinBox=`<div class="wz-allin-box">Is de all-inomvang bekend?<div class="seg"><button class="${w.allinKnown===true?'on':''}" data-wz-allin-known="true">Ja</button><button class="${w.allinKnown===false?'on':''}" data-wz-allin-known="false">Nee</button></div>${w.allinKnown===true?`<label>${currentSession().type==='cash'?'Vul bedrag in':'Omvang in chips'}</label><input data-wz-value data-chip="1" value="${esc(w.value)}"><button class="btn" data-wz-confirm>Bevestigen</button>`:w.allinKnown===false?`<button class="btn" data-wz-confirm>All-in zonder omvang vastleggen</button>`:''}</div>`}}
+function wzAction(){const w=UI.wz,d=UI.draft,state=wzReplayStreet(w.street),ps=state.actors[w.actor],toCall=ps?Math.max(0,state.currentBet-ps.contribution):0,p=v292PreviousActionForView(w.street),isAllin=w.selected==='allin',known=wzAutoAllinStreetTarget(w.actor,w.street),unit=isAllin?(currentSession().type==='cash'?'cash':'chips'):w.unit;let allinBox='';if(isAllin){if(known!=null){allinBox=`<div class="wz-allin-box">All-inomvang: <b>${esc(rc5DisplayValue(known,currentSession().type==='cash'?'cash':'chips',true))}</b><button class="btn" data-wz-confirm>Bevestigen</button></div>`}else{allinBox=`<div class="wz-allin-box"><label>All-inomvang (totaal op deze street)</label><input data-wz-value data-chip="1" inputmode="decimal" value="${esc(w.value)}"><div class="seg" style="margin-top:8px"><button class="${!w.allinApprox?'on':''}" data-wz-allin-approx="false">Exact</button><button class="${w.allinApprox?'on':''}" data-wz-allin-approx="true">Bij benadering</button></div><button class="btn" data-wz-confirm>Bevestigen</button></div>`}}
  return`<div class="panel"><div class="wz-action-tools"><button class="btn sub small" data-wz-show-table>👁 Toon tafel</button><button class="btn sub small" data-wz-undo ${(d.streets[w.street]||[]).length?'':'disabled'}>← Vorige actie</button></div><div class="wz-prev">${p?`Vorige actie: ${esc(wzPosOf(p.pos))} ${esc(p.act)}`:'Nog geen vrijwillige actie.'}</div><div class="wz-statebar"><div><b>${esc(rc5DisplayValue(ps?ps.contribution:0,unit,isAllin))}</b><span>Ingelegd straat</span></div><div><b>${esc(rc5DisplayValue(toCall,unit,isAllin))}</b><span>Te callen</span></div><div><b>${esc(rc5DisplayValue(state.currentBet,unit,isAllin))}</b><span>Hoogste inzet</span></div></div><b>${esc(wzPosOf(w.actor))}${w.actor==='ik'?' (Ik)':''} actie is:</b><div class="wz-actions" style="margin-top:9px">${wzLegalActions().map(([a,l])=>`<button class="wz-action ${w.selected===a?'on':''}" data-wz-action="${a}">${l}</button>`).join('')}</div>${isAllin?allinBox:`<div class="wz-value ${['bet','raise'].includes(w.selected)?'':'off'}"><label>Waardetype</label><div class="seg">${(currentSession().type==='cash'?[['cash',cur(currentSession())],['bb','BB'],['%','% Pot']]:[['chips','Chips'],['bb','BB'],['%','% Pot']]).map(([u,l])=>`<button class="${w.unit===u?'on':''}" data-wz-unit="${u}">${l}</button>`).join('')}</div><label>Waarde</label><input data-wz-value ${['cash','chips'].includes(w.unit)?'data-chip="1"':''} value="${esc(w.value)}"><button class="btn" data-wz-confirm>Bevestigen</button></div>`}${wzErr()}</div>${w.showTable?`<div class="wz-table-overlay"><div class="wz-table-modal"><div class="v272-overlay-head"><h1>Actuele tafelsituatie</h1><button class="btn sub small v272-overlay-close" data-wz-hide-table>Sluiten</button></div><div class="v272-actor-context"><span>Actie bij:</span><b>${esc(wzPosOf(w.actor))}${w.actor==='ik'?' (Ik)':''}</b></div>${wzTable()}</div></div>`:''}`}
 
 function rc5NoFurtherDecision(st){const state=wzReplayStreet(st),entries=Object.values(state.actors),inHand=entries.filter(x=>x.status!=='folded'),canAct=inHand.filter(x=>x.status==='active');return inHand.length>=2&&canAct.length<=1&&inHand.some(x=>x.status==='allin')}
@@ -2593,8 +2670,25 @@ document.addEventListener('click',e=>{const t=e.target.closest('button,[data-pic
  if(t.dataset.wzCloseCancel!==undefined){e.preventDefault();e.stopImmediatePropagation();w.closePrompt=false;return render()}
  if(t.dataset.wzCloseSave!==undefined){e.preventDefault();e.stopImmediatePropagation();w.closePrompt=false;wzAutosave();UI.wz=null;return go('session',UI.sid)}
  if(t.dataset.wzCloseDelete!==undefined){e.preventDefault();e.stopImmediatePropagation();const s=currentSession();s.hands=s.hands.filter(h=>h.id!==d.id);save();UI.wz=null;return go('session',UI.sid)}
- if(t.dataset.wzAllinKnown!==undefined){e.preventDefault();e.stopImmediatePropagation();w.allinKnown=t.dataset.wzAllinKnown==='true';w.value='';return render()}
- if(t.dataset.wzConfirm!==undefined&&w.selected==='allin'){e.preventDefault();e.stopImmediatePropagation();let amt='',unit='chips';const auto=wzAutoAllinStreetTarget(w.actor,w.street);if(auto!=null){amt=String(currentSession().type==='cash'?auto:auto*num(d.bb))}else if(w.allinKnown===true){if(!w.value){w.error='Vul de all-inomvang in.';return render()}amt=w.value}else if(w.allinKnown!==false){w.error='Geef aan of de omvang bekend is.';return render()}w.allinKnown=null;return wzApply('allin',amt,unit)}
+ if(t.dataset.wzAllinApprox!==undefined){e.preventDefault();e.stopImmediatePropagation();w.allinApprox=t.dataset.wzAllinApprox==='true';return render()}
+ if(t.dataset.wzConfirm!==undefined&&w.selected==='allin'){
+  e.preventDefault();e.stopImmediatePropagation();
+  const auto=wzAutoAllinStreetTarget(w.actor,w.street),s=currentSession(),unit=s.type==='cash'?'cash':'chips';
+  let amt,meta=null;
+  if(auto!=null){amt=String(s.type==='cash'?auto:auto*num(d.bb))}
+  else{
+   const raw=String(w.value??'').trim(),compact=raw.replace(/\s/g,'');
+   // Nederlandse duizendtalpunten worden door b13ParseAmount expliciet geparseerd.
+   const parsedResult=parseChipValue(compact),parsed=parsedResult.value;
+   if(!raw||!parsedResult.valid||!Number.isFinite(parsed)||parsed<=0||parsed>Number.MAX_SAFE_INTEGER){w.error='Vul een geldig positief totaalbedrag voor deze street in. '+b13AmountMessage();return render()}
+   const base=wzUnitToBase(parsed,unit,0),state=wzReplayStreet(w.street),contribution=state.actors[w.actor]?.contribution||0;
+   if(base==null||!Number.isFinite(base)||base<=contribution+1e-9){w.error='De All-inomvang moet groter zijn dan het totaal dat deze speler al op deze street heeft ingelegd.';return render()}
+   const maximum=wzStreetStartStack(w.actor,w.street);
+   if(maximum!=null&&base>maximum+1e-9){w.error='De All-inomvang mag niet hoger zijn dan de bekende maximale streetstack.';return render()}
+   amt=String(parsed);meta=w.allinApprox===true?{amtApprox:true}:null;
+  }
+  w.allinApprox=false;w.value='';return wzApply('allin',amt,unit,meta);
+ }
  if(t.dataset.wzResultMode){e.preventDefault();e.stopImmediatePropagation();w.resultMode=t.dataset.wzResultMode;w.winners=[];return render()}
  if(t.dataset.wzWinnerButton){e.preventDefault();e.stopImmediatePropagation();const a=t.dataset.wzWinnerButton;if(w.resultMode==='chop'){w.winners=w.winners.includes(a)?w.winners.filter(x=>x!==a):[...w.winners,a]}else w.winners=[a];return render()}
  if(t.dataset.wzSeat&&w.step==='first'){e.preventDefault();e.stopImmediatePropagation();const seat=+t.dataset.wzSeat,a=wzActor(d.positionBySeat[seat]);if(!wzEligibleFirstActors().includes(a))return;w.first=a;const order=wzOrder('pf'),i=order.indexOf(a);d.preflopPrefix=rc6BuildPreflopPrefix(a);return setTimeout(()=>wzStart('pf'),120)}
@@ -2674,7 +2768,7 @@ wzInitialStreetState=function(st){
  return state;
 };
 wzStart=function(st){
- const w=UI.wz;w.street=st;w.selected='';w.value='';w.unit=w.lastUnit;
+ const w=UI.wz;w.street=st;w.selected='';w.value='';w.allinApprox=false;w.unit=w.lastUnit;
  const order=rc6ActingOrder(st);w.order=order;
  const replay=wzReplayStreet(st),pendingSet=new Set(replay.pending.length?replay.pending:order);
  w.pending=order.filter(a=>pendingSet.has(a));w.actor=w.pending[0]||'';
@@ -3080,23 +3174,25 @@ function rc7RoundCWithAmountMode(mode,hand,fn){
 
 function rc7RoundCControlAmount(x,d,s){
  if(x.amt===''||x.amt==null)return'';
+ const prefix=approxAmountPrefix(x);
  if(s.type!=='cash'&&x.unit==='chips'){
   const bb=num(d.bb),equivalent=bb>0?num(x.amt)/bb:0;
-  return `${chipDisplay(x.amt)} chips (${fmtBB(equivalent)})`;
+  return prefix+`${chipDisplay(x.amt)} chips (${fmtBB(equivalent)})`;
  }
- if(x.unit==='bb')return fmtBB(x.amt);
- if(x.unit==='%')return fmtN(x.amt)+'%';
- if(x.unit==='cash')return money(s,x.amt);
- return `${chipDisplay(x.amt)} ${x.unit||''}`.trim();
+ if(x.unit==='bb')return prefix+fmtBB(x.amt);
+ if(x.unit==='%')return prefix+fmtN(x.amt)+'%';
+ if(x.unit==='cash')return prefix+money(s,x.amt);
+ return prefix+`${chipDisplay(x.amt)} ${x.unit||''}`.trim();
 }
 
 wzReview=function(){
- const d=UI.draft,w=UI.wz,st=w.review,s=currentSession(),a=analyze(s,d);
+ const d=UI.draft,w=UI.wz,st=w.review,s=currentSession(),a=analyze(s,d),streetPot=reviewStreetPotText(s,d,st,a);
  const txt=rc7RoundCWithAmountMode('control',d,()=>streetText(s,d,st,STREETS.find(x=>x[0]===st)[1],false,a))||'Nog geen acties.';
  const prefix=st==='pf'&&d.preflopPrefix?.foldedPositions?.length
   ?`<div class="wz-info">Automatische folds vóór ${esc(wzPosOf(d.preflopPrefix.firstActor))}: ${d.preflopPrefix.foldedPositions.map(wzPosOf).join(', ')}</div>`
   :'';
- return`<div class="panel"><h2 style="margin-top:0">${st==='pf'?'Preflop':esc(STREETS.find(x=>x[0]===st)[1])} controleren</h2>${prefix}<div class="wz-review">${colorize(txt)}</div><details><summary>Acties aanpassen</summary>${d.streets[st].map((x,i)=>`<div class="wz-review-action"><span>${esc(wzPosOf(x.pos))} · ${esc(x.act)}${x.amt!==''&&x.amt!=null?' · '+esc(rc7RoundCControlAmount(x,d,s)):''}</span><button class="btn sub small" data-wz-edit-open="${i}">Bewerken</button></div>`).join('')}</details><div class="preview">Pot: ${fmtPot(a.finalPot,s)}</div><div class="grid2"><button class="btn sub" data-wz-restart-street>Straat opnieuw invoeren</button><button class="btn" data-wz-next-street>${st==='pf'?'Ga naar de flop':st==='flop'?'Ga naar de turn':st==='turn'?'Ga naar de river':'Hand afronden'}</button></div>${wzErr()}</div>`;
+ const potText=streetPot||'niet betrouwbaar';
+ return`<div class="panel"><h2 style="margin-top:0">${st==='pf'?'Preflop':esc(STREETS.find(x=>x[0]===st)[1])} controleren</h2>${prefix}<div class="wz-review">${colorize(txt)}</div><details><summary>Acties aanpassen</summary>${d.streets[st].map((x,i)=>`<div class="wz-review-action"><span>${esc(wzPosOf(x.pos))} · ${esc(x.act)}${x.amt!==''&&x.amt!=null?' · '+esc(rc7RoundCControlAmount(x,d,s)):''}</span><button class="btn sub small" data-wz-edit-open="${i}">Bewerken</button></div>`).join('')}</details><div class="preview">Pot: ${esc(potText)}</div><div class="grid2"><button class="btn sub" data-wz-restart-street>Straat opnieuw invoeren</button><button class="btn" data-wz-next-street>${st==='pf'?'Ga naar de flop':st==='flop'?'Ga naar de turn':st==='turn'?'Ga naar de river':'Hand afronden'}</button></div>${wzErr()}</div>`;
 };
 
 const shareTextRC7RoundCBase=shareText;
@@ -3311,8 +3407,8 @@ function returnFromRunoutToReview(){
 }
 
 /* De oude directe sprong vanuit wzApply wordt omzeild: eerst altijd straatcontrole. */
-wzApply=function(act,amt='',unit=''){
- return wzApplyRC5Base(act,amt,unit);
+wzApply=function(act,amt='',unit='',meta=null){
+ return wzApplyRC5Base(act,amt,unit,meta);
 };
 
 /* Resume: alleen runout hervatten wanneer de gesloten state opnieuw aantoonbaar is. */
@@ -3532,7 +3628,7 @@ function d1ApplyCheckpoint(cp){
  const w=UI.wz,nav=d1Nav();if(!w||!cp||cp.generation!==nav.generation)return false;
  nav.suppressRecord=true;
  w.step=cp.step;w.street=cp.street||w.street;w.review=cp.review||w.review;
- w.selected='';w.value='';w.error='';
+ w.selected='';w.value='';w.allinApprox=false;w.error='';
  if(cp.step==='action'){
   const state=wzReplayStreet(cp.street,cp.actionCount);
   const order=d1OrderForStreet(cp.street);
@@ -3592,7 +3688,7 @@ function d1UndoLastAction(){
  w.pending=order.filter(a=>pendingSet.has(a));
  if(!w.pending.includes(undone.pos)&&state.actors?.[undone.pos]?.status==='active')w.pending.unshift(undone.pos);
  w.actor=w.pending[0]||undone.pos;
- w.selected=undone.act||'';
+ w.selected=undone.act||'';w.allinApprox=!!(undone.act==='allin'&&undone.amtApprox===true&&wzAutoAllinStreetTarget(w.actor,w.street)==null);
  w.value=undone.amt||'';
  w.unit=undone.unit||w.unit;
  w.error='';
@@ -3741,6 +3837,9 @@ document.addEventListener('click',e=>{
 document.addEventListener('change',e=>{
  if(!UI.wz||d1AtLatest())return;
  const el=e.target;
+ /* Build 1.1: expliciet transactionele historische editors beheren hun eigen
+    validatie/commit en mogen de bestaande reviewtrail niet als structurele branch wissen. */
+ if(el.closest?.('[data-historical-command]'))return;
  if(el.matches('[data-d26-startstack-input]'))return;
  if(el.matches('input,select,textarea')){
   d1BumpGeneration('Wijziging op eerdere stap');
@@ -3750,6 +3849,9 @@ document.addEventListener('change',e=>{
 document.addEventListener('input',e=>{
  if(!UI.wz||d1AtLatest())return;
  const el=e.target;
+ /* Build 1.1: zie change-guard hierboven; alleen de oude structurele route
+    mag hier nog een nieuwe navigatiegeneratie starten. */
+ if(el.closest?.('[data-historical-command]'))return;
  if(el.matches('[data-d26-startstack-input]'))return;
  if(el.matches('input,textarea')){
   d1BumpGeneration('Wijziging op eerdere stap');
@@ -4064,7 +4166,9 @@ editHand=function(id){
   sourceIndex,
   dirty:false,
   invalidation:null,
-  pendingCheckpoint:null
+  pendingCheckpoint:null,
+  pendingSessionPlayers:[],
+  pendingLibraryPlayers:[]
  };
  UI.wz=wzFlow();
  UI.wz.step='config';
@@ -4100,15 +4204,21 @@ wzSave=function(){
  const tx=UI.editTx;
  if(!tx)return wzSaveD2Base();
 
- const s=currentSession();
+ const s=currentSession(),stagedSession=deepClone(tx.pendingSessionPlayers||[]),stagedLibrary=deepClone(tx.pendingLibraryPlayers||[]);
  const id=UI.draft.id;
  const beforeRecord=deepClone(s?.hands?.[tx.sourceIndex]);
  const beforeScreen=UI.screen;
  const beforeCount=(s?.hands||[]).length;
+ const playersBefore=deepClone(s?.players||[]),libraryBefore=deepClone(DB.playerLibrary||[]);
+ for(const p of stagedSession){const idHit=(s.players||[]).find(x=>String(x.id)===String(p.id)),nameHit=(s.players||[]).find(x=>String(x.id)!==String(p.id)&&nameKey(x.name)===nameKey(p.name));if(nameHit||(idHit&&nameKey(idHit.name)!==nameKey(p.name))){UI.wz.error='Een nieuwe speler bestaat inmiddels al in de sessie. Kies de bestaande speler uit de lijst.';render();return false}}
+ for(const p of stagedLibrary){const idHit=(DB.playerLibrary||[]).find(x=>String(x.id)===String(p.id)),nameHit=(DB.playerLibrary||[]).find(x=>String(x.id)!==String(p.id)&&nameKey(x.name)===nameKey(p.name));if(nameHit||(idHit&&nameKey(idHit.name)!==nameKey(p.name))){UI.wz.error='Een nieuwe speler bestaat inmiddels al in de spelersbibliotheek. Kies de bestaande speler uit de lijst.';render();return false}}
+ stagedSession.forEach(p=>{if(!(s.players||[]).some(x=>String(x.id)===String(p.id)))s.players.push({id:p.id,name:p.name||'',notes:p.notes||'',seat:''})});
+ stagedLibrary.forEach(p=>{if(!(DB.playerLibrary||[]).some(x=>String(x.id)===String(p.id)))DB.playerLibrary.push({id:p.id,name:p.name||'',notes:p.notes||'',lastUsed:null})});
  const result=wzSaveD2Base();
 
  const committed=d23CommitProof(tx,s,id,beforeRecord,beforeScreen,beforeCount);
  if(committed)UI.editTx=null;
+ else{s.players=playersBefore;DB.playerLibrary=libraryBefore}
 
  return result;
 };
@@ -4207,17 +4317,81 @@ d2BeginBranch=function(cp){
  render();
 };
 
+/* Build 1.4 — BUG-293-02 Android: opgeslagen handen bevatten ook een historisch
+   ACTION-checkpoint ná de laatste actie. Op dat punt bestaat geen pending actor.
+   Een vertakking vanaf dit checkpoint moet de huidige street vanaf actie 1
+   opnieuw invoeren; het onbruikbare actie-eindpunt mag niet worden hersteld. */
+function b14BranchReplayAtCheckpoint(cp){
+ if(!cp||cp.step!=='action'||!['pf','flop','turn','river'].includes(cp.street))return null;
+ const n=Number(cp.actionCount);
+ if(!Number.isSafeInteger(n)||n<0)return null;
+ try{return wzReplayStreet(cp.street,n)}catch(_){return null}
+}
+function b14MustRestartBranchStreet(cp){
+ if(!cp)return false;
+ if(cp.step==='review')return ['pf','flop','turn','river'].includes(cp.review||cp.street);
+ if(cp.step!=='action'||!['pf','flop','turn','river'].includes(cp.street))return false;
+ if(!(Number(cp.actionCount)>0))return false;
+ const state=b14BranchReplayAtCheckpoint(cp);
+ // Niet gokken bij een replayfout: laat de bestaande veilige route over.
+ return !!state&&Array.isArray(state.pending)&&state.pending.length===0;
+}
+function b14ResetNavigationToStreetStart(branchCp,street){
+ /* De oude synthetische trail bevat bv. 'pf:action:3'. Na het wissen van
+    actie 1..3 mogen die actiecheckpoints niet worden behouden. De prefix
+    tot de eerste checkpoint van deze street blijft beschikbaar. */
+ d2ResetNavigationTo(branchCp);
+ const nav=d1Nav();if(!nav)return null;
+ const cut=nav.trail.findIndex(x=>x&&(
+  (x.step==='action'&&x.street===street)||
+  (x.step==='review'&&(x.review||x.street)===street)
+ ));
+ if(cut>=0)nav.trail=nav.trail.slice(0,cut);
+ nav.cursor=nav.trail.length-1;
+ nav.suppressRecord=false;
+ const w=UI.wz;
+ w.step='action';w.street=street;w.review=street;
+ w.selected='';w.value='';w.allinApprox=false;w.error='';
+ w.d1ReplayLimit=null;
+ d1RecordCheckpoint();
+ const active=d1CurrentCheckpoint();
+ if(active?.step==='action')d1ApplyCheckpoint(active);
+ return active;
+}
 d2ConfirmBranch=function(){
  const store=d26BranchStore(),cp=store?.pendingCheckpoint;
  if(!store||!cp)return;
  if(typeof v275IsSetupStep==='function'&&v275IsSetupStep(cp.step)){
-  /* Technische toelichting: setupbranch wordt eerst editable; downstream wordt pas bij werkelijk gewijzigde setup en Volgende gerebuild. */
+  /* Bestaande gesimuleerde setup-herinvoer van Build 1.3 behouden. */
   store.b432BranchBase=deepClone(UI.draft);store.b432BranchCheckpoint=deepClone(cp);store.lastInvalidation=null;
   store.pendingCheckpoint=null;store.invalidation=null;UI.wz.d2ConfirmBranch=false;UI.wz.d2BranchEditable=true;
+  UI.wz.b13RestartActionsOnEntry=true;
   d2ResetNavigationTo(cp);d26RestoreHistoricalSelections(cp);d1ReplayValidate(d1CurrentCheckpoint());return render()
  }
- rebuildFromCheckpoint(UI.draft,cp,'safe');store.lastInvalidation=deepClone(store.invalidation);store.pendingCheckpoint=null;store.invalidation=null;
- UI.wz.d2ConfirmBranch=false;UI.wz.d2BranchEditable=true;d2ResetNavigationTo(cp);d26RestoreHistoricalSelections(cp);d1ReplayValidate(d1CurrentCheckpoint());render()
+ const restartStreet=b14MustRestartBranchStreet(cp);
+ const street=cp.step==='review'?(cp.review||cp.street):cp.street;
+ const editPoint=restartStreet?{...cp,step:'action',street,review:street,actionCount:0}:cp;
+ rebuildFromCheckpoint(UI.draft,editPoint,'safe');
+ store.lastInvalidation=deepClone(store.invalidation);
+ store.pendingCheckpoint=null;store.invalidation=null;
+ UI.wz.d2ConfirmBranch=false;UI.wz.d2BranchEditable=true;
+ if(restartStreet){
+  b14ResetNavigationToStreetStart(cp,street);
+ }else{
+  d2ResetNavigationTo(cp);
+  if(cp.step==='action'){
+   const activeCp=d1CurrentCheckpoint();
+   if(activeCp?.step==='action')d1ApplyCheckpoint(activeCp);
+  }
+ }
+ d26RestoreHistoricalSelections(editPoint);
+ const current=d1CurrentCheckpoint();
+ if(current)d1ReplayValidate(current);
+ // Niet leeg doorrenderen indien een gerichte rerun onverwacht geen actor oplevert.
+ if(UI.wz.step==='action'&&!UI.wz.actor){
+  UI.wz.error='Er is geen bewerkbare actiepositie beschikbaar. De vorige acties zijn niet opnieuw ingevoerd.';
+ }
+ render();
 };
 
 d2CancelBranch=function(){
@@ -4232,8 +4406,14 @@ d2CancelBranch=function(){
 d2ConfirmModal=function(){
  if(!UI.wz?.d2ConfirmBranch)return'';
  const store=d26BranchStore(),inv=store?.invalidation||{},a=inv.affected||{};
+ const restart=b14MustRestartBranchStreet(store?.pendingCheckpoint);
+ const street=store?.pendingCheckpoint?.review||store?.pendingCheckpoint?.street||'pf';
+ const actionLabels=restart
+  ? [street+' vanaf actie 1',...(a.actions||[]).filter(x=>!String(x).startsWith(street+' vanaf actie ')&&String(x)!==street)]
+  : (a.actions||[]);
  const items=[
-  ...(a.actions?.length?[`Acties: ${a.actions.join(', ')}`]:[]),
+  ...(restart?[`Alle bestaande acties op ${street} worden vanaf actie 1 opnieuw ingevoerd. Het origineel blijft behouden totdat je opslaat.`]:[]),
+  ...(actionLabels.length?[`Acties: ${actionLabels.join(', ')}`]:[]),
   ...(a.board?.length?[`Board: ${a.board.join(', ')}`]:[]),
   ...(a.runout?[`Runout wordt opnieuw beoordeeld`]:[]),
   ...(a.result?[`Resultaat en report worden opnieuw gecontroleerd`]:[])
@@ -6424,6 +6604,27 @@ d26SaveHistoricalEditTransaction=function(){
 
 
 
+/* BUG-293-03: historische save had voor nieuwe branches d.activeStreet van
+   het oude resultaat gehouden (bijv. river na nieuwe flop-fold). Leg de
+   daadwerkelijke eindstreet uitsluitend vast voor een valide afgeronde branch.
+   Bij mislukte opslag wordt die tijdelijke mutatie veilig teruggedraaid. */
+const d26SaveHistoricalEditTransactionB15Base=d26SaveHistoricalEditTransaction;
+d26SaveHistoricalEditTransaction=function(){
+ const d=UI.draft,w=UI.wz,tx=UI.editTx;
+ const completed=b15HistoricalCompletedStreet(d,w);
+ if(completed===null)return d26SaveHistoricalEditTransactionB15Base();
+ const previous=d.activeStreet;
+ d.activeStreet=completed;
+ const saved=d26SaveHistoricalEditTransactionB15Base();
+ if(saved===false&&UI.draft===d&&UI.editTx===tx){
+  d.activeStreet=previous;
+  tx.working=d;
+  tx.dirty=d2IsDirty();
+ }
+ return saved;
+};
+
+
 const rc7F4Style=document.createElement('style');
 rc7F4Style.textContent=`
 .rc7-f4-pot-values{display:flex;flex-direction:column;gap:1px}
@@ -8603,7 +8804,7 @@ var compactK;
 
 /* Technische toelichting: oude historische body van `chipDisplay` verwijderd. Een top-level `var` behoudt in dit klassieke strict-mode script dezelfde hoisted globale var-binding voor de latere assignments, zonder een voor de startup onbenutte historische functiebody te initialiseren. */
 var chipDisplay;
-function invalidKMessage(){return'Ongeldige invoer. Gebruik een gewoon getal of K-, M- of B-notatie, bijvoorbeeld 1500, 1,5K, 100,25M of 1B. Een komma of punt mag als decimaalteken worden gebruikt.'}
+function invalidKMessage(){return b13AmountMessage()}
 /* Technische toelichting: oude historische body van `rc8TournamentChipDisplay` verwijderd. Een top-level `var` behoudt in dit klassieke strict-mode script dezelfde hoisted globale var-binding voor de latere assignments, zonder een voor de startup onbenutte historische functiebody te initialiseren. */
 var rc8TournamentChipDisplay;
 
@@ -8637,6 +8838,32 @@ editHand=function(id){
  if(UI.draft){rc8Build10PersistTableSize();render()}
 };
 
+/* Build 1.3 / BUG-293-01: één expliciete Nederlandse *invoer*parser voor bedragen.
+   Punt = uitsluitend correct gegroepeerde duizendtallen; komma = alleen met K/M/B.
+   Alle uitkomsten moeten gehele, veilige getallen zijn (zowel cash als chips).
+   Houd de bestaande rc8Build10ParseChip/num apart: deze worden ook gebruikt voor
+   interne BB/%-potberekeningen met legitieme fractionele tussenwaarden en voor
+   bestaande gegevens. Pas deze opslag-/rekensemantiek dus NIET stilzwijgend aan. */
+function b13ParseAmount(v){
+ if(v==null||String(v).trim()==='')return{valid:true,value:0};
+ if(typeof v==='number')return{valid:Number.isSafeInteger(v)&&v>=0,value:Number.isSafeInteger(v)&&v>=0?v:0};
+ const raw=String(v).trim();
+ const m=raw.match(/^(\d{1,3}(?:\.\d{3})+|\d+)(?:,(\d+))?([KMB])?$/i);
+ if(!m)return{valid:false,value:0};
+ const suffix=(m[3]||'').toUpperCase();
+ if(m[2]!==undefined&&!suffix)return{valid:false,value:0};
+ const multiplier=suffix==='K'?1000:suffix==='M'?1000000:suffix==='B'?1000000000:1;
+ const integer=Number(m[1].replace(/\./g,''));
+ if(!Number.isSafeInteger(integer))return{valid:false,value:0};
+ // Gebruik uitsluitend exacte gehele waarden, ook voor 1,2345K.
+ const decimals=m[2]||'';
+ const fraction=decimals?Number('0.'+decimals):0;
+ const value=(integer+fraction)*multiplier;
+ if(!Number.isSafeInteger(value)||value<0||value>Number.MAX_SAFE_INTEGER)return{valid:false,value:0};
+ return{valid:true,value};
+}
+function b13AmountMessage(){return'Ongeldig bedrag. Gebruik hele bedragen (bijvoorbeeld 12000 of 12.000), of 1,5K / 10,5M. Een punt is alleen een duizendtalscheiding; een komma mag alleen vóór K/M.'}
+
 /* Eén end-to-end chipparser: de modelwaarde wordt bij commit altijd als exact getal opgeslagen. */
 function rc8Build10ParseChip(v){
  if(v===''||v==null)return{valid:true,value:0};
@@ -8650,17 +8877,26 @@ function rc8Build10ParseChip(v){
  const value=base*multiplier;
  return{valid:Number.isFinite(value)&&value>=0&&value<=Number.MAX_SAFE_INTEGER,value:Number.isFinite(value)&&value>=0?value:0};
 }
-parseChipValue=rc8Build10ParseChip;
+parseChipValue=b13ParseAmount;
 num=function(v){const p=rc8Build10ParseChip(v);return p.valid?p.value:0};
 
 function rc8Build10StoreExactChipInput(el,value){
  const exact=String(value);
  const d=UI.draft;
  if(el.dataset.path)setPath(el.dataset.path,exact);
- if(!d)return;
+ if(el.dataset.pathRender)setPath(el.dataset.pathRender,exact);
+ if(el.dataset.sessionBb!==undefined){const session=currentSession();if(session)session.bb=exact}
+ if(!d){save();return}
  if(el.dataset.wzBb!==undefined){d.bb=exact;if(d.bbaEnabled)d.ante=exact}
  if(el.dataset.wzStack!==undefined){d.heroStackChips=exact;syncHeroStack(d)}
- if(el.dataset.wzVstack!==undefined){const v=d.villains?.[+el.dataset.wzVstack];if(v){v.stackChips=exact;syncVStack(d,v)}}
+ if(el.dataset.v27HeroStack!==undefined||el.dataset.stack!==undefined){
+  if(d.stackMode==='bb')d.heroStackBB=exact;else d.heroStackChips=exact;
+  syncHeroStack(d);
+ }
+ if(el.dataset.wzVstack!==undefined||el.dataset.vstack!==undefined){
+  const ix=Number(el.dataset.wzVstack??el.dataset.vstack),v=d.villains?.[ix];
+  if(v){if(v.stackMode==='bb')v.stackBB=exact;else v.stackChips=exact;syncVStack(d,v)}
+ }
  if(el.dataset.straddleAmt!==undefined){d.straddleAmounts[+el.dataset.straddleAmt]=exact}
  if(el.dataset.wzValue!==undefined&&UI.wz)UI.wz.value=exact;
  if(el.dataset.wzEditAmt!==undefined&&UI.wz){const a=d.streets?.[UI.wz.review]?.[+el.dataset.wzEditAmt];if(a)a.amt=exact}
@@ -8669,7 +8905,7 @@ function rc8Build10StoreExactChipInput(el,value){
 document.addEventListener('change',e=>{
  const el=e.target;
  if(!el?.dataset||el.dataset.chip!=='1')return;
- const parsed=rc8Build10ParseChip(el.value);
+ const parsed=b13ParseAmount(el.value);
  if(!parsed.valid)return;
  rc8Build10StoreExactChipInput(el,parsed.value);
  el.value=chipDisplay(parsed.value);
@@ -8677,7 +8913,7 @@ document.addEventListener('change',e=>{
 document.addEventListener('blur',e=>{
  const el=e.target;
  if(!el?.dataset||el.dataset.chip!=='1')return;
- const parsed=rc8Build10ParseChip(el.value);
+ const parsed=b13ParseAmount(el.value);
  if(!parsed.valid)return;
  rc8Build10StoreExactChipInput(el,parsed.value);
  el.value=chipDisplay(parsed.value);
@@ -8687,7 +8923,7 @@ document.addEventListener('blur',e=>{
 d26ParsePotOverrideInput=function(input){
  const raw=String(input??'').trim();
  if(!raw)return{allowed:false,action:'invalid-pot-empty',raw,value:null,message:'Vul een handmatige pot in.'};
- const parsed=rc8Build10ParseChip(raw);
+ const parsed=b13ParseAmount(raw);
  if(!parsed.valid||!Number.isFinite(parsed.value))return{allowed:false,action:'invalid-pot-number',raw,value:null,message:'Gebruik een geldige potwaarde.'};
  if(parsed.value<=0)return{allowed:false,action:'invalid-pot-positive',raw,value:parsed.value,message:'De handmatige pot moet groter zijn dan nul.'};
  if(parsed.value>Number.MAX_SAFE_INTEGER)return{allowed:false,action:'invalid-pot-overflow',raw,value:parsed.value,message:'De handmatige pot is te groot.'};
@@ -8804,18 +9040,7 @@ rc8TournamentChipDisplay=function(v){return rc8Build11FormatChip(Math.max(0,Math
 
 
 
-function rc8Build12ParseTournamentChip(v){
- if(v===''||v==null)return{valid:true,value:0};
- const raw=String(v).trim().replace(/\s/g,'');
- if(!raw)return{valid:true,value:0};
- const match=raw.match(/^(\d+(?:[.,]\d+)?)([kKmMbB])?$/);
- if(!match)return{valid:false,value:0};
- const base=Number(match[1].replace(',','.'));
- const suffix=(match[2]||'').toUpperCase();
- const multiplier=suffix==='K'?1e3:suffix==='M'?1e6:suffix==='B'?1e9:1;
- const value=base*multiplier;
- return{valid:Number.isFinite(value)&&value>=0&&value<=Number.MAX_SAFE_INTEGER,value:Number.isFinite(value)&&value>=0?value:0};
-}
+function rc8Build12ParseTournamentChip(v){return b13ParseAmount(v)}
 function rc8Build12FormatTournamentChip(v,maxDecimals=2){
  if(v===''||v==null||String(v).trim()==='')return'';
  const parsed=rc8Build12ParseTournamentChip(v);
@@ -9451,7 +9676,7 @@ function v274ClearActionDownstream(){
  const d=UI.draft,w=UI.wz;if(!d||!w)return;
  d.streets={pf:[],flop:[],turn:[],river:[]};d.board=[null,null,null,null,null];d.runoutFrom='';d.preflopPrefix=null;
  d.outcome='';d.winner='';d.potBB='';d.potChips='';d.potOverride=false;d.bountyWon='';d.bountyCount='';
- w.first='';w.street='pf';w.order=[];w.pending=[];w.actor='';w.selected='';w.value='';w.review='pf';w.winners=[];w.error='';
+ w.first='';w.street='pf';w.order=[];w.pending=[];w.actor='';w.selected='';w.value='';w.allinApprox=false;w.review='pf';w.winners=[];w.error='';
 }
 function v274SetupEntries(){
  const d=UI.draft||{},out=[{step:'config'},{step:'button'}];if(!b43HeroAuto(d))out.push({step:'hero'});out.push({step:'v27HeroInfo'},{step:'v27VillainDecision'});if(!Array.isArray(d.activeSeats))(d.villains||[]).forEach((v,i)=>{out.push({step:'v27VillainSeat',vi:i},{step:'v27VillainInfo',vi:i},{step:'v27VillainMore',vi:i})});out.push({step:'first'});return out;
@@ -9969,8 +10194,8 @@ function v27b21SuffixMarkup(type,target='generic'){
 v27Build2Suffixes=function(){
  const w=UI.wz,s=currentSession();
  if(!w||w.step!=='action'||!s||v27b21Historical())return[];
- const explicitAllin=w.selected==='allin'&&w.actor!=='ik'&&w.allinKnown===true;
- const unit=explicitAllin?'chips':w.unit;
+ const explicitAllin=w.selected==='allin'&&wzAutoAllinStreetTarget(w.actor,w.street)==null;
+ const unit=explicitAllin?(s.type==='cash'?'cash':'chips'):w.unit;
  if(!['cash','chips'].includes(unit))return[];
  return v27b21SuffixesForType(s.type);
 };
@@ -10042,6 +10267,33 @@ function v27b21DecorateSuffixFields(){
  });
 }
 
+/* Build 1.3: controleer werkelijke zichtbare bedragen vóór de bestaande actiehandlers. */
+window.addEventListener('click',e=>{
+ const t=e.target.closest?.('button[data-wz-confirm]'),w=UI.wz;
+ if(!t||!w||w.step!=='action'||d1Historical())return;
+ const direct=['bet','raise'].includes(w.selected)&&['cash','chips'].includes(w.unit);
+ const manualAllin=w.selected==='allin'&&wzAutoAllinStreetTarget(w.actor,w.street)==null;
+ if(!direct&&!manualAllin)return;
+ const field=document.querySelector('[data-wz-value]');
+ if(!field)return;
+ const raw=String(field.value??'').trim(),p=b13ParseAmount(raw);
+ if(!raw||!p.valid||p.value<=0){
+  e.preventDefault();e.stopImmediatePropagation();w.error=b13AmountMessage();return render();
+ }
+ w.value=String(p.value);
+},true);
+
+/* Build 1.3: onvolledige/ongeldige invoer niet tussentijds in de opgeslagen state zetten.
+   Alleen bedragvelden. De normale tekstinvoer en keyboardfunctie blijven intact. */
+window.addEventListener('input',e=>{
+ const el=e.target;
+ if(el?.tagName!=='INPUT')return;
+ if(el.dataset?.chip==='1'||el.dataset?.rc8TournamentChip!==undefined){
+  const raw=String(el.value??'').trim();
+  if(raw&&!b13ParseAmount(raw).valid)e.stopImmediatePropagation();
+ }
+},true);
+
 /* B2-01: timing-onafhankelijke blurguard; een werkelijk leeg suffixveld blijft leeg en wordt nooit chipDisplay(0). */
 window.addEventListener('blur',e=>{
  const el=e.target;if(!el?.dataset?.v27b21SuffixField||String(el.value??'').trim()!=='')return;
@@ -10100,7 +10352,7 @@ function v27b21StopViewportWatch(){
  if(v27b21ViewportCleanup){v27b21ViewportCleanup();v27b21ViewportCleanup=null}
  v27b31KeyboardOpen=false;v27b31ActiveInput=null;v27b21AmountContext=false;v27b21ViewportKey='';v27b31ResetFooter();
 }
-function v27b21AmountNeeded(){const w=UI.wz;return!!(w&&w.step==='action'&&!v27b21Historical()&&(['bet','raise'].includes(w.selected)||(w.selected==='allin'&&w.actor!=='ik'&&w.allinKnown===true)))}
+function v27b21AmountNeeded(){const w=UI.wz;return!!(w&&w.step==='action'&&!v27b21Historical()&&(['bet','raise'].includes(w.selected)||(w.selected==='allin'&&wzAutoAllinStreetTarget(w.actor,w.street)==null)))}
 function v27b31KeyboardWizardInput(el){
  if(!el||el.disabled||el.readOnly||!UI.wz||UI.screen!=='hand')return false;
  if(el.tagName==='TEXTAREA')return true;
@@ -10229,6 +10481,23 @@ function v27b21WatchKeyboardViewport(){
  const active=document.activeElement;if(v27b31KeyboardWizardInput(active))v27b21SyncAmountInput({reason:'render',target:active});
  else if(v27b31ActiveInput&&!v27b31ActiveInput.isConnected)v27b21StopViewportWatch();
 }
+/* BUG-293-02: het eerste bezoek aan Preflop na 'Bewerken vanaf deze stap' in
+   de setup moet ook zonder gewijzigde setupvelden bewerkbaar zijn. Pas bij de
+   daadwerkelijke actiestart worden de actie- en downstreamgegevens in het concept
+   opnieuw opgebouwd; de oorspronkelijke opgeslagen hand blijft onaangetast. */
+const b13WzStartBeforeEditBranch=wzStart;
+wzStart=function(st){
+ const w=UI.wz;
+ if(st==='pf'&&UI.editTx&&w?.d2BranchEditable&&w.b13RestartActionsOnEntry){
+  w.b13RestartActionsOnEntry=false;
+  if((UI.draft?.streets?.pf||[]).length){
+   rebuildFromCheckpoint(UI.draft,{step:'action',street:'pf',actionCount:0},'safe');
+   d1BumpGeneration('Actie-invoer na bewerkbare setup');
+  }
+ }
+ return b13WzStartBeforeEditBranch(st);
+};
+
 /* Numerieke wizardvelden gebruiken dezelfde centrale viewporthelper; geen aparte blind-/footerengine. */
 window.addEventListener('focusin',e=>{if(v27b31KeyboardWizardInput(e.target))v27b21SyncAmountInput({reason:'focus',target:e.target})},true);
 window.addEventListener('focusout',e=>{const old=e.target;if(!v27b31KeyboardWizardInput(old))return;setTimeout(()=>{const a=document.activeElement;if(v27b31KeyboardWizardInput(a)||a?.closest?.('[data-wz-unit],[data-v27b21-suffix],[data-v27b22-blind-suffix]'))return;if(!v27b21AmountNeeded())v27b21StopViewportWatch()},120)},true);
@@ -10392,7 +10661,7 @@ function registerLivePokerHandlogServiceWorker(){
 
       
       if(!registration){
-        registration=await navigator.serviceWorker.register('./service-worker-v2.9.2-pwa-1.js',{
+        registration=await navigator.serviceWorker.register('./service-worker-v2.9.3-pwa-1.js',{
           scope:'./',
           updateViaCache:'none'
         });
@@ -10516,13 +10785,13 @@ const rSessionB432Base=rSession;rSession=function(){const html=rSessionB432Base(
 b43HandSeatState=function(d,seat){seat=String(seat);if(d.useSessionTable&&(d.sessionInactiveSeats||[]).includes(seat))return{kind:'sessionInactive',label:'S-inactief'};if(!b43HandActiveSeats(d,currentSession()).includes(seat))return{kind:'handInactive',label:'H-inactief'};if(String(d.heroSeat||'')===seat)return{kind:'hero',label:'Hero'};const v=(d.villains||[]).find(x=>String(x.seat||'')===seat&&!x.b43HandInactive);if(v)return{kind:'villain',label:v.name||'Villain',villain:v};return{kind:'anonymous',label:'Niemand'}};
 b43TableButtons=function(model,mode){const count=Number(model.tableSeats)||9,coords=rc8SeatGeometry(count);return coords.map((q,i)=>{const seat=String(i+1),st=model.state(seat),inactive=['inactive','sessionInactive','handInactive'].includes(st.kind),pos=model.positionBySeat?.[seat]||'',selected=String(model.selected||'')===seat;let cl='wz-seat';if(st.kind==='hero')cl+=' hero';if(st.kind==='villain')cl+=' v27-villain';if(st.kind==='anonymous')cl+=' b432-anonymous';if(pos==='SB')cl+=' sb';if(pos==='BB')cl+=' bb';if(inactive)cl+=st.kind==='sessionInactive'?' b43-session-inactive':' b43-hand-inactive';if(selected)cl+=' v27-selected';let text;if(st.kind==='sessionInactive')text='S-inactief';else if(st.kind==='handInactive')text='H-inactief';else if(st.kind==='inactive')text='Inactief';else text=(mode==='session'||mode==='button')?`Seat ${seat}`:(pos||`Seat ${seat}`);const sub=inactive?'':(st.kind==='hero'?'Ik':st.kind==='villain'?st.label:'');const dealer=model.buttonSeat&&String(model.buttonSeat)===seat?'<span class="v27-dealer-dot">D</span>':'';return`<button type="button" class="${cl}" style="left:${q.x}px;top:${q.y}px" ${model.data}="${seat}" ${model.disable?.(seat,st)?'disabled':''}>${dealer}<span>${esc(text)}</span>${sub?`<small>${esc(sub.length>12?sub.slice(0,11)+'…':sub)}</small>`:''}</button>`}).join('')};
 
-b43OpenSessionTable=function(){const s=currentSession();if(!s)return;const snap=b43NormalizeSessionTable(deepClone(s));UI.sessionTableTx={sid:s.id,tableSeats:Number(snap.tableSeats)||9,heroSeat:String(snap.heroSeat||''),inactiveSeats:[...(snap.inactiveSeats||[])].map(String),players:deepClone(snap.players||[]),seatDetail:'',error:''};UI.screen='tableLayout';render()};
+b43OpenSessionTable=function(){const s=currentSession();if(!s)return;const snap=b43NormalizeSessionTable(deepClone(s));UI.sessionTableTx={sid:s.id,tableSeats:Number(snap.tableSeats)||9,heroSeat:String(snap.heroSeat||''),inactiveSeats:[...(snap.inactiveSeats||[])].map(String),players:deepClone(snap.players||[]),pendingLibraryPlayers:[],seatDetail:'',error:''};UI.screen='tableLayout';render()};
 b43SessionSeatOpen=function(seat){if(!UI.sessionTableTx)return;UI.sessionTableTx.seatDetail=String(seat);render()};
 function b432SessionContextClose(){if(UI.sessionTableTx){UI.sessionTableTx.seatDetail='';render()}}
 b43SessionMoveHero=function(seat){const tx=UI.sessionTableTx;seat=String(seat);tx.inactiveSeats=tx.inactiveSeats.filter(x=>x!==seat);tx.players.forEach(p=>{if(String(p.seat)===seat)p.seat=''});tx.heroSeat=seat;tx.error='';tx.seatDetail='';render()};
 b43SessionAssignPlayer=function(seat,player){const tx=UI.sessionTableTx;seat=String(seat);tx.inactiveSeats=tx.inactiveSeats.filter(x=>x!==seat);if(String(tx.heroSeat)===seat)tx.heroSeat='';tx.players.forEach(p=>{if(String(p.seat)===seat||String(p.id)===String(player.id))p.seat=''});let p=tx.players.find(x=>String(x.id)===String(player.id));if(!p){p={id:player.id,name:player.name||'',notes:'',seat:''};tx.players.push(p)}p.seat=seat;tx.seatDetail='';render()};
 function b432SessionTxHasContent(tx){return !!tx?.heroSeat||(tx?.players||[]).some(p=>p.seat)||(tx?.inactiveSeats||[]).length>0}
-b43SessionTableAction=function(act){const tx=UI.sessionTableTx;if(!tx)return;const seat=String(tx.seatDetail||'');if(act==='cancel'){UI.sessionTableTx=null;UI.screen='session';return render()}if(act==='done'){const active=b43Seats(tx.tableSeats).filter(x=>!tx.inactiveSeats.includes(x));if(active.length<2){tx.error='Minimaal twee seats moeten actief blijven.';return render()}if(b432SessionTxHasContent(tx)&&(!tx.heroSeat||!active.includes(String(tx.heroSeat)))){tx.error='Selecteer eerst de Hero-seat.\nEen tafelindeling met ingevulde seats kan alleen worden opgeslagen als Hero aan een actieve seat is toegewezen.';return render()}const s=DB.sessions.find(x=>x.id===tx.sid);if(!s)return;s.heroSeat=tx.heroSeat;s.inactiveSeats=[...tx.inactiveSeats];s.players=deepClone(tx.players);b43NormalizeSessionTable(s);UI.sessionTableTx=null;UI.screen='session';save();return render()}if(act==='clearAll'){tx.heroSeat='';tx.players.forEach(p=>p.seat='');tx.inactiveSeats=[];tx.seatDetail='';tx.error='';return render()}if(!seat)return;if(act==='close')return b432SessionContextClose();if(act==='hero')return b43SessionMoveHero(seat);if(act==='villain'){UI.f6PickerTarget={kind:'sessionTable',seat,search:''};return render()}if(act==='empty'){if(String(tx.heroSeat)===seat)tx.heroSeat='';tx.players.forEach(p=>{if(String(p.seat)===seat)p.seat=''});tx.inactiveSeats=tx.inactiveSeats.filter(x=>x!==seat);tx.seatDetail='';return render()}if(act==='inactive'){if(String(tx.heroSeat)===seat)tx.heroSeat='';tx.players.forEach(p=>{if(String(p.seat)===seat)p.seat=''});if(!tx.inactiveSeats.includes(seat))tx.inactiveSeats.push(seat);tx.seatDetail='';return render()}if(act==='active'){tx.inactiveSeats=tx.inactiveSeats.filter(x=>x!==seat);tx.seatDetail='';return render()}};
+b43SessionTableAction=function(act){const tx=UI.sessionTableTx;if(!tx)return;const seat=String(tx.seatDetail||'');if(act==='cancel'){UI.sessionTableTx=null;UI.f6PickerTarget=null;UI.screen='session';return render()}if(act==='done'){const active=b43Seats(tx.tableSeats).filter(x=>!tx.inactiveSeats.includes(x));if(active.length<2){tx.error='Minimaal twee seats moeten actief blijven.';return render()}if(b432SessionTxHasContent(tx)&&(!tx.heroSeat||!active.includes(String(tx.heroSeat)))){tx.error='Selecteer eerst de Hero-seat.\nEen tafelindeling met ingevulde seats kan alleen worden opgeslagen als Hero aan een actieve seat is toegewezen.';return render()}const s=DB.sessions.find(x=>x.id===tx.sid);if(!s)return;const sourceIds=new Set((s.players||[]).map(p=>String(p.id))),newSession=(tx.players||[]).filter(p=>!sourceIds.has(String(p.id))),newIds=new Set(),newNames=new Set();for(const p of newSession){const id=String(p.id||''),nk=nameKey(p.name),sessionNameHit=(s.players||[]).some(x=>String(x.id)!==id&&nameKey(x.name)===nk),libIdHit=(DB.playerLibrary||[]).find(x=>String(x.id)===id),libNameHit=(DB.playerLibrary||[]).some(x=>String(x.id)!==id&&nameKey(x.name)===nk);if(!id||!nk||newIds.has(id)||newNames.has(nk)||sessionNameHit||libNameHit||(libIdHit&&nameKey(libIdHit.name)!==nk)){tx.error='Een nieuwe speler bestaat inmiddels al in de sessie of spelersbibliotheek. Kies de bestaande speler uit de lijst.';return render()}newIds.add(id);newNames.add(nk)}const pending=tx.pendingLibraryPlayers||[],ids=new Set(),names=new Set();for(const p of pending){const id=String(p.id||''),nk=nameKey(p.name);if(!id||!nk||ids.has(id)||names.has(nk)||(DB.playerLibrary||[]).some(x=>String(x.id)===id||nameKey(x.name)===nk)){tx.error='Een nieuwe speler bestaat inmiddels al in de spelersbibliotheek. Kies de bestaande speler uit de lijst.';return render()}ids.add(id);names.add(nk)}s.heroSeat=tx.heroSeat;s.inactiveSeats=[...tx.inactiveSeats];s.players=deepClone(tx.players);pending.forEach(p=>DB.playerLibrary.push({id:p.id,name:p.name,notes:p.notes||'',lastUsed:null}));b43NormalizeSessionTable(s);UI.sessionTableTx=null;UI.f6PickerTarget=null;UI.screen='session';save();return render()}if(act==='clearAll'){tx.heroSeat='';tx.players.forEach(p=>p.seat='');tx.inactiveSeats=[];tx.seatDetail='';tx.error='';return render()}if(!seat)return;if(act==='close')return b432SessionContextClose();if(act==='hero')return b43SessionMoveHero(seat);if(act==='villain'){UI.f6PickerTarget={kind:'sessionTable',seat,search:'',newMode:false,saveLibrary:false,error:''};return render()}if(act==='empty'){if(String(tx.heroSeat)===seat)tx.heroSeat='';tx.players.forEach(p=>{if(String(p.seat)===seat)p.seat=''});tx.inactiveSeats=tx.inactiveSeats.filter(x=>x!==seat);tx.seatDetail='';return render()}if(act==='inactive'){if(String(tx.heroSeat)===seat)tx.heroSeat='';tx.players.forEach(p=>{if(String(p.seat)===seat)p.seat=''});if(!tx.inactiveSeats.includes(seat))tx.inactiveSeats.push(seat);tx.seatDetail='';return render()}if(act==='active'){tx.inactiveSeats=tx.inactiveSeats.filter(x=>x!==seat);tx.seatDetail='';return render()}};
 function b432SessionContext(){const tx=UI.sessionTableTx;if(!tx?.seatDetail)return'';const seat=String(tx.seatDetail),st=b43SessionTxState(seat);let acts=[];if(st.kind==='anonymous')acts=[['hero','Hero toevoegen'],['villain','Villain toevoegen'],['inactive','Inactief maken']];if(st.kind==='hero')acts=[['villain','Villain toevoegen'],['empty','Leeg maken'],['inactive','Inactief maken']];if(st.kind==='villain')acts=[['hero','Hero toevoegen'],['villain','Andere Villain toevoegen'],['empty','Leeg maken'],['inactive','Inactief maken']];if(st.kind==='inactive')acts=[['active','Actief maken'],['hero','Hero toevoegen'],['villain','Villain toevoegen']];return`<div class="overlay b432-seat-overlay"><div class="b432-seat-card"><div class="b432-overlay-head"><div><h2>Seat ${esc(seat)}</h2><div class="note">${st.kind==='villain'?'Gevuld door: '+esc(st.label):st.kind==='hero'?'Hero':st.kind==='inactive'?'Inactief':'Geen speler toegevoegd'}</div></div><button type="button" class="btn sub small" data-b432-session-context-close="1">Sluiten</button></div><div class="b43-seat-actions">${acts.map(([a,l])=>`<button class="btn sub" data-b43-table-action="${a}">${l}</button>`).join('')}</div></div></div>`}
 b43SessionTableScreen=function(){const tx=UI.sessionTableTx,s=tx&&DB.sessions.find(x=>x.id===tx.sid);if(!tx||!s)return rSession();const visual=b43TableVisual({tableSeats:tx.tableSeats,state:b43SessionTxState,positionBySeat:{},selected:tx.seatDetail,data:'data-b43-session-seat'},'session');const err=tx.error?`<div class="b432-inline-error"><b>${esc(String(tx.error).split('\n')[0])}</b>${esc(String(tx.error).split('\n').slice(1).join(' '))}</div>`:'';return`<div class="panel b432-session-panel"><div class="v27-question">Tafelindeling</div><div class="b432-setup-sub">Tik op een seat om de actuele sessietafel aan te passen.</div>${err}${visual}<div class="b432-session-actions"><button class="btn sub wide" data-b43-table-action="clearAll">Tafel leegmaken</button><button class="btn sub" data-b43-table-action="cancel">Annuleren</button><button class="btn" data-b43-table-action="done">Gereed</button></div></div>${b432SessionContext()}`};
 
@@ -10546,21 +10815,24 @@ function b43HandSeatOpen(seat){const d=UI.draft,w=UI.wz;if(!d||!w||w.step!=='v27
 function b432DetachVillainAtSeat(seat){const d=UI.draft;if(!d)return false;seat=String(seat||'');const before=(d.villains||[]).length;d.villains=(d.villains||[]).filter(v=>String(v.seat)!==seat);if(d.villains.length===before)return false;b43SyncHandPositions(d);if(UI.editTx){UI.editTx.working=UI.draft;UI.editTx.dirty=d2IsDirty()}else save();return true}
 function b43HandSeatAction(act){const d=UI.draft,w=UI.wz;if(!d||!w||w.step!=='v27VillainDecision'||d1Historical())return;const seat=String(w.b43SeatDetail||'');if(!seat)return;if(act==='heroChange'&&!b432HeroFromSession()){d.heroSeat='';d.heroPos='';b43SyncHandPositions(d);w.b432HeroSelect=true;w.b432HeroManual=true;w.b43SeatDetail='';b432FlashSetupSubtitle();return render()}if(act==='inactive'){b43HandSetSeatActive(seat,false);w.b43SeatDetail='';return render()}if(act==='active'){b43HandSetSeatActive(seat,true);w.b43SeatDetail='';return render()}if(act==='villain'&&b43HandSeatState(d,seat).kind==='anonymous'){w.b43SeatDetail='';w.b432VillainLink={seat,playerId:'',name:'',saveLibrary:false};return render()}if(act==='detach'){b432DetachVillainAtSeat(seat);w.b43SeatDetail='';return render()}};
 
-function b432LinkSelectedLabel(){const l=UI.wz?.b432VillainLink;if(l?.explicitUnknown)return'Naamloze Villain';if(!l?.playerId)return l?.name||'Nieuwe speler';const p=(currentSession()?.players||[]).find(x=>String(x.id)===String(l.playerId))||(DB.playerLibrary||[]).find(x=>String(x.id)===String(l.playerId));return p?.name||l.name||'Geselecteerde speler'}
+function d293EditTxSessionPlayers(){const base=currentSession()?.players||[],staged=UI.editTx?.pendingSessionPlayers||[];const ids=new Set(base.map(p=>String(p.id)));return[...base,...staged.filter(p=>!ids.has(String(p.id)))]}
+function d293EditTxNameExists(name,exceptId=''){const k=nameKey(name),id=String(exceptId||'');if(!k)return false;return d293EditTxSessionPlayers().some(p=>String(p.id)!==id&&nameKey(p.name)===k)||(DB.playerLibrary||[]).some(p=>String(p.id)!==id&&nameKey(p.name)===k)||(UI.editTx?.pendingLibraryPlayers||[]).some(p=>String(p.id)!==id&&nameKey(p.name)===k)}
+function d293StageEditPlayer(player,saveLibrary=false){const tx=UI.editTx;if(!tx||!player)return;tx.pendingSessionPlayers=tx.pendingSessionPlayers||[];if(!d293EditTxSessionPlayers().some(p=>String(p.id)===String(player.id)))tx.pendingSessionPlayers.push({id:player.id,name:player.name||'',notes:player.notes||'',seat:''});if(saveLibrary){tx.pendingLibraryPlayers=tx.pendingLibraryPlayers||[];if(!(DB.playerLibrary||[]).some(p=>String(p.id)===String(player.id))&&!tx.pendingLibraryPlayers.some(p=>String(p.id)===String(player.id)))tx.pendingLibraryPlayers.push({id:player.id,name:player.name||'',notes:player.notes||''})}}
+function b432LinkSelectedLabel(){const l=UI.wz?.b432VillainLink;if(l?.explicitUnknown)return'Naamloze Villain';if(!l?.playerId)return l?.name||'Nieuwe speler';const p=(UI.editTx?d293EditTxSessionPlayers():(currentSession()?.players||[])).find(x=>String(x.id)===String(l.playerId))||(DB.playerLibrary||[]).find(x=>String(x.id)===String(l.playerId));return p?.name||l.name||'Geselecteerde speler'}
 function b432VillainLinkOverlay(){const l=UI.wz?.b432VillainLink;if(!l)return'';const hc=d1Historical()?' data-historical-command':'';return`<div class="overlay b432-seat-overlay"${hc}><div class="b432-seat-card b432-link-card"><div class="b432-overlay-head"><div><h2>Villain koppelen</h2><div class="note">Seat ${esc(l.seat)}</div></div><button type="button" class="btn sub small"${hc} data-b432-link-cancel="1">Sluiten</button></div><label>Speler</label><button type="button" class="field-btn b432-link-player"${hc} data-b432-link-player="1"><span>${esc(b432LinkSelectedLabel())}</span><span class="chev">▾</span></button>${l.explicitUnknown?'':`<label>Naam</label><input${hc} data-b432-link-name="1" value="${esc(l.name||'')}" placeholder="Naam nieuwe speler">${l.playerId?'':`<label class="v271-check-row"><input type="checkbox"${hc} data-b432-link-library="1" ${l.saveLibrary?'checked':''}><span>Nieuwe naam ook opslaan in spelersbibliotheek</span></label>`}`}${l.error?`<div class="wz-error">${esc(l.error)}</div>`:''}<div class="b432-link-actions"><button class="btn sub"${hc} data-b432-link-cancel="1">Annuleren</button><button class="btn"${hc} data-b432-link-confirm="1">Koppelen</button></div></div></div>`}
 function b432VillainLinkCancel(){if(UI.wz){UI.wz.b432VillainLink=null;UI.wz.f6PlayerPickerFor=null;UI.wz.f6PlayerSearch='';UI.f6PickerTarget=null;render()}}
-function b432VillainLinkConfirm(){const d=UI.draft,w=UI.wz,l=w?.b432VillainLink;if(!d||!l)return;const seat=String(l.seat),name=String(l.name||'').trim();let pid=String(l.playerId||'');if(pid&&(d.villains||[]).some(v=>String(v.playerId||'')===pid&&String(v.seat)!==seat)){l.error='Deze speler is al aan een andere seat in deze hand gekoppeld.';return render()}let p=pid?((currentSession().players||[]).find(x=>String(x.id)===pid)||(DB.playerLibrary||[]).find(x=>String(x.id)===pid)):null;if(!pid&&!name&&!l.explicitUnknown){w.b432VillainLink=null;return render()}if(!pid&&l.explicitUnknown){let v=(d.villains||[]).find(x=>String(x.seat)===seat&&x.b43HandOnly);if(!v){v={id:uid(),playerId:'',name:'',seat,pos:d.positionBySeat?.[seat]||'',stackMode:'chips',stackBB:'',stackChips:'',cards:[null,null],note:'',b43HandOnly:true};d.villains.push(v)}v.playerId='';v.name='';delete v.b43HandInactive;b43SyncHandPositions(d);w.b432VillainLink=null;if(UI.editTx){UI.editTx.working=UI.draft;UI.editTx.dirty=d2IsDirty()}else if(d1Historical())d26PersistConceptHistoricalEdit();else save();return render()}if(!pid){const same=(currentSession().players||[]).find(x=>nameKey(x.name)===nameKey(name));if(same){l.error='Deze naam bestaat al in de sessie. Kies deze via Speler.';return render()}if(l.saveLibrary&&libraryNameExists(name)){l.error='Naam bestaat al in spelersbibliotheek.';return render()}pid=uid();p={id:pid,name,notes:'',seat:''};currentSession().players.push(p);if(l.saveLibrary){DB.playerLibrary.push({id:pid,name,notes:'',lastUsed:null});if(UI.editTx)save()}}else{l.saveLibrary=false;if(p&&!(currentSession().players||[]).some(x=>String(x.id)===pid))currentSession().players.push({id:p.id,name:p.name||name,notes:'',seat:''})};let v=(d.villains||[]).find(x=>String(x.seat)===seat&&x.b43HandOnly);if(!v){v={id:uid(),playerId:'',name:'',seat,pos:d.positionBySeat?.[seat]||'',stackMode:'chips',stackBB:'',stackChips:'',cards:[null,null],note:'',b43HandOnly:true};d.villains.push(v)}v.playerId=pid;v.name=(p?.name||name||'').trim();delete v.b43HandInactive;if(!UI.editTx)touchPlayer(pid);b43SyncHandPositions(d);w.b432VillainLink=null;if(UI.editTx){UI.editTx.working=UI.draft;UI.editTx.dirty=d2IsDirty()}else if(d1Historical())d26PersistConceptHistoricalEdit();else save();render()}
+function b432VillainLinkConfirm(){const d=UI.draft,w=UI.wz,l=w?.b432VillainLink;if(!d||!l)return;const seat=String(l.seat),name=String(l.name||'').trim();let pid=String(l.playerId||'');if(pid&&(d.villains||[]).some(v=>String(v.playerId||'')===pid&&String(v.seat)!==seat)){l.error='Deze speler is al aan een andere seat in deze hand gekoppeld.';return render()}const sessionPlayers=UI.editTx?d293EditTxSessionPlayers():(currentSession().players||[]);let p=pid?(sessionPlayers.find(x=>String(x.id)===pid)||(DB.playerLibrary||[]).find(x=>String(x.id)===pid)):null;if(!pid&&!name&&!l.explicitUnknown){w.b432VillainLink=null;return render()}if(!pid&&l.explicitUnknown){let v=(d.villains||[]).find(x=>String(x.seat)===seat&&x.b43HandOnly);if(!v){v={id:uid(),playerId:'',name:'',seat,pos:d.positionBySeat?.[seat]||'',stackMode:'chips',stackBB:'',stackChips:'',cards:[null,null],note:'',b43HandOnly:true};d.villains.push(v)}v.playerId='';v.name='';delete v.b43HandInactive;b43SyncHandPositions(d);w.b432VillainLink=null;if(UI.editTx){UI.editTx.working=UI.draft;UI.editTx.dirty=d2IsDirty()}else if(d1Historical())d26PersistConceptHistoricalEdit();else save();return render()}if(!pid){if(UI.editTx?d293EditTxNameExists(name):(currentSession().players||[]).some(x=>nameKey(x.name)===nameKey(name))){l.error='Deze naam bestaat al in de sessie of spelersbibliotheek. Kies deze speler uit de lijst.';return render()}if(!UI.editTx&&l.saveLibrary&&libraryNameExists(name)){l.error='Naam bestaat al in spelersbibliotheek.';return render()}pid=uid();p={id:pid,name,notes:'',seat:''};if(UI.editTx)d293StageEditPlayer(p,!!l.saveLibrary);else{currentSession().players.push(p);if(l.saveLibrary)DB.playerLibrary.push({id:pid,name,notes:'',lastUsed:null})}}else{l.saveLibrary=false;if(p&&!sessionPlayers.some(x=>String(x.id)===pid)){if(UI.editTx)d293StageEditPlayer(p,false);else currentSession().players.push({id:p.id,name:p.name||name,notes:'',seat:''})}}let v=(d.villains||[]).find(x=>String(x.seat)===seat&&x.b43HandOnly);if(!v){v={id:uid(),playerId:'',name:'',seat,pos:d.positionBySeat?.[seat]||'',stackMode:'chips',stackBB:'',stackChips:'',cards:[null,null],note:'',b43HandOnly:true};d.villains.push(v)}v.playerId=pid;v.name=(p?.name||name||'').trim();delete v.b43HandInactive;if(!UI.editTx)touchPlayer(pid);b43SyncHandPositions(d);w.b432VillainLink=null;if(UI.editTx){UI.editTx.working=UI.draft;UI.editTx.dirty=d2IsDirty()}else if(d1Historical())d26PersistConceptHistoricalEdit();else save();render()}
 
 /* f6-picker blijft gedeeld; handLink selecteert alleen tijdelijk en commit niet naar seat. */
-f6TargetPlayers=function(){const t=f6Target();return t?.kind==='sessionTable'?(UI.sessionTableTx?.players||[]):(currentSession()?.players||[])};
+f6TargetPlayers=function(){const t=f6Target();if(t?.kind==='sessionTable')return UI.sessionTableTx?.players||[];if(t?.kind==='handLink'&&UI.editTx)return d293EditTxSessionPlayers();return currentSession()?.players||[]};
 f6TargetCurrent=function(){const t=f6Target();if(!t)return null;if(t.kind==='wizard')return UI.draft?.villains?.[t.index]||null;if(t.kind==='sessionTable')return b43SessionTxState(t.seat)?.player||null;if(t.kind==='handLink'){const l=UI.wz?.b432VillainLink;return l?.playerId?{id:l.playerId,playerId:l.playerId,name:l.name||''}:null}return null};
 /* Technische toelichting: sessietafel nieuwe speler: geen naamloze state-mutatie; naam verplicht vóór koppelen. */
 /* Technische toelichting: de gedeelde spelerspicker ondersteunt op de sessietafel dezelfde speleridentiteit als elders.
    Een nieuwe speler wordt pas na een geldige naam aan de tijdelijke sessietafel gekoppeld. Een optionele bibliotheekkoppeling
    blijft onderdeel van dezelfde sessietafeltransactie en wordt pas bij Gereed definitief opgeslagen. */
-f6PlayerPickerResultsHTML=function(){const t=f6Target();if(!t)return'';const current=f6TargetCurrent(),pid=String(current?.playerId||current?.id||''),q=nameKey(t.search||''),players=f6TargetPlayers(),matches=n=>!q||nameKey(n).includes(q),hc=d1Historical()?' data-historical-command':'';let used=new Set();if(t.kind==='wizard')used=new Set((UI.draft?.villains||[]).filter((x,i)=>i!==t.index&&x.playerId).map(x=>String(x.playerId)));if(t.kind==='sessionTable')used=new Set((UI.sessionTableTx?.players||[]).filter(p=>p.seat&&String(p.seat)!==String(t.seat)).map(p=>String(p.id)));if(t.kind==='handLink')used=new Set((UI.draft?.villains||[]).filter(v=>v.playerId&&String(v.seat)!==String(t.seat)).map(v=>String(v.playerId)));if(t.kind==='handLink'&&!t.route)return`<button type="button" class="f6-player-row"${hc} data-f6-handlink-route="unknown">Naamloze Villain</button><button type="button" class="f6-player-row"${hc} data-f6-handlink-route="new">Nieuwe speler</button><button type="button" class="f6-player-row"${hc} data-f6-handlink-route="session">Speler uit huidige sessie</button><button type="button" class="f6-player-row"${hc} data-f6-handlink-route="library">Speler uit spelersbibliotheek</button>`;const session=players.filter(p=>matches(p.name||'')).map(p=>`<button type="button" class="f6-player-row ${pid===String(p.id)?'on':''}"${hc} ${used.has(String(p.id))?'disabled':''} data-f6-player-pick="session:${p.id}">${esc(p.name||'Speler')}</button>`).join('');const ids=new Set(players.map(p=>String(p.id))),library=(DB.playerLibrary||[]).filter(p=>!ids.has(String(p.id))&&matches(p.name||'')).map(p=>`<button type="button" class="f6-player-row ${pid===String(p.id)?'on':''}"${hc} ${used.has(String(p.id))?'disabled':''} data-f6-player-pick="library:${p.id}">${esc(p.name||'Speler')}</button>`).join('');if(t.kind==='handLink'&&t.route==='session')return session||'<div class="note" style="padding:12px 4px">Geen sessiespelers gevonden.</div>';if(t.kind==='handLink'&&t.route==='library')return library||'<div class="note" style="padding:12px 4px">Geen bibliotheekspelers gevonden.</div>';return`${session?`<div class="f6-player-group-label">Speler uit huidige sessie</div>${session}`:''}${library?`<div class="f6-player-group-label">Speler uit spelersbibliotheek</div>${library}`:''}`};
+f6PlayerPickerResultsHTML=function(){const t=f6Target();if(!t)return'';const current=f6TargetCurrent(),pid=String(current?.playerId||current?.id||''),q=nameKey(t.search||''),players=f6TargetPlayers(),matches=n=>!q||nameKey(n).includes(q),hc=d1Historical()?' data-historical-command':'';let used=new Set();if(t.kind==='wizard')used=new Set((UI.draft?.villains||[]).filter((x,i)=>i!==t.index&&x.playerId).map(x=>String(x.playerId)));if(t.kind==='sessionTable')used=new Set((UI.sessionTableTx?.players||[]).filter(p=>p.seat&&String(p.seat)!==String(t.seat)).map(p=>String(p.id)));if(t.kind==='handLink')used=new Set((UI.draft?.villains||[]).filter(v=>v.playerId&&String(v.seat)!==String(t.seat)).map(v=>String(v.playerId)));if(t.kind==='handLink'&&!t.route)return`<button type="button" class="f6-player-row"${hc} data-f6-handlink-route="unknown">Naamloze Villain</button><button type="button" class="f6-player-row"${hc} data-f6-handlink-route="new">Nieuwe speler</button><button type="button" class="f6-player-row"${hc} data-f6-handlink-route="session">Speler uit huidige sessie</button><button type="button" class="f6-player-row"${hc} data-f6-handlink-route="library">Speler uit spelersbibliotheek</button>`;const session=players.filter(p=>matches(p.name||'')).map(p=>`<button type="button" class="f6-player-row ${pid===String(p.id)?'on':''}"${hc} ${used.has(String(p.id))?'disabled':''} data-f6-player-pick="session:${p.id}">${esc(p.name||'Speler')}</button>`).join('');const ids=new Set(players.map(p=>String(p.id))),library=(DB.playerLibrary||[]).filter(p=>!ids.has(String(p.id))&&matches(p.name||'')).map(p=>`<button type="button" class="f6-player-row ${pid===String(p.id)?'on':''}"${hc} ${used.has(String(p.id))?'disabled':''} data-f6-player-pick="library:${p.id}">${esc(p.name||'Speler')}</button>`).join('');if(t.kind==='handLink'&&t.route==='session')return session||'<div class="note" style="padding:12px 4px">Geen sessiespelers gevonden.</div>';if(t.kind==='handLink'&&t.route==='library')return library||'<div class="note" style="padding:12px 4px">Geen bibliotheekspelers gevonden.</div>';const create=t.kind==='sessionTable'?`<div class="f6-player-group-label">Nieuwe speler</div><button type="button" class="f6-player-row f6-player-row-bold" data-f6-session-new="1">Nieuwe speler</button>`:'';return`${create}${session?`<div class="f6-player-group-label">Speler uit huidige sessie</div>${session}`:''}${library?`<div class="f6-player-group-label">Speler uit spelersbibliotheek</div>${library}`:''}${!create&&!session&&!library?'<div class="note" style="padding:12px 4px">Geen spelers gevonden.</div>':''}`};
 f6PlayerPicker=function(){const t=f6Target();if(!t)return'';const hc=d1Historical()?' data-historical-command':'';if(t.kind==='sessionTable'&&t.newMode){return`<div class="overlay"${hc}><div class="picker f6-player-picker"><div class="v27-question">Nieuwe / onbekende speler</div><label>Naam</label><input type="text"${hc} data-f6-player-search="1" value="${esc(t.search||'')}" placeholder="Naam invullen"><label class="v271-check-row"><input type="checkbox"${hc} data-f6-session-new-library="1" ${t.saveLibrary?'checked':''}><span>Ook opslaan in spelersbibliotheek</span></label>${t.error?`<div class="wz-error">${esc(t.error)}</div>`:''}<div class="grid2" style="margin-top:12px"><button type="button" class="btn sub"${hc} data-f6-session-new-cancel="1">Annuleren</button><button type="button" class="btn"${hc} data-f6-session-new-confirm="1">Koppelen</button></div></div></div>`}if(t.kind==='handLink'){const route=t.route||'',list=route==='session'||route==='library';const title=!route?'Villain koppelen':route==='session'?'Speler uit huidige sessie':'Speler uit spelersbibliotheek';return`<div class="overlay"${hc}><div class="picker f6-player-picker"><div class="v27-question">${title}</div>${list?`<label>Speler zoeken</label><input type="text"${hc} data-f6-player-search="1" value="${esc(t.search||'')}" placeholder="Typ een naam" style="margin-bottom:10px">`:''}<div class="f6-player-scroll" data-f6-player-results="1">${f6PlayerPickerResultsHTML()}</div><div class="row" style="margin-top:12px">${route?`<button type="button" class="btn sub small"${hc} data-f6-handlink-back="1">Terug</button>`:''}<button type="button" class="btn sub small"${hc} data-f6-player-picker-close="1">Sluiten</button></div></div></div>`}return`<div class="overlay"${hc} data-f6-player-picker-close="1"><div class="picker f6-player-picker"><label>Speler zoeken</label><input type="text"${hc} data-f6-player-search="1" value="${esc(t.search||'')}" placeholder="Typ een naam" style="margin-bottom:10px"><div class="f6-player-scroll" data-f6-player-results="1">${f6PlayerPickerResultsHTML()}</div><div class="row" style="margin-top:12px"><button type="button" class="btn sub small"${hc} data-f6-player-picker-close="1">Sluiten</button></div></div></div>`};
-function f6SessionNewConfirm(){const t=f6Target(),tx=UI.sessionTableTx;if(!t||t.kind!=='sessionTable'||!t.newMode||!tx)return;const name=String(t.search||'').trim();t.error='';if(!name){t.error='Vul een naam in.';return render()}const sameSession=(tx.players||[]).find(p=>nameKey(p.name)===nameKey(name));if(sameSession){t.error='Deze naam bestaat al in de sessie. Kies deze speler uit de lijst.';return render()}if(t.saveLibrary&&libraryNameExists(name)){t.error='Naam bestaat al in spelersbibliotheek. Kies deze speler uit de lijst.';return render()}const p={id:uid(),name,notes:'',seat:''};if(t.saveLibrary)(tx.pendingLibraryPlayers||(tx.pendingLibraryPlayers=[])).push({id:p.id,name:p.name,notes:''});b43SessionAssignPlayer(t.seat,p);UI.f6PickerTarget=null;render()}
+function f6SessionNewConfirm(){const t=f6Target(),tx=UI.sessionTableTx;if(!t||t.kind!=='sessionTable'||!t.newMode||!tx)return;const name=String(t.search||'').trim();t.error='';if(!name){t.error='Vul een naam in.';return render()}const sameSession=(tx.players||[]).find(p=>nameKey(p.name)===nameKey(name));if(sameSession){t.error='Deze naam bestaat al in de sessie. Kies deze speler uit de lijst.';return render()}if(libraryNameExists(name)){t.error='Deze naam bestaat al in spelersbibliotheek. Kies deze speler uit de lijst.';return render()}const p={id:uid(),name,notes:'',seat:''};if(t.saveLibrary)(tx.pendingLibraryPlayers||(tx.pendingLibraryPlayers=[])).push({id:p.id,name:p.name,notes:''});b43SessionAssignPlayer(t.seat,p);UI.f6PickerTarget=null;render()}
 
 
 /* --- Button, Hero- en Villain-gegevens --- */
@@ -10733,12 +11005,12 @@ function v292PotPercentageCommit(amt,unit){
  return{amt:String(Math.floor(base)),unit:'bb'};
 }
 const wzApplyV292Base=wzApply;
-wzApply=function(act,amt='',unit=''){
+wzApply=function(act,amt='',unit='',meta=null){
  if(unit==='%'&&['bet','raise','allin','jam'].includes(act)){
   const committed=v292PotPercentageCommit(amt,unit);
-  return wzApplyV292Base(act,committed.amt,committed.unit);
+  return wzApplyV292Base(act,committed.amt,committed.unit,meta);
  }
- return wzApplyV292Base(act,amt,unit);
+ return wzApplyV292Base(act,amt,unit,meta);
 };
 
 </script>
